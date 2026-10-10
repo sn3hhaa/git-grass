@@ -1,6 +1,6 @@
 /* ==========================================================================
    git-grass — Cursor-Inspired Dark Developer Tool Design System
-   Near-black background (#0E0E0D), warm charcoal surfaces (#181816),
+   Pitch-black canvas (#000000 / #0A0A0A), warm charcoal surfaces (#111110),
    white primary typography, muted grey secondary text, and
    restrained cool periwinkle / muted blue accent (#7B9EEA).
    ========================================================================== */
@@ -18,27 +18,33 @@
   --terminal-text: #F5F5F5;
   --font-serif: 'Newsreader', Georgia, Cambria, serif;
 
-  /* Cursor Dark Theme Tokens */
-  --cursor-dark-bg: #0E0E0D;
-  --cursor-dark-surface: #181816;
-  --cursor-dark-elevated: #1F1F1D;
-  --cursor-dark-card: #181816;
-  --cursor-dark-cmd: #222220;
-  --cursor-dark-cmd-hover: #2A2A27;
+  /* Cursor True Pitch-Black Theme Tokens */
+  --cursor-dark-bg: #000000;
+  --cursor-dark-surface: #111110;
+  --cursor-dark-elevated: #181816;
+  --cursor-dark-card: #10100F;
+  --cursor-dark-cmd: #1C1C1A;
+  --cursor-dark-cmd-hover: #262624;
 
   --cursor-text-white: #EDEDEC;
-  --cursor-text-secondary: #9E9D99;
-  --cursor-text-muted: #6E6D69;
+  --cursor-text-secondary: #8E8D8A;
+  --cursor-text-muted: #5E5D59;
 
   --cursor-border: rgba(255, 255, 255, 0.08);
-  --cursor-border-subtle: rgba(255, 255, 255, 0.05);
-  --cursor-border-focus: #7B9EEA;
+  --cursor-border-subtle: rgba(255, 255, 255, 0.04);
+  --cursor-border-focus: #3DA768;
 
-  /* Muted Blue / Cool Periwinkle Accent */
-  --accent-periwinkle: #7B9EEA;
-  --accent-periwinkle-light: #93B2FF;
-  --accent-periwinkle-subtle: rgba(123, 158, 234, 0.12);
-  --accent-periwinkle-border: rgba(123, 158, 234, 0.3);
+  /* Refined, Subtle Botanical Green Accent (Gemini CLI-inspired, non-neon) */
+  --accent-green: #3DA768;
+  --accent-green-light: #4EBD7B;
+  --accent-green-subtle: rgba(61, 167, 104, 0.12);
+  --accent-green-border: rgba(61, 167, 104, 0.28);
+
+  /* Legacy alias mapped to refined botanical green */
+  --accent-periwinkle: #3DA768;
+  --accent-periwinkle-light: #4EBD7B;
+  --accent-periwinkle-subtle: rgba(61, 167, 104, 0.12);
+  --accent-periwinkle-border: rgba(61, 167, 104, 0.28);
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -132,9 +138,9 @@ button {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(14, 14, 13, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--cursor-border);
 }
 
@@ -159,7 +165,7 @@ button {
   width: 22px;
   height: 22px;
   background: #FFFFFF;
-  color: #0E0E0D;
+  color: #000000;
   border-radius: var(--radius-xs);
   display: inline-flex;
   align-items: center;
@@ -169,7 +175,7 @@ button {
 .brand-mark svg {
   width: 13px;
   height: 13px;
-  stroke: #0E0E0D;
+  stroke: #000000;
 }
 
 .nav-desktop {
@@ -203,14 +209,13 @@ button {
   gap: 12px;
 }
 
-/* Primary Button (Matches Cursor white pill/sm button) */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   background: #FFFFFF;
-  color: #0E0E0D;
+  color: #000000;
   padding: 6px 14px;
   font-size: 0.825rem;
   font-weight: 500;
@@ -221,7 +226,7 @@ button {
 
 .btn-primary:hover {
   opacity: 0.88;
-  color: #0E0E0D;
+  color: #000000;
 }
 
 .btn-secondary {
@@ -283,7 +288,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--cursor-dark-bg);
+  background: #000000;
   border-top: 1px solid var(--cursor-border);
   z-index: 99;
   padding: 24px;
@@ -314,15 +319,15 @@ button {
 }
 
 /* ==========================================================================
-   Hero Section (Matches Screenshot 1)
+   Hero Section (Matches Screenshot 1 & User Instructions)
    ========================================================================== */
 
 .cursor-hero-section {
-  padding: 64px 0 24px;
+  padding: 68px 0 28px;
 }
 
 .cursor-hero-headline-block {
-  max-width: 680px;
+  max-width: 740px;
   text-align: left;
 }
 
@@ -337,16 +342,41 @@ button {
 
 .cursor-hero-title {
   font-family: var(--font-sans);
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-size: clamp(2.75rem, 5.5vw, 4.4rem);
   font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: #FFFFFF;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #8E8D8A;
   margin-bottom: 14px;
 }
 
+.cursor-hero-title::first-line {
+  color: #FFFFFF;
+}
+
+/* Tagline Two-Tone: White & Grey (Matches Screenshot 1) */
+.cursor-hero-tagline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.tagline-white {
+  color: #FFFFFF;
+}
+
+.tagline-grey {
+  color: var(--cursor-text-secondary);
+}
+
 .cursor-hero-sub {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.55;
   color: var(--cursor-text-secondary);
   max-width: 580px;
@@ -366,7 +396,7 @@ button {
 }
 
 /* ==========================================================================
-   Large Hero Stage Card (Matches Screenshot 1: card--large)
+   Large Hero Stage Card (Matches Image 5: 30% command / 70% wallpaper)
    ========================================================================== */
 
 .cursor-stage-section {
@@ -378,9 +408,9 @@ button {
   border: 1px solid var(--cursor-border);
   border-radius: var(--radius-lg);
   display: grid;
-  grid-template-columns: 0.95fr 1.25fr;
+  grid-template-columns: 32% 68%;
   overflow: hidden;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65);
 }
 
 .cursor-stage-left {
@@ -409,6 +439,7 @@ button {
   color: var(--cursor-text-secondary);
 }
 
+/* OS / Package Manager Switcher Tabs (npm | npx | source) */
 .cursor-os-selector {
   display: flex;
   align-items: center;
@@ -419,20 +450,26 @@ button {
   font-size: 0.75rem;
   font-family: var(--font-mono);
   color: var(--cursor-text-muted);
-  padding: 2px 8px;
+  padding: 4px 10px;
   border-radius: var(--radius-xs);
   background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.15s ease;
+}
+
+.os-pill:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .os-pill.active {
   color: #FFFFFF;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
-/* Command Box with Working Copy Button (Matches Screenshot 1) */
+/* Command Box with Working Copy Button */
 .cursor-cmd-container {
   display: flex;
   align-items: center;
@@ -484,36 +521,36 @@ button {
   color: var(--accent-periwinkle);
 }
 
-/* Right Column (Wallpaper Backdrop with Floating Window) */
+/* Right Column (Wallpaper Backdrop with Floating Window - Matches Image 5) */
 .cursor-stage-right {
   position: relative;
   overflow: hidden;
-  min-height: 440px;
+  min-height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 36px 40px;
 }
 
 .cursor-wallpaper-frame {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Subtle Natural Dune/Woodland Gradient Backdrop (Matches Screenshot 1) */
+/* User's Uploaded Botanical Blur Wallpaper Backdrop Covering 70% of card */
 .cursor-wallpaper-bg {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-md);
-  background: 
-    radial-gradient(circle at 80% 20%, rgba(123, 158, 234, 0.14) 0%, transparent 60%),
-    radial-gradient(circle at 20% 80%, rgba(60, 60, 56, 0.3) 0%, transparent 60%),
-    linear-gradient(145deg, #1D1D1B 0%, #131312 100%);
-  border: 1px solid var(--cursor-border);
+  border-radius: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.32)), url('hero-terminal-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  border-left: 1px solid var(--cursor-border);
 }
 
 /* Floating Window Component (terminal-compact) */
@@ -522,15 +559,17 @@ button {
   z-index: 10;
   width: 100%;
   max-width: 490px;
-  background: #141413;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(14, 14, 13, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-md);
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
 .cursor-window-bar {
-  background: #1C1C1A;
+  background: #181816;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px 12px;
   display: flex;
@@ -635,7 +674,7 @@ button {
 }
 
 .cursor-term-input-box {
-  background: #1C1C1A;
+  background: #181816;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-xs);
   padding: 10px 12px;
@@ -757,7 +796,7 @@ button {
 }
 
 .workflow-card-preview {
-  background: #141413;
+  background: #080807;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-sm);
   padding: 14px;
@@ -849,7 +888,7 @@ button {
 }
 
 .cursor-card-visual-frame {
-  background: #141413;
+  background: #080807;
   margin: 0 20px 20px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -864,7 +903,7 @@ button {
 /* Card 1 Inside Visual */
 .cursor-model-selector-box {
   width: 100%;
-  background: #1B1B19;
+  background: #141413;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-sm);
   padding: 12px;
@@ -916,7 +955,7 @@ button {
 /* Card 2 Inside Visual */
 .cursor-workflow-box {
   width: 100%;
-  background: #1B1B19;
+  background: #141413;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-sm);
   padding: 14px;
@@ -973,7 +1012,7 @@ button {
 /* Card 3 Inside Visual */
 .cursor-config-box {
   width: 100%;
-  background: #1B1B19;
+  background: #141413;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-sm);
   padding: 14px;
@@ -1008,7 +1047,7 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-bottom: 1px solid var(--cursor-border);
-  background: #141413;
+  background: #080807;
 }
 
 .demo-tab-btn {
@@ -1070,13 +1109,13 @@ button {
 }
 
 .demo-console-window {
-  background: #121211;
+  background: #080807;
   border-bottom: 1px solid var(--cursor-border);
   font-family: var(--font-mono);
 }
 
 .demo-console-header {
-  background: #1A1A18;
+  background: #141413;
   padding: 10px 18px;
   display: flex;
   align-items: center;
@@ -1140,14 +1179,14 @@ button {
 
 .btn-demo-primary {
   background: #FFFFFF;
-  color: #0E0E0D;
+  color: #000000;
   border-color: #FFFFFF;
 }
 
 .btn-demo-primary:hover {
   opacity: 0.9;
   background: #FFFFFF;
-  color: #0E0E0D;
+  color: #000000;
 }
 
 .btn-demo-reset {
@@ -1280,11 +1319,11 @@ button {
 }
 
 /* ==========================================================================
-   Minimal Dark Footer (Matches Screenshot 3)
+   Minimal Dark Footer with User Socials (Matches Screenshot 3)
    ========================================================================== */
 
 .cursor-site-footer {
-  background: #111110;
+  background: #080807;
   border-top: 1px solid var(--cursor-border);
   padding: 64px 0 36px;
 }
@@ -1366,7 +1405,7 @@ button {
   padding: 0 24px;
 }
 
-/* Left Sidebar (Matches Screenshot 5) */
+/* Left Sidebar */
 .doc-nav {
   position: sticky;
   top: 84px;
@@ -1479,7 +1518,7 @@ button {
 }
 
 .doc-code-block {
-  background: #141413;
+  background: #080807;
   border: 1px solid var(--cursor-border);
   border-radius: var(--radius-sm);
   margin: 20px 0;
@@ -1487,7 +1526,7 @@ button {
 }
 
 .doc-code-header {
-  background: #1C1C1A;
+  background: #141413;
   padding: 8px 14px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -1521,7 +1560,7 @@ button {
   color: #FFFFFF;
 }
 
-/* Right Sidebar Table of Contents (Matches Screenshot 5) */
+/* Right Sidebar Table of Contents */
 .doc-toc {
   position: sticky;
   top: 84px;
@@ -1572,6 +1611,439 @@ button {
 
 .btn-copy-page:hover {
   color: #FFFFFF;
+}
+
+.doc-lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #A0A09C;
+  margin-bottom: 28px;
+}
+
+.doc-cmd-card {
+  background: var(--cursor-dark-card);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  margin: 28px 0;
+  transition: border-color 0.15s ease;
+}
+
+.doc-cmd-card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.doc-cmd-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.doc-cmd-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.doc-cmd-header h3 code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+.doc-cmd-badge {
+  font-size: 0.675rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  background: rgba(123, 158, 234, 0.12);
+  color: var(--accent-periwinkle);
+  border: 1px solid rgba(123, 158, 234, 0.25);
+}
+
+.doc-table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-xs);
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.825rem;
+  text-align: left;
+}
+
+.doc-table th {
+  background: #141413;
+  color: var(--cursor-text-white);
+  padding: 8px 12px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--cursor-border);
+}
+
+.doc-table td {
+  padding: 8px 12px;
+  color: var(--cursor-text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.doc-table tr:last-child td {
+  border-bottom: none;
+}
+
+.doc-table code {
+  color: var(--accent-periwinkle);
+}
+
+/* ==========================================================================
+   Footer Controls: Light/Dark/System Switcher & Language Pill (Image 1)
+   ========================================================================== */
+
+.footer-theme-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-switch-pill {
+  display: inline-flex;
+  align-items: center;
+  background: var(--cursor-dark-cmd);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-pill);
+  color: var(--cursor-text-muted);
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.theme-btn:hover {
+  color: var(--cursor-text-white);
+}
+
+.theme-btn.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+}
+
+.lang-selector-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cursor-dark-cmd);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  color: var(--cursor-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lang-selector-pill:hover {
+  color: var(--cursor-text-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   Light Mode Theme Overrides
+   ========================================================================== */
+
+body[data-theme="light"] {
+  background-color: #FAFAF9;
+  color: #171717;
+  --cursor-dark-bg: #FAFAF9;
+  --cursor-dark-surface: #FFFFFF;
+  --cursor-dark-elevated: #F5F5F3;
+  --cursor-dark-card: #FFFFFF;
+  --cursor-dark-cmd: #F0F0EE;
+  --cursor-dark-cmd-hover: #E8E8E5;
+  --cursor-text-white: #171717;
+  --cursor-text-secondary: #737373;
+  --cursor-text-muted: #9E9D99;
+  --cursor-border: #E5E5E5;
+  --cursor-border-subtle: #EEEEEC;
+}
+
+body[data-theme="light"] .site-header {
+  background: rgba(250, 250, 249, 0.94);
+  border-bottom: 1px solid #E5E5E5;
+}
+
+body[data-theme="light"] .brand-group {
+  color: #171717;
+}
+
+body[data-theme="light"] .nav-link {
+  color: #737373;
+}
+
+body[data-theme="light"] .nav-link:hover,
+body[data-theme="light"] .nav-link.active {
+  color: #171717;
+}
+
+body[data-theme="light"] .btn-primary {
+  background: #171717;
+  color: #FFFFFF;
+  border-color: #171717;
+}
+
+body[data-theme="light"] .btn-secondary {
+  background: #FFFFFF;
+  color: #171717;
+  border-color: #E5E5E5;
+}
+
+body[data-theme="light"] .cursor-hero-title {
+  color: #737373;
+}
+
+body[data-theme="light"] .cursor-hero-title::first-line {
+  color: #171717;
+}
+
+body[data-theme="light"] .tagline-white {
+  color: #171717;
+}
+
+body[data-theme="light"] .cursor-card-large {
+  background: #FFFFFF;
+  border-color: #E5E5E5;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .cursor-stage-title {
+  color: #171717;
+}
+
+body[data-theme="light"] .os-pill {
+  background: #F0F0EE;
+  color: #737373;
+}
+
+body[data-theme="light"] .os-pill.active {
+  background: #171717;
+  color: #FFFFFF;
+}
+
+body[data-theme="light"] .cursor-cmd-box {
+  background: #F5F5F3;
+  border-color: #E5E5E5;
+}
+
+body[data-theme="light"] .cursor-cmd-code {
+  color: #171717;
+}
+
+body[data-theme="light"] .syn-func,
+body[data-theme="light"] .syn-str {
+  color: #171717;
+}
+
+body[data-theme="light"] .theme-btn.active {
+  background: #171717;
+  color: #FFFFFF;
+}
+
+body[data-theme="light"] .cursor-site-footer {
+  background: #FAFAF9;
+  border-top-color: #E5E5E5;
+}
+
+body[data-theme="light"] .footer-col-title {
+  color: #171717;
+}
+
+body[data-theme="light"] .footer-col-list a {
+  color: #737373;
+}
+
+body[data-theme="light"] .footer-col-list a:hover {
+  color: #171717;
+}
+
+/* ==========================================================================
+   Documentation Features Grid (Image 4: What you can do with git-grass)
+   ========================================================================== */
+
+.doc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 32px 0 48px;
+}
+
+@media (max-width: 900px) {
+  .doc-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.doc-feature-card {
+  background: var(--cursor-dark-card);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-sm);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.15s ease;
+}
+
+.doc-feature-card:hover {
+  border-color: var(--accent-green);
+  background: rgba(61, 167, 104, 0.03);
+}
+
+.doc-feature-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.doc-feature-icon {
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+}
+
+.doc-feature-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cursor-text-white);
+}
+
+.doc-feature-desc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--cursor-text-secondary);
+}
+
+/* Search Box (Image 2) */
+.doc-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cursor-dark-cmd);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  color: var(--cursor-text-muted);
+  min-width: 200px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.doc-search-box:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--cursor-text-white);
+}
+
+.doc-search-kbd {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  color: var(--cursor-text-muted);
+  margin-left: auto;
+}
+
+/* ==========================================================================
+   Contact Form Styles (AJAX Endpoint)
+   ========================================================================== */
+
+.contact-card {
+  background: var(--cursor-dark-card);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  max-width: 620px;
+  margin: 32px auto 64px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--cursor-text-white);
+}
+
+.form-input,
+.form-textarea {
+  background: var(--cursor-dark-cmd);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: #EDEDEC;
+  transition: border-color 0.15s ease;
+  width: 100%;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent-green);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-status {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  display: none;
+}
+
+.contact-status.success {
+  display: block;
+  background: rgba(61, 167, 104, 0.12);
+  border: 1px solid rgba(61, 167, 104, 0.35);
+  color: #4EBD7B;
+}
+
+.contact-status.error {
+  display: block;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #F87171;
 }
 
 /* ==========================================================================

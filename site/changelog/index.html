@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23171717%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
   <link rel="stylesheet" href="../styles.css">
 </head>
-<body>
+<body class="cursor-dark">
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
@@ -102,11 +102,104 @@
     </div>
   </main>
 
-  <footer class="site-footer">
+  <!-- Minimal Dark Footer with User Socials -->
+  <footer class="cursor-site-footer" id="site-footer">
     <div class="container">
-      <div class="footer-bottom">
-        <span>MIT Licensed. Free and open source software.</span>
-        <a href="../index.html">Back to git-grass</a>
+      <div class="cursor-footer-columns">
+        <div class="footer-col">
+          <h3 class="footer-col-title">Product</h3>
+          <ul class="footer-col-list">
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#how-it-works">How it works</a></li>
+            <li><a href="../challenges/index.html">Challenges</a></li>
+            <li><a href="../index.html#install">CLI Installation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Resources</h3>
+          <ul class="footer-col-list">
+            <li><a href="../docs/index.html">Documentation</a></li>
+            <li><a href="../architecture/index.html">Architecture</a></li>
+            <li><a href="../roadmap/index.html">Roadmap</a></li>
+            <li><a href="index.html">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Project</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="../contributing/index.html">Contributing</a></li>
+            <li><a href="../privacy/index.html">Privacy</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Legal</h3>
+          <ul class="footer-col-list">
+            <li><a href="../privacy/index.html">Privacy Policy</a></li>
+            <li><a href="../license/index.html">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Connect</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa" target="_blank" rel="noopener noreferrer">GitHub (@sn3hhaa)</a></li>
+            <li><a href="https://x.com/sn3hhaa" target="_blank" rel="noopener noreferrer">Twitter / X (@sn3hhaa)</a></li>
+            <li><a href="https://linkedin.com/in/iamsnehatiwari" target="_blank" rel="noopener noreferrer">LinkedIn (iamsnehatiwari)</a></li>
+            <li><a href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord (sn3hahaha)</a></li>
+            <li><a href="https://github.com/sn3hhaa/git-grass/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cursor-footer-bottom">
+        <div class="footer-bottom-left">
+          <span>&copy; 2026 git-grass. Open-source software.</span>
+          <span class="footer-shield-badge">Zero telemetry &bull; 100% Local LAN</span>
+        </div>
+
+        <div class="footer-theme-controls">
+          <div class="theme-switch-pill" role="radiogroup" aria-label="Theme preference">
+            <button type="button" class="theme-btn" data-theme-set="system" title="System theme" aria-label="System theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="17"></line>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn" data-theme-set="light" title="Light theme" aria-label="Light theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn active" data-theme-set="dark" title="Dark theme" aria-label="Dark theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="lang-selector-pill" tabindex="0" role="button" aria-label="Language selector">
+            <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <span>English</span>
+          </div>
+        </div>
       </div>
     </div>
   </footer>

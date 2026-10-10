@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — git-grass</title>
+  <meta name="description" content="Contact the git-grass maintainers. Submit feedback, report bugs, or inquire about open source collaboration.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23EDEDEC%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="cursor-dark">
+  <!-- Minimal Header -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a href="../index.html" class="brand-group" aria-label="git-grass homepage">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="6" y1="3" x2="6" y2="15"></line>
+              <circle cx="18" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M18 9a9 9 0 0 1-9 9"></path>
+            </svg>
+          </span>
+          <span class="brand-name">git-grass</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html#features" class="nav-link">Features</a></li>
+          <li><a href="../index.html#how-it-works" class="nav-link">How it works</a></li>
+          <li><a href="../docs/index.html" class="nav-link">Docs</a></li>
+          <li><a href="../challenges/index.html" class="nav-link">Challenges</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="../index.html#install" class="btn-primary">Get started</a>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#how-it-works">How it works</a>
+      <a href="../docs/index.html">Docs</a>
+      <a href="../challenges/index.html">Challenges</a>
+      <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="../index.html#install" class="btn-primary" style="margin-top: 16px; text-align: center;">Get started</a>
+    </div>
+  </header>
+
+  <main class="doc-page">
+    <div class="container-narrow">
+      <div class="doc-breadcrumb">Connect &bull; Direct Message</div>
+      <h1 class="headline" style="color: #FFFFFF; font-size: 2.5rem; margin-bottom: 12px;">Get in Touch</h1>
+      <p class="doc-lead">
+        Have thoughts on git-grass, ideas for outdoor challenges, or questions about the architecture? Send a direct dispatch below.
+      </p>
+
+      <div class="contact-card">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="contactName">Name</label>
+            <input type="text" id="contactName" name="name" class="form-input" placeholder="Your name or handle" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">Email</label>
+            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="developer@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactSubject">Subject</label>
+            <input type="text" id="contactSubject" name="subject" class="form-input" placeholder="What is this regarding?" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <div id="contactStatus" class="contact-status" role="alert"></div>
+
+          <button type="submit" id="btnSubmitContact" class="btn-primary btn-hero-cta" style="width: 100%; justify-content: center;">
+            <span>Send Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Minimal Dark Footer with Theme Toggle & Language Pill (Image 1) -->
+  <footer class="cursor-site-footer" id="site-footer">
+    <div class="container">
+      <div class="cursor-footer-columns">
+        <div class="footer-col">
+          <h3 class="footer-col-title">Product</h3>
+          <ul class="footer-col-list">
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#how-it-works">How it works</a></li>
+            <li><a href="../challenges/index.html">Challenges</a></li>
+            <li><a href="../index.html#install">CLI Installation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Resources</h3>
+          <ul class="footer-col-list">
+            <li><a href="../docs/index.html">Documentation</a></li>
+            <li><a href="../architecture/index.html">Architecture</a></li>
+            <li><a href="../roadmap/index.html">Roadmap</a></li>
+            <li><a href="../changelog/index.html">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Project</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="../contributing/index.html">Contributing</a></li>
+            <li><a href="../privacy/index.html">Privacy</a></li>
+            <li><a href="index.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Legal</h3>
+          <ul class="footer-col-list">
+            <li><a href="../privacy/index.html">Privacy Policy</a></li>
+            <li><a href="../license/index.html">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Connect</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa" target="_blank" rel="noopener noreferrer">GitHub (@sn3hhaa)</a></li>
+            <li><a href="https://x.com/sn3hhaa" target="_blank" rel="noopener noreferrer">Twitter / X (@sn3hhaa)</a></li>
+            <li><a href="https://linkedin.com/in/iamsnehatiwari" target="_blank" rel="noopener noreferrer">LinkedIn (iamsnehatiwari)</a></li>
+            <li><a href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord (sn3hahaha)</a></li>
+            <li><a href="https://github.com/sn3hhaa/git-grass/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cursor-footer-bottom">
+        <div class="footer-bottom-left">
+          <span>&copy; 2026 git-grass. Open-source software.</span>
+          <span class="footer-shield-badge">Zero telemetry &bull; 100% Local LAN</span>
+        </div>
+
+        <div class="footer-theme-controls">
+          <div class="theme-switch-pill" role="radiogroup" aria-label="Theme preference">
+            <button type="button" class="theme-btn" data-theme-set="system" title="System theme" aria-label="System theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="17"></line>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn" data-theme-set="light" title="Light theme" aria-label="Light theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn active" data-theme-set="dark" title="Dark theme" aria-label="Dark theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="lang-selector-pill" tabindex="0" role="button" aria-label="Language selector">
+            <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <span>English</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>

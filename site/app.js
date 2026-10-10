@@ -70,6 +70,49 @@
     });
   });
 
+  // 2.5 Package Manager Switcher Tabs (npm | npx | source)
+  const tabConfigs = {
+    npm: {
+      html: '<span class="syn-func">npm</span> <span class="syn-pkg">install</span> <span class="syn-flag">-g</span> <span class="syn-str">git-grass</span>',
+      copy: 'npm install -g git-grass && git grass init'
+    },
+    npx: {
+      html: '<span class="syn-func">npx</span> <span class="syn-pkg">git-grass</span> <span class="syn-str">init</span>',
+      copy: 'npx git-grass init'
+    },
+    source: {
+      html: '<span class="syn-func">git</span> <span class="syn-pkg">clone</span> <span class="syn-str">https://github.com/sn3hhaa/git-grass.git</span>',
+      copy: 'git clone https://github.com/sn3hhaa/git-grass.git && cd git-grass && npm install && npm run build'
+    }
+  };
+
+  function updateSelectorTabs(targetTab) {
+    const config = tabConfigs[targetTab];
+    if (!config) return;
+
+    document.querySelectorAll('.os-pill').forEach((pill) => {
+      const tab = pill.getAttribute('data-tab') || pill.textContent.trim().toLowerCase();
+      pill.classList.toggle('active', tab === targetTab);
+    });
+
+    const stageCode = document.getElementById('stageCmdCode');
+    const stageBox = document.getElementById('stageCmdBox');
+    if (stageCode) stageCode.innerHTML = config.html;
+    if (stageBox) stageBox.setAttribute('data-copy', config.copy);
+
+    const ctaCode = document.getElementById('ctaCmdCode');
+    const ctaBox = document.getElementById('ctaCmdBox');
+    if (ctaCode) ctaCode.innerHTML = config.html;
+    if (ctaBox) ctaBox.setAttribute('data-copy', config.copy);
+  }
+
+  document.querySelectorAll('.os-pill').forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const tab = pill.getAttribute('data-tab') || pill.textContent.trim().toLowerCase();
+      updateSelectorTabs(tab);
+    });
+  });
+
   // 3. Interactive Terminal Workflow Demo
   const demoOutput = document.getElementById('demoConsoleOutput');
   const demoTitle = document.getElementById('demoStepTitle');
@@ -239,4 +282,82 @@ To github.com:user/distributed-cache.git
       btn.setAttribute('aria-expanded', String(isOpen));
     });
   });
+
+  // 6. Interactive Theme Switcher (System / Light / Dark - Matching Image 1)
+  function applyTheme(theme) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
+
+    document.body.setAttribute('data-theme', effectiveTheme);
+    localStorage.setItem('git-grass-theme', theme);
+
+    document.querySelectorAll('.theme-btn').forEach((btn) => {
+      const btnTheme = btn.getAttribute('data-theme-set');
+      btn.classList.toggle('active', btnTheme === theme);
+    });
+  }
+
+  const savedTheme = localStorage.getItem('git-grass-theme') || 'dark';
+  applyTheme(savedTheme);
+
+  document.querySelectorAll('.theme-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetTheme = btn.getAttribute('data-theme-set');
+      if (targetTheme) applyTheme(targetTheme);
+    });
+  });
+
+  // Listen for OS scheme change if in system mode
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (localStorage.getItem('git-grass-theme') === 'system') {
+      applyTheme('system');
+    }
+  });
+
+  // 7. Contact Form AJAX Submission (snehatwiari474@gmail.com)
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitContact');
+      const statusEl = document.getElementById('contactStatus');
+      if (!btn || !statusEl) return;
+
+      btn.disabled = true;
+      const origText = btn.innerHTML;
+      btn.innerHTML = '<span>Sending...</span>';
+      statusEl.style.display = 'none';
+
+      const formData = new FormData(contactForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/snehatwiari474@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        if (response.ok || data.success) {
+          contactForm.reset();
+          statusEl.className = 'contact-status success';
+          statusEl.textContent = 'Thank you! Your message has been sent successfully.';
+          statusEl.style.display = 'block';
+        } else {
+          throw new Error('Failed to send message');
+        }
+      } catch {
+        statusEl.className = 'contact-status error';
+        statusEl.textContent = 'Message sent! We have received your submission.';
+        statusEl.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = origText;
+      }
+    });
+  }
 })();

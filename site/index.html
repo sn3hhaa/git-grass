@@ -78,6 +78,10 @@
             Step outside.<br>
               Then commit.
           </h1>
+          <div class="cursor-hero-tagline-wrap">
+            <span class="tagline-white">Your AI can write the code.</span>
+            <span class="tagline-grey">It can't touch grass.</span>
+          </div>
           <p class="cursor-hero-sub">
             An outdoor break built into your Git workflow. Take a challenge, get some fresh air, and return when your next commit is ready.
           </p>
@@ -106,16 +110,16 @@
               <p class="cursor-stage-desc">Plug into your setup anywhere.</p>
             </div>
 
-            <div class="cursor-os-selector">
-              <span class="os-pill active">npm</span>
-              <span class="os-pill">npx</span>
-              <span class="os-pill">source</span>
+            <div class="cursor-os-selector" id="stageOsSelector">
+              <span class="os-pill active" data-tab="npm">npm</span>
+              <span class="os-pill" data-tab="npx">npx</span>
+              <span class="os-pill" data-tab="source">source</span>
             </div>
 
             <!-- Working Command Box with Copy Button -->
             <div class="cursor-cmd-container">
-              <div class="cursor-cmd-box btn-copy" data-copy="npm install -g git-grass && git grass init" tabindex="0" role="button" aria-label="Copy install command">
-                <code class="cursor-cmd-code">
+              <div class="cursor-cmd-box btn-copy" id="stageCmdBox" data-copy="npm install -g git-grass && git grass init" tabindex="0" role="button" aria-label="Copy install command">
+                <code class="cursor-cmd-code" id="stageCmdCode">
                   <span class="syn-func">npm</span>
                   <span class="syn-pkg">install</span>
                   <span class="syn-flag">-g</span>
@@ -485,15 +489,15 @@
 
           <h2 class="cursor-cta-heading">Try Git-Grass CLI.</h2>
 
-          <div class="cursor-os-selector">
-            <span class="os-pill active">npm</span>
-            <span class="os-pill">npx</span>
-            <span class="os-pill">source</span>
+          <div class="cursor-os-selector" id="ctaOsSelector">
+            <span class="os-pill active" data-tab="npm">npm</span>
+            <span class="os-pill" data-tab="npx">npx</span>
+            <span class="os-pill" data-tab="source">source</span>
           </div>
 
           <div class="cursor-cta-cmd-wrap">
-            <div class="cursor-cmd-box btn-copy" data-copy="npm install -g git-grass && git grass init" tabindex="0" role="button" aria-label="Copy install command">
-              <code class="cursor-cmd-code">
+            <div class="cursor-cmd-box btn-copy" id="ctaCmdBox" data-copy="npm install -g git-grass && git grass init" tabindex="0" role="button" aria-label="Copy install command">
+              <code class="cursor-cmd-code" id="ctaCmdCode">
                 <span class="syn-func">npm</span>
                 <span class="syn-pkg">install</span>
                 <span class="syn-flag">-g</span>
@@ -542,6 +546,7 @@
             <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href="contributing/index.html">Contributing</a></li>
             <li><a href="privacy/index.html">Privacy</a></li>
+            <li><a href="contact/index.html">Contact</a></li>
           </ul>
         </div>
 
@@ -549,14 +554,17 @@
           <h3 class="footer-col-title">Legal</h3>
           <ul class="footer-col-list">
             <li><a href="privacy/index.html">Privacy Policy</a></li>
-            <li><a href="https://github.com/sn3hhaa/git-grass/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+            <li><a href="license/index.html">MIT License</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h3 class="footer-col-title">Connect</h3>
           <ul class="footer-col-list">
-            <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+            <li><a href="https://github.com/sn3hhaa" target="_blank" rel="noopener noreferrer">GitHub (@sn3hhaa)</a></li>
+            <li><a href="https://x.com/sn3hhaa" target="_blank" rel="noopener noreferrer">Twitter / X (@sn3hhaa)</a></li>
+            <li><a href="https://linkedin.com/in/iamsnehatiwari" target="_blank" rel="noopener noreferrer">LinkedIn (iamsnehatiwari)</a></li>
+            <li><a href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord (sn3hahaha)</a></li>
             <li><a href="https://github.com/sn3hhaa/git-grass/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
           </ul>
         </div>
@@ -567,8 +575,43 @@
           <span>&copy; 2026 git-grass. Open-source software.</span>
           <span class="footer-shield-badge">Zero telemetry &bull; 100% Local LAN</span>
         </div>
-        <div class="footer-bottom-right">
-          <span>Your AI can write the code. It can't touch grass.</span>
+        <div class="footer-theme-controls">
+          <div class="theme-switch-pill" role="radiogroup" aria-label="Theme preference">
+            <button type="button" class="theme-btn" data-theme-set="system" title="System theme" aria-label="System theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="17"></line>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn" data-theme-set="light" title="Light theme" aria-label="Light theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn active" data-theme-set="dark" title="Dark theme" aria-label="Dark theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="lang-selector-pill" tabindex="0" role="button" aria-label="Language selector">
+            <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <span>English</span>
+          </div>
         </div>
       </div>
     </div>

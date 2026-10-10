@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentation — git-grass</title>
-  <meta name="description" content="Complete developer documentation for git-grass: CLI commands, configuration, Git hook setup, hosted AI integration, and troubleshooting.">
+  <meta name="description" content="Complete developer documentation for git-grass: welcome guide, quickstart, CLI installation, commands, tech stack, staged tree protection, and hosted AI.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23EDEDEC%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="cursor-dark">
-  <!-- Minimal Dark Header -->
+  <!-- Minimal Dark Header with Docs Search & Nav (Image 2) -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <div class="header-left">
+      <div class="header-left" style="display: flex; align-items: center; gap: 24px;">
         <a href="../index.html" class="brand-group" aria-label="git-grass homepage">
           <span class="brand-mark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -24,19 +24,29 @@
           </span>
           <span class="brand-name">git-grass</span>
         </a>
+
+        <!-- Desktop Navigation Tabs (Image 2) -->
+        <nav class="nav-desktop" aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link active" style="color: var(--accent-green); border-bottom: 2px solid var(--accent-green); padding-bottom: 4px;">Docs</a></li>
+            <li><a href="#tech-stack" class="nav-link">Architecture</a></li>
+            <li><a href="../challenges/index.html" class="nav-link">Challenges</a></li>
+            <li><a href="../contact/index.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
       </div>
 
-      <!-- Desktop Navigation Only -->
-      <nav class="nav-desktop" aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="../index.html#features" class="nav-link">Features</a></li>
-          <li><a href="../index.html#how-it-works" class="nav-link">How it works</a></li>
-          <li><a href="index.html" class="nav-link active">Docs</a></li>
-          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub</a></li>
-        </ul>
-      </nav>
-
       <div class="nav-actions">
+        <!-- Search Docs Box with ⌘K icon (Image 2) -->
+        <div class="doc-search-box" tabindex="0" role="button" aria-label="Search documentation">
+          <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Search docs...</span>
+          <kbd class="doc-search-kbd">&#8984;K</kbd>
+        </div>
+
         <a href="../index.html#install" class="btn-primary">Get started</a>
 
         <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -54,142 +64,405 @@
       <a href="../index.html#features">Features</a>
       <a href="../index.html#how-it-works">How it works</a>
       <a href="index.html">Docs</a>
+      <a href="../challenges/index.html">Challenges</a>
+      <a href="../contact/index.html">Contact</a>
       <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="../index.html#install" class="btn-primary" style="margin-top: 16px; text-align: center;">Get started</a>
     </div>
   </header>
 
-  <!-- 3-Column Documentation Layout (Matches Screenshot 5) -->
+  <!-- 3-Column Documentation Layout (Matches Images 2, 3, 4) -->
   <div class="doc-page">
     <div class="doc-container">
-      <!-- Left Sidebar -->
+      <!-- Left Sidebar: Category Navigation (Image 2 & 3) -->
       <aside class="doc-nav" aria-label="Documentation Navigation">
         <div>
           <div class="doc-nav-section-title">Get Started</div>
           <ul class="doc-nav-list">
-            <li><a href="#prerequisites" class="active">Prerequisites</a></li>
+            <li><a href="#welcome" class="active">Welcome</a></li>
+            <li><a href="#quickstart">Quickstart</a></li>
+            <li><a href="#prerequisites">Prerequisites</a></li>
+            <li><a href="../changelog/index.html">Changelog</a></li>
+            <li><a href="../changelog/index.html#v0.2.0">Release Notes</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="doc-nav-section-title">CLI Reference</div>
+          <ul class="doc-nav-list">
+            <li><a href="#commands">Overview</a></li>
             <li><a href="#installation">Installation</a></li>
-            <li><a href="#initialization">Repository Init</a></li>
+            <li><a href="#what-you-can-do">Capabilities</a></li>
+            <li><a href="#cmd-init"><code>git grass init</code></a></li>
+            <li><a href="#cmd-status"><code>git grass status</code></a></li>
+            <li><a href="#cmd-check"><code>git grass check</code></a></li>
+            <li><a href="#cmd-config"><code>git grass config</code></a></li>
+            <li><a href="#cmd-doctor"><code>git grass doctor</code></a></li>
+            <li><a href="#cmd-challenge"><code>git grass challenge</code></a></li>
+            <li><a href="#cmd-uninstall"><code>git grass uninstall</code></a></li>
           </ul>
         </div>
 
         <div>
-          <div class="doc-nav-section-title">CLI Commands</div>
+          <div class="doc-nav-section-title">Tech Stack &amp; Architecture</div>
           <ul class="doc-nav-list">
-            <li><a href="#commands">Commands Overview</a></li>
-            <li><a href="#cmd-init">git grass init</a></li>
-            <li><a href="#cmd-status">git grass status</a></li>
-            <li><a href="#cmd-check">git grass check</a></li>
-            <li><a href="#cmd-config">git grass config</a></li>
-            <li><a href="#cmd-doctor">git grass doctor</a></li>
-            <li><a href="#cmd-challenge">git grass challenge</a></li>
-            <li><a href="#cmd-uninstall">git grass uninstall</a></li>
+            <li><a href="#tech-stack">How We Built It</a></li>
+            <li><a href="#staged-protection">Staged-Tree SHA-1 Guard</a></li>
+            <li><a href="#session-pairing">Local Wi-Fi Pairing</a></li>
+            <li><a href="#hook-safety">Hook Reentrancy Safety</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="doc-nav-section-title">Architecture</div>
+          <div class="doc-nav-section-title">Cloud &amp; Hosted AI</div>
           <ul class="doc-nav-list">
-            <li><a href="#staged-protection">Staged-Tree Protection</a></li>
-            <li><a href="#hosted-ai">Render Hosted AI</a></li>
+            <li><a href="#hosted-ai">Render + Backboard API</a></li>
+            <li><a href="#fallback-catalog">Bundled Offline Catalog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="doc-nav-section-title">Guides &amp; Help</div>
+          <ul class="doc-nav-list">
             <li><a href="#emergency-bypass">Emergency Bypass</a></li>
-            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#troubleshooting">Troubleshooting FAQ</a></li>
+            <li><a href="../contact/index.html">Contact Maintainers</a></li>
           </ul>
         </div>
       </aside>
 
-      <!-- Central Content Column -->
+      <!-- Central Content Column (Images 2 & 4) -->
       <article class="doc-article">
-        <div class="doc-breadcrumb">Get Started &bull; CLI Reference</div>
+        <div class="doc-breadcrumb" id="welcome">Get Started &bull; Welcome</div>
         <h1>git-grass Developer Documentation</h1>
-        <p>Complete installation, configuration, Git hook behavior, and operational guide for the git-grass developer toolchain.</p>
+        <p class="doc-lead">
+          git-grass is an outdoor break enforcement engine built directly into your Git workflow. Use it to disconnect from code, touch grass, and verify your commit when you return.
+        </p>
 
+        <!-- What you can do with git-grass (Image 4 6-card feature grid) -->
+        <section id="what-you-can-do" style="margin-top: 36px;">
+          <h2 style="font-size: 1.5rem; margin-bottom: 8px; border-bottom: none;">What you can do with git-grass</h2>
+          <p style="color: var(--cursor-text-secondary); margin-bottom: 24px;">Explore core capabilities designed to protect developer well-being without compromising Git repository integrity.</p>
+
+          <div class="doc-features-grid">
+            <div class="doc-feature-card">
+              <div class="doc-feature-head">
+                <span class="doc-feature-icon">
+                  <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                <span class="doc-feature-title">Understand your repo</span>
+              </div>
+              <p class="doc-feature-desc">Analyzes staged file extensions, commit messages, and project frameworks to synthesize context-aware outdoor observation prompts.</p>
+            </div>
+
+            <div class="doc-feature-card">
+              <div class="doc-feature-head">
+                <span class="doc-feature-icon">
+                  <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </span>
+                <span class="doc-feature-title">Enforce focus intervals</span>
+              </div>
+              <p class="doc-feature-desc">Configurable interval timers (default 60m) intercept <code>git commit</code> when due, preventing marathon screen burnout.</p>
+            </div>
+
+            <div class="doc-feature-card">
+              <div class="doc-feature-head">
+                <span class="doc-feature-icon">
+                  <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </span>
+                <span class="doc-feature-title">Staged-tree fingerprint</span>
+              </div>
+              <p class="doc-feature-desc">Computes SHA-1 hash via <code>git write-tree</code> upon break initiation. Guarantees zero code modifications while you are outdoors.</p>
+            </div>
+
+            <div class="doc-feature-card">
+              <div class="doc-feature-head">
+                <span class="doc-feature-icon">
+                  <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                  </svg>
+                </span>
+                <span class="doc-feature-title">Hosted AI challenges</span>
+              </div>
+              <p class="doc-feature-desc">Uses Render-hosted API powered by Backboard with strictly ₹0 additional spend. Automatically falls back to offline catalog if offline.</p>
+            </div>
+
+            <div class="doc-feature-card">
+              <div class="doc-feature-head">
+                <span class="doc-feature-icon">
+                  <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                </span>
+                <span class="doc-feature-title">Phone-free reflection</span>
+              </div>
+              <p class="doc-feature-desc">Authoritative 10-minute minimum walk timer with physical observation check-ins. Zero biometric surveillance or geofencing.</p>
+            </div>
+
+            <div class="doc-feature-card">
+              <div class="doc-feature-head">
+                <span class="doc-feature-icon">
+                  <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+                <span class="doc-feature-title">Safe commit unlock</span>
+              </div>
+              <p class="doc-feature-desc">One tap from your phone browser unblocks your workstation, commits the exact fingerprinted tree, and optionally auto-pushes.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 1: Prerequisites -->
         <section id="prerequisites">
           <h2>Prerequisites</h2>
+          <p>git-grass is designed to run locally with zero native toolchain dependencies:</p>
           <ul>
-            <li><strong>Node.js:</strong> Version 18.0.0 or later (verified on Node 18, 20, 22, and 24).</li>
-            <li><strong>Git:</strong> Version 2.20 or later accessible in your system <code>PATH</code>.</li>
-            <li><strong>Operating System:</strong> macOS, Linux, or Windows (PowerShell and bash supported).</li>
-            <li><strong>Local Network:</strong> Computer and mobile phone connected to the same Wi-Fi network or mobile hotspot for mobile check-in.</li>
+            <li><strong>Node.js:</strong> Version 18.0.0 or later (verified across Node 18 LTS, 20 LTS, and 22).</li>
+            <li><strong>Git:</strong> Version 2.20 or later accessible in your operating system <code>PATH</code>.</li>
+            <li><strong>Operating System:</strong> macOS (Apple Silicon / Intel), Linux (glibc and musl), or Windows 10/11 (PowerShell and Git Bash).</li>
+            <li><strong>Local Network:</strong> Workstation and mobile device connected to the same Wi-Fi router or personal mobile hotspot for QR session pairing.</li>
+            <li><strong>Zero Local AI Requirements:</strong> No Ollama, no Docker, no Python, and no GPU setup required.</li>
           </ul>
         </section>
 
-        <section id="installation">
-          <h2>Installation</h2>
-          <p>Install the CLI globally from npm registry or clone from source:</p>
+        <!-- Section 2: Quickstart -->
+        <section id="quickstart">
+          <h2>Quickstart Tutorial</h2>
+          <p>Get up and running in under 60 seconds with three simple steps:</p>
           <div class="doc-code-block">
             <div class="doc-code-header">
-              <span>bash — npm install</span>
+              <span>bash — quickstart</span>
+              <button class="btn-copy" data-copy="npm install -g git-grass&#10;cd my-project&#10;git grass init">Copy</button>
+            </div>
+            <pre><code># 1. Install CLI globally
+npm install -g git-grass
+
+# 2. Enter any Git repository
+cd my-project
+
+# 3. Initialize git-grass break gate
+git grass init</code></pre>
+          </div>
+          <p>Once initialized, work on your project normally. When you reach your configured focus threshold and run <code>git commit</code>, git-grass prompts you to step outside, provides a QR code, and unlocks automatically upon your return.</p>
+        </section>
+
+        <!-- Section 3: Installation -->
+        <section id="installation">
+          <h2>CLI Installation Options</h2>
+          <p>Choose the installation path that matches your development workflow:</p>
+
+          <h3 id="install-global">Option A: Global NPM Package (Recommended)</h3>
+          <div class="doc-code-block">
+            <div class="doc-code-header">
+              <span>bash — npm global</span>
               <button class="btn-copy" data-copy="npm install -g git-grass">Copy</button>
             </div>
             <pre><code>npm install -g git-grass</code></pre>
           </div>
 
-          <p>Alternatively, clone the repository directly:</p>
+          <h3 id="install-npx">Option B: Ephemeral Execution via NPX</h3>
+          <div class="doc-code-block">
+            <div class="doc-code-header">
+              <span>bash — npx</span>
+              <button class="btn-copy" data-copy="npx git-grass init">Copy</button>
+            </div>
+            <pre><code>npx git-grass init</code></pre>
+          </div>
+
+          <h3 id="install-source">Option C: Clone &amp; Build from Source</h3>
           <div class="doc-code-block">
             <div class="doc-code-header">
               <span>bash — source build</span>
-              <button class="btn-copy" data-copy="git clone https://github.com/sn3hhaa/git-grass.git&#10;cd git-grass&#10;npm install&#10;npm run build">Copy</button>
+              <button class="btn-copy" data-copy="git clone https://github.com/sn3hhaa/git-grass.git&#10;cd git-grass&#10;npm install&#10;npm run build&#10;npm link">Copy</button>
             </div>
             <pre><code>git clone https://github.com/sn3hhaa/git-grass.git
 cd git-grass
 npm install
-npm run build</code></pre>
+npm run build
+npm link</code></pre>
           </div>
         </section>
 
-        <section id="initialization">
-          <h2>Repository Initialization</h2>
-          <p>In any Git repository where you want outdoor break enforcement, run:</p>
-          <div class="doc-code-block">
-            <div class="doc-code-header">
-              <span>bash</span>
-              <button class="btn-copy" data-copy="git grass init">Copy</button>
-            </div>
-            <pre><code>git grass init</code></pre>
-          </div>
-          <p>This command performs three safe setup steps:</p>
-          <ol>
-            <li>Creates the <code>.git-grass/</code> directory with default repository configuration.</li>
-            <li>Inspects your existing <code>.git/hooks/pre-commit</code> hook.</li>
-            <li>Wraps the hook with git-grass delimiters without modifying your linters or tests.</li>
-          </ol>
-        </section>
-
+        <!-- Section 4: Detailed Commands Reference -->
         <section id="commands">
           <h2>CLI Commands Reference</h2>
+          <p>Every command supports <code>--help</code> for inline usage flags. Below is a comprehensive breakdown of all commands.</p>
 
-          <h3 id="cmd-init"><code>git grass init</code></h3>
-          <p>Initializes git-grass in the current repository and installs the pre-commit hook.</p>
-
-          <h3 id="cmd-status"><code>git grass status</code></h3>
-          <p>Displays elapsed focus time since your last break, current break requirements, and active timers.</p>
-
-          <h3 id="cmd-check"><code>git grass check</code></h3>
-          <p>Called automatically during <code>git commit</code>. Evaluates if a break is due. If due, launches the session server with the terminal prompt.</p>
-
-          <h3 id="cmd-config"><code>git grass config [key] [value]</code></h3>
-          <p>Inspects or updates repository-specific configuration values.</p>
-          <div class="doc-code-block">
-            <div class="doc-code-header">
-              <span>bash</span>
-              <button class="btn-copy" data-copy="git grass config breakIntervalMinutes 90&#10;git grass config defaultDurationMinutes 20&#10;git grass config autoPush true">Copy</button>
+          <!-- 1. init -->
+          <div class="doc-cmd-card" id="cmd-init">
+            <div class="doc-cmd-header">
+              <h3><code>git grass init [--force]</code></h3>
+              <span class="doc-cmd-badge">Setup</span>
             </div>
-            <pre><code>git grass config breakIntervalMinutes 90     # Set break interval to 90 min
-git grass config defaultDurationMinutes 20   # Set walk duration to 20 min
-git grass config autoPush true               # Auto-push after commit</code></pre>
+            <p>
+              Installs the pre-commit hook gate and configures repository thresholds. Safe to run multiple times. Preserves pre-existing linters and formatters.
+            </p>
+            <div class="doc-code-block">
+              <div class="doc-code-header">
+                <span>terminal — init</span>
+              </div>
+              <pre><code>$ git grass init
+[git-grass] Initializing repository hook gate...
+[git-grass] Created .git-grass/config.json with default thresholds.
+[git-grass] Installed hook wrapper into .git/hooks/pre-commit.
+[git-grass] Initialization complete. Your next commit will verify focus interval.</code></pre>
+            </div>
           </div>
 
-          <h3 id="cmd-doctor"><code>git grass doctor</code></h3>
-          <p>Diagnoses environment readiness: Node.js version, Git availability, configuration, and offline fallback catalog.</p>
+          <!-- 2. status -->
+          <div class="doc-cmd-card" id="cmd-status">
+            <div class="doc-cmd-header">
+              <h3><code>git grass status [--json]</code></h3>
+              <span class="doc-cmd-badge">Inspection</span>
+            </div>
+            <p>
+              Inspects your repository break metrics: minutes elapsed since last verified outdoor walk, configured interval threshold, active session state, and whether your next commit will trigger a break.
+            </p>
+            <div class="doc-code-block">
+              <div class="doc-code-header">
+                <span>terminal — status</span>
+              </div>
+              <pre><code>$ git grass status
+[git-grass] Status:
+  Last break completed: 74 minutes ago
+  Configured interval:  60 minutes
+  Minimum walk duration: 10 minutes
+  Break due:            YES (next git commit will require outdoor break)
+  Active session server: None (ready)</code></pre>
+            </div>
+          </div>
 
-          <h3 id="cmd-challenge"><code>git grass challenge [--test]</code></h3>
-          <p>Previews and validates challenge generation for the current repository without triggering a commit.</p>
+          <!-- 3. check -->
+          <div class="doc-cmd-card" id="cmd-check">
+            <div class="doc-cmd-header">
+              <h3><code>git grass check [--port &lt;number&gt;]</code></h3>
+              <span class="doc-cmd-badge">Hook Gate</span>
+            </div>
+            <p>
+              The core pre-commit evaluation gate. Executed automatically by Git when you invoke <code>git commit</code>. If focus time is under the configured threshold, it exits immediately with return code 0. If a break is due, it snapshots staged tree SHA-1, starts the local pairing server, and displays QR code.
+            </p>
+            <div class="doc-code-block">
+              <div class="doc-code-header">
+                <span>terminal — check intercept</span>
+              </div>
+              <pre><code>$ git commit -m "feat(auth): add OAuth2 provider"
+[git-grass] Focus interval exceeded (74m &gt;= 60m).
+[git-grass] Commit paused. Staged tree SHA-1 fingerprinted: 4b825dc642cb...
+[git-grass] Scan QR code with your phone or visit:
+  http://192.168.1.48:4242/session/grass-7c42
+[git-grass] Waiting for outdoor break completion (min: 10m)...</code></pre>
+            </div>
+          </div>
 
-          <h3 id="cmd-uninstall"><code>git grass uninstall [--yes]</code></h3>
-          <p>Safely removes git-grass pre-commit hooks and deletes <code>.git-grass/</code>, restoring custom hooks.</p>
+          <!-- 4. config -->
+          <div class="doc-cmd-card" id="cmd-config">
+            <div class="doc-cmd-header">
+              <h3><code>git grass config [key] [value]</code></h3>
+              <span class="doc-cmd-badge">Configuration</span>
+            </div>
+            <p>
+              Reads or modifies repository configuration parameters in <code>.git-grass/config.json</code>: <code>breakIntervalMinutes</code>, <code>defaultDurationMinutes</code>, <code>autoPush</code>, <code>port</code>, <code>hostedApiUrl</code>.
+            </p>
+            <div class="doc-code-block">
+              <div class="doc-code-header">
+                <span>bash — config</span>
+                <button class="btn-copy" data-copy="git grass config breakIntervalMinutes 90&#10;git grass config defaultDurationMinutes 15&#10;git grass config autoPush true">Copy</button>
+              </div>
+              <pre><code>git grass config breakIntervalMinutes 90     # Set 90m focus block
+git grass config defaultDurationMinutes 15   # Require 15m outdoor walk
+git grass config autoPush true               # Auto-push after commit unlock</code></pre>
+            </div>
+          </div>
+
+          <!-- 5. doctor -->
+          <div class="doc-cmd-card" id="cmd-doctor">
+            <div class="doc-cmd-header">
+              <h3><code>git grass doctor</code></h3>
+              <span class="doc-cmd-badge">Diagnostic</span>
+            </div>
+            <p>
+              Validates Node runtime version, checks Git path and repository state, checks pre-commit hook file permissions, verifies local network IP resolution, tests hosted AI endpoint connectivity, and confirms bundled offline challenge catalog integrity.
+            </p>
+            <div class="doc-code-block">
+              <div class="doc-code-header">
+                <span>terminal — doctor</span>
+              </div>
+              <pre><code>$ git grass doctor
+[doctor] Running environment diagnostic:
+  [PASS] Node.js runtime: v20.11.0 (>= 18.0.0 required)
+  [PASS] Git binary: 2.43.0 in PATH
+  [PASS] Repository root: C:/Users/Admin/projects/cache (worktree active)
+  [PASS] Hook status: .git/hooks/pre-commit contains git-grass gate
+  [PASS] Network interface: 192.168.1.48 (IPv4 LAN address bound)
+  [PASS] Offline catalog: 15 curated challenges loaded
+  [PASS] Hosted AI backend: Render service healthy (HTTP 200)
+All diagnostics passed. System ready.</code></pre>
+            </div>
+          </div>
+
+          <!-- 6. challenge -->
+          <div class="doc-cmd-card" id="cmd-challenge">
+            <div class="doc-cmd-header">
+              <h3><code>git grass challenge [--test] [--category &lt;name&gt;]</code></h3>
+              <span class="doc-cmd-badge">Preview</span>
+            </div>
+            <p>
+              Tests and previews challenge generation directly without initiating a pre-commit block or running a session timer. Validates that returned challenges adhere to the <code>OutdoorChallengeSchema</code> Zod contract.
+            </p>
+            <div class="doc-code-block">
+              <div class="doc-code-header">
+                <span>terminal — challenge</span>
+              </div>
+              <pre><code>$ git grass challenge --category systems
+[git-grass] Challenge generated:
+  Title:      Kinetic Topology & Flow Walk
+  Category:   systems
+  Duration:   15 minutes (Phone-Free)
+  Instructions:
+    1. Step outside into open air for 15 minutes.
+    2. Walk toward a pathway intersection or trail bifurcation.
+    3. Observe how physical pathways route pedestrian flow without centralized locks.
+  Reflection:
+    "How does physical pedestrian queueing compare to partition bottlenecks in your cluster?"</code></pre>
+            </div>
+          </div>
+
+          <!-- 7. uninstall -->
+          <div class="doc-cmd-card" id="cmd-uninstall">
+            <div class="doc-cmd-header">
+              <h3><code>git grass uninstall [--yes]</code></h3>
+              <span class="doc-cmd-badge">Removal</span>
+            </div>
+            <p>
+              Safely removes git-grass hooks from the current repository without damaging other pre-commit tools. Restores your original pre-commit hook script and removes <code>.git-grass/</code> config and cache.
+            </p>
+          </div>
         </section>
 
+        <!-- Section 5: Tech Stack & How We Used It -->
+        <section id="tech-stack">
+          <h2>Tech Stack &amp; How It Was Built</h2>
+          <p>git-grass is engineered with a strict minimal-dependency philosophy to guarantee zero runtime baggage and maximum developer trust:</p>
+          <ul>
+            <li><strong>TypeScript &amp; Node.js ES Modules:</strong> Strict typing across all CLI commands, schemas, and network transports. Zero build compilation needed at user runtime.</li>
+            <li><strong>Git Plumbing Architecture:</strong> Instead of fragile porcelain scraping, git-grass interacts with low-level Git plumbing: <code>git write-tree</code> to compute index SHAs, <code>git rev-parse</code> for repository boundaries, and <code>git commit-tree</code> for atomic commits.</li>
+            <li><strong>Local Native HTTP Server:</strong> Zero Express or external web frameworks. A pure Node.js <code>http.createServer</code> daemon listening on local port 4242, with cryptographic token validation using <code>crypto.timingSafeEqual</code>.</li>
+            <li><strong>Zod Runtime Schema Validation:</strong> Every generated outdoor activity is checked against <code>OutdoorChallengeSchema</code> before presentation to ensure safety, duration (>= 10m), and phone-free compliance.</li>
+            <li><strong>Hosted AI (Render + Backboard):</strong> Deployed on Render's Free tier using Backboard inference with in-memory TTL caching and rate-limiting. Strictly operates within &#8377;0 in additional costs.</li>
+          </ul>
+        </section>
+
+        <!-- Section 6: Staged Protection -->
         <section id="staged-protection">
           <h2>Staged Index Fingerprinting</h2>
           <p>
@@ -200,65 +473,109 @@ git grass config autoPush true               # Auto-push after commit</code></pr
           </p>
         </section>
 
+        <!-- Section 7: Local Wi-Fi Pairing -->
+        <section id="session-pairing">
+          <h2>Local Wi-Fi Pairing Architecture</h2>
+          <p>
+            When a break triggers, your workstation starts a local HTTP server bound to your local area network (LAN) address (e.g., <code>192.168.1.48:4242</code>). Communication between your phone and your computer stays strictly inside your local Wi-Fi network. No tokens or URLs pass through public servers.
+          </p>
+        </section>
+
+        <!-- Section 8: Hook Safety -->
+        <section id="hook-safety">
+          <h2>Git Hook Architecture &amp; Reentrancy Guard</h2>
+          <p>
+            When your outdoor break completes and git-grass triggers the final commit, it prevents infinite recursive hook loops using an internal environment flag:
+          </p>
+          <div class="doc-code-block">
+            <div class="doc-code-header">
+              <span>bash — hook guard logic</span>
+            </div>
+            <pre><code>if [ "$GIT_GRASS_BYPASS" = "1" ]; then
+  exit 0
+fi</code></pre>
+          </div>
+        </section>
+
+        <!-- Section 9: Hosted AI Setup -->
         <section id="hosted-ai">
           <h2>Hosted AI Setup (Render + Backboard)</h2>
           <p>
-            git-grass connects to a lightweight cloud API deployed on Render's Free tier backed by Backboard.
-            This provides real AI-generated, project-aware challenges with <strong>zero local AI installations</strong> and <strong>₹0 in additional costs</strong>.
+            git-grass connects to a lightweight cloud API deployed on Render's Free tier, using Backboard to generate project-aware outdoor prompts without any local AI runtime:
           </p>
+          <ul>
+            <li><strong>Zero Cost:</strong> Operates entirely within free tier allowances and existing credits (&#8377;0 additional spending).</li>
+            <li><strong>Strict Privacy:</strong> Only file extension names and high-level project domain metadata are sent. Your source code, diffs, and repository contents never leave your machine.</li>
+          </ul>
 
           <h3 id="render-deploy">Deploying via render.yaml</h3>
           <ol>
-            <li>Fork or connect the repository to <a href="https://render.com" target="_blank" rel="noopener">Render</a>.</li>
-            <li>Create a new Web Service using the included <code>render.yaml</code> blueprint.</li>
-            <li>Set your Backboard API key in the Render environment variables: <code>BACKBOARD_API_KEY=&lt;key&gt;</code>.</li>
-            <li>Deploy the service on the Free plan.</li>
+            <li>Fork or connect the repository to <a href="https://render.com" target="_blank" rel="noopener noreferrer">Render</a>.</li>
+            <li>Select <strong>New +</strong> &rarr; <strong>Blueprint</strong> and select the repository. Render automatically reads <code>render.yaml</code>.</li>
+            <li>Add your Backboard API key in the Render Dashboard environment settings: <code>BACKBOARD_API_KEY=&lt;key&gt;</code>.</li>
+            <li>Deploy the web service. Update your local config with <code>git grass config hostedApiUrl https://your-service.onrender.com</code>.</li>
           </ol>
         </section>
 
+        <!-- Section 10: Bundled Offline Catalog -->
+        <section id="fallback-catalog">
+          <h2>Bundled Offline Catalog</h2>
+          <p>
+            git-grass is offline-first. If no internet connection is available, or if the hosted inference provider is unreachable, git-grass instantaneously switches to the bundled library of curated engineering challenges spanning systems, web, ML, graphics, and audio.
+          </p>
+        </section>
+
+        <!-- Section 11: Emergency Commit Bypass -->
         <section id="emergency-bypass">
           <h2>Emergency Commit Bypass</h2>
           <p>
-            If you need to ship an urgent hotfix or security patch without taking a break, use Git's standard pre-commit bypass flag:
+            If production is down and an urgent hotfix or security patch must be deployed without taking a break, use Git's standard pre-commit bypass flag:
           </p>
           <div class="doc-code-block">
             <div class="doc-code-header">
               <span>bash</span>
-              <button class="btn-copy" data-copy="git commit --no-verify -m &quot;fix: emergency security patch&quot;">Copy</button>
+              <button class="btn-copy" data-copy="git commit --no-verify -m &quot;fix: critical production hotfix&quot;">Copy</button>
             </div>
-            <pre><code>git commit --no-verify -m "fix: emergency security patch"</code></pre>
+            <pre><code>git commit --no-verify -m "fix: critical production hotfix"</code></pre>
           </div>
         </section>
 
+        <!-- Section 12: Troubleshooting FAQ -->
         <section id="troubleshooting">
-          <h2>Troubleshooting Guide</h2>
+          <h2>Troubleshooting Guide &amp; FAQ</h2>
           <div class="doc-callout">
-            <strong>Phone cannot connect to session URL?</strong><br>
-            Ensure both your workstation and phone are on the same local Wi-Fi network or mobile hotspot.
-            If on an enterprise network with client isolation, use your phone's personal hotspot.
+            <strong>Phone cannot open the QR code URL?</strong><br>
+            Ensure your computer and phone are connected to the same Wi-Fi router. If you are on an enterprise or university network with client isolation enabled, turn on your phone's personal hotspot and connect your computer to it.
           </div>
           <div class="doc-callout">
-            <strong>Offline or no internet connectivity?</strong><br>
-            git-grass is offline-first. If no network or hosted backend is configured, it instantly falls back to the bundled catalog of curated outdoor challenges with zero latency.
+            <strong>Port 4242 is already in use by another application?</strong><br>
+            Change the default port in your configuration: <code>git grass config port 5050</code>.
+          </div>
+          <div class="doc-callout">
+            <strong>Can git-grass be used with Husky or lint-staged?</strong><br>
+            Yes. <code>git grass init</code> wraps your existing hook script and executes Husky or linters before or after the break gate.
           </div>
         </section>
       </article>
 
-      <!-- Right Sidebar Table of Contents (Matches Screenshot 5) -->
+      <!-- Right Sidebar: In-Page Table of Contents (Images 2 & 4) -->
       <aside class="doc-toc" aria-label="Table of contents">
-        <div class="doc-toc-title">On this page</div>
+        <div class="doc-toc-title">Start here</div>
         <ul class="doc-toc-list">
+          <li><a href="#welcome" class="active">Welcome</a></li>
+          <li><a href="#what-you-can-do">What you can do</a></li>
           <li><a href="#prerequisites">Prerequisites</a></li>
-          <li><a href="#installation">Installation</a></li>
-          <li><a href="#initialization">Repository Init</a></li>
+          <li><a href="#quickstart">Quickstart</a></li>
+          <li><a href="#installation">CLI Installation</a></li>
           <li><a href="#commands">CLI Reference</a></li>
+          <li><a href="#tech-stack">Tech Stack</a></li>
           <li><a href="#staged-protection">Staged Protection</a></li>
-          <li><a href="#hosted-ai">Hosted AI</a></li>
+          <li><a href="#hosted-ai">Hosted AI Setup</a></li>
           <li><a href="#emergency-bypass">Emergency Bypass</a></li>
           <li><a href="#troubleshooting">Troubleshooting</a></li>
         </ul>
         <button class="btn-copy btn-copy-page" data-copy="https://github.com/sn3hhaa/git-grass/tree/main/site/docs">
-          <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
             <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
           </svg>
@@ -268,15 +585,103 @@ git grass config autoPush true               # Auto-push after commit</code></pr
     </div>
   </div>
 
-  <!-- Minimal Dark Footer -->
-  <footer class="cursor-site-footer">
+  <!-- Minimal Dark Footer with Theme Toggle & Language Pill (Image 1) -->
+  <footer class="cursor-site-footer" id="site-footer">
     <div class="container">
+      <div class="cursor-footer-columns">
+        <div class="footer-col">
+          <h3 class="footer-col-title">Product</h3>
+          <ul class="footer-col-list">
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#how-it-works">How it works</a></li>
+            <li><a href="../challenges/index.html">Challenges</a></li>
+            <li><a href="../index.html#install">CLI Installation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Resources</h3>
+          <ul class="footer-col-list">
+            <li><a href="index.html">Documentation</a></li>
+            <li><a href="../architecture/index.html">Architecture</a></li>
+            <li><a href="../roadmap/index.html">Roadmap</a></li>
+            <li><a href="../changelog/index.html">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Project</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="../contributing/index.html">Contributing</a></li>
+            <li><a href="../privacy/index.html">Privacy</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Legal</h3>
+          <ul class="footer-col-list">
+            <li><a href="../privacy/index.html">Privacy Policy</a></li>
+            <li><a href="../license/index.html">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Connect</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa" target="_blank" rel="noopener noreferrer">GitHub (@sn3hhaa)</a></li>
+            <li><a href="https://x.com/sn3hhaa" target="_blank" rel="noopener noreferrer">Twitter / X (@sn3hhaa)</a></li>
+            <li><a href="https://linkedin.com/in/iamsnehatiwari" target="_blank" rel="noopener noreferrer">LinkedIn (iamsnehatiwari)</a></li>
+            <li><a href="https://discord.com" target="_blank" rel="noopener noreferrer">Discord (sn3hahaha)</a></li>
+            <li><a href="https://github.com/sn3hhaa/git-grass/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+          </ul>
+        </div>
+      </div>
+
       <div class="cursor-footer-bottom">
         <div class="footer-bottom-left">
-          <span>&copy; 2026 git-grass. MIT Licensed.</span>
+          <span>&copy; 2026 git-grass. Open-source software.</span>
+          <span class="footer-shield-badge">Zero telemetry &bull; 100% Local LAN</span>
         </div>
-        <div class="footer-bottom-right">
-          <a href="../index.html">Back to homepage &rarr;</a>
+
+        <div class="footer-theme-controls">
+          <div class="theme-switch-pill" role="radiogroup" aria-label="Theme preference">
+            <button type="button" class="theme-btn" data-theme-set="system" title="System theme" aria-label="System theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="17"></line>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn" data-theme-set="light" title="Light theme" aria-label="Light theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            </button>
+            <button type="button" class="theme-btn active" data-theme-set="dark" title="Dark theme" aria-label="Dark theme">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="lang-selector-pill" tabindex="0" role="button" aria-label="Language selector">
+            <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              <path d="M2 12h20"></path>
+            </svg>
+            <span>English</span>
+          </div>
         </div>
       </div>
     </div>

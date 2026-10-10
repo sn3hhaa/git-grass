@@ -18,7 +18,9 @@ describe('git-grass public website and mobile UX integrity', () => {
     path.join('privacy', 'index.html'),
     path.join('roadmap', 'index.html'),
     path.join('changelog', 'index.html'),
-    path.join('contributing', 'index.html')
+    path.join('contributing', 'index.html'),
+    path.join('license', 'index.html'),
+    path.join('contact', 'index.html')
   ];
 
   it('contains every required static website page and stylesheet', () => {
