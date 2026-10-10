@@ -92,4 +92,34 @@ describe('git-grass public website and mobile UX integrity', () => {
     expect(mobileAppJs).not.toContain('text: `${currentSession.commitMessage}`');
     expect(mobileAppJs).not.toContain('token=${token}');
   });
+
+  it('guarantees zero emojis anywhere on the public website', () => {
+    const emojiRegex = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
+    const allSiteFiles = requiredSitePages.map((p) => path.join(siteDir, p));
+
+    for (const filePath of allSiteFiles) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const matches = content.match(new RegExp(emojiRegex, 'gu'));
+      expect(matches, `Expected zero emojis in ${path.relative(projectRoot, filePath)}, found: ${matches}`).toBeNull();
+    }
+  });
+
+  it('verifies minimal monochrome design system and Lucide SVG icons in site/styles.css and index.html', () => {
+    const css = fs.readFileSync(path.join(siteDir, 'styles.css'), 'utf8');
+    expect(css).toContain('--bg-page: #FFFFFF');
+    expect(css).toContain('--bg-subtle: #FAFAF9');
+    expect(css).toContain('--text-primary: #171717');
+    expect(css).toContain('--text-secondary: #737373');
+    expect(css).toContain('--border-subtle: #E5E5E5');
+    expect(css).toContain('--terminal-bg: #171717');
+    expect(css).toContain('--terminal-text: #F5F5F5');
+    expect(css).toContain('--font-serif');
+    expect(css).toContain('lucide-icon');
+
+    const homeHtml = fs.readFileSync(path.join(siteDir, 'index.html'), 'utf8');
+    expect(homeHtml).toContain('class="lucide-icon');
+    expect(homeHtml).toContain('Step outside.<br>\n              Then commit.');
+    expect(homeHtml).toContain('class="terminal-compact"');
+  });
 });
+

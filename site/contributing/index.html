@@ -5,64 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contributing to git-grass</title>
   <meta name="description" content="Contributing guide for git-grass: local setup, coding standards, testing workflow, and pull request guidelines.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌱</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23171717%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <!-- Header -->
   <header class="site-header">
-    <div class="nav-container">
-      <a href="../index.html" class="brand-link">
-        <span class="brand-icon">🌱</span>
-        <span class="brand-text">git-grass</span>
-        <span class="brand-version">Contributing</span>
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-group" aria-label="git-grass homepage">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="6" y1="3" x2="6" y2="15"></line>
+            <circle cx="18" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <path d="M18 9a9 9 0 0 1-9 9"></path>
+          </svg>
+        </span>
+        <span>git-grass</span>
+        <span class="eyebrow-tag">Contributing</span>
       </a>
 
-      <nav aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../docs/index.html">Docs</a></li>
-          <li><a href="../architecture/index.html">Architecture</a></li>
-          <li><a href="../challenges/index.html">Challenges</a></li>
-          <li><a href="../privacy/index.html">Privacy</a></li>
-          <li><a href="../roadmap/index.html">Roadmap</a></li>
-        </ul>
-      </nav>
+      <div class="nav-desktop">
+        <nav aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../docs/index.html" class="nav-link">Docs</a></li>
+            <li><a href="../architecture/index.html" class="nav-link">Architecture</a></li>
+            <li><a href="../challenges/index.html" class="nav-link">Challenges</a></li>
+            <li><a href="../privacy/index.html" class="nav-link">Privacy</a></li>
+            <li><a href="../roadmap/index.html" class="nav-link">Roadmap</a></li>
+          </ul>
+        </nav>
 
-      <div class="nav-actions">
-        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github">
-          <span>GitHub</span>
-        </a>
-        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="nav-actions">
+          <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github-pill">
+            <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
+            </svg>
+            <span>Star</span>
+          </a>
+          <a href="../index.html#install" class="btn-primary">Get Started</a>
+        </div>
       </div>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </header>
 
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <a href="../index.html">Home</a>
+    <a href="../docs/index.html">Documentation</a>
+    <a href="../architecture/index.html">Architecture</a>
+    <a href="../challenges/index.html">Challenges</a>
+    <a href="../privacy/index.html">Privacy</a>
+    <a href="../roadmap/index.html">Roadmap</a>
+    <a href="../changelog/index.html">Changelog</a>
+    <a href="index.html">Contributing</a>
+  </div>
+
   <main class="section">
-    <div class="docs-content" style="margin: 0 auto;">
-      <h1>Contributing to git-grass</h1>
-      <p>
-        Thank you for your interest in contributing to git-grass! We welcome contributions that improve developer wellness,
-        enhance reliability, add creative outdoor challenges, or refine documentation.
-      </p>
+    <div class="container-narrow">
+      <div class="section-head">
+        <span class="section-eyebrow">Community</span>
+        <h1 class="section-title">Contributing to git-grass</h1>
+        <p class="section-desc">
+          Thank you for your interest in contributing to git-grass. We welcome contributions that improve developer wellness, enhance reliability, and refine documentation.
+        </p>
+      </div>
 
-      <h2>Core Principles for Contributors</h2>
-      <ul>
-        <li><strong>₹0 Cost Mandate:</strong> git-grass must remain free to run. Never introduce mandatory paid services, paid APIs, or required subscriptions.</li>
-        <li><strong>Zero Code Uploads:</strong> Never transmit user source code, file contents, diffs, or Git histories over the network.</li>
-        <li><strong>Non-Destructive Git Hooks:</strong> All hook modifications must strictly preserve existing user hooks and clean up completely on uninstall.</li>
-        <li><strong>Safe Process Execution:</strong> Never concatenate user input into shell commands. Always use <code>child_process.execFile</code> with argument arrays.</li>
-      </ul>
+      <article class="doc-article" style="max-width: 100%;">
+        <h2>Core Principles for Contributors</h2>
+        <ul>
+          <li><strong>Zero Cost Mandate:</strong> git-grass must remain free to run. Never introduce mandatory paid services, paid APIs, or required subscriptions.</li>
+          <li><strong>Zero Code Uploads:</strong> Never transmit user source code, file contents, diffs, or Git histories over the network.</li>
+          <li><strong>Non-Destructive Git Hooks:</strong> All hook modifications must strictly preserve existing user hooks and clean up completely on uninstall.</li>
+          <li><strong>Safe Process Execution:</strong> Never concatenate user input into shell commands. Always use <code>child_process.execFile</code> with argument arrays.</li>
+        </ul>
 
-      <h2>Local Development Setup</h2>
-      <div class="code-block-wrap">
-        <div class="code-block-header">
-          <span>bash</span>
-          <button class="btn-copy" data-copy="git clone https://github.com/sn3hhaa/git-grass.git&#10;cd git-grass&#10;npm install&#10;npm test">Copy</button>
-        </div>
-        <pre><code># 1. Clone your fork
+        <h2>Local Development Setup</h2>
+        <div class="doc-code-block">
+          <div class="doc-code-header">
+            <span>bash</span>
+            <button class="btn-copy" data-copy="git clone https://github.com/YOUR_USERNAME/git-grass.git&#10;cd git-grass&#10;npm install&#10;npm test">Copy</button>
+          </div>
+          <pre><code># 1. Clone your fork
 git clone https://github.com/YOUR_USERNAME/git-grass.git
 cd git-grass
 
@@ -75,56 +109,36 @@ npm test
 # 4. Verify TypeScript compilation
 npm run lint
 npm run build</code></pre>
-      </div>
+        </div>
 
-      <h2>Adding New Challenges</h2>
-      <p>
-        You can contribute new domain challenges to <code>challenges/fallback-challenges.json</code>! Ensure every challenge adheres to:
-      </p>
-      <ul>
-        <li><code>durationMinutes &gt;= 10</code> (10-minute minimum)</li>
-        <li><code>phoneFree: true</code> (strictly physical and screen-free)</li>
-        <li>Observational, safe, respectful of nature, and non-intrusive</li>
-      </ul>
+        <h2>Adding New Challenges</h2>
+        <p>
+          You can contribute new domain challenges to <code>challenges/fallback-challenges.json</code>. Ensure every challenge adheres to:
+        </p>
+        <ul>
+          <li><code>durationMinutes &gt;= 10</code> (10-minute minimum)</li>
+          <li><code>phoneFree: true</code> (strictly physical and screen-free)</li>
+          <li>Observational, safe, respectful of nature, and non-intrusive</li>
+        </ul>
 
-      <h2>Submitting a Pull Request</h2>
-      <ol>
-        <li>Create a feature branch: <code>git checkout -b feat/my-new-feature</code>.</li>
-        <li>Follow <a href="https://www.conventionalcommits.org" target="_blank" rel="noopener">Conventional Commits</a> (e.g. <code>feat: ...</code>, <code>fix: ...</code>, <code>docs: ...</code>).</li>
-        <li>Ensure all 43+ tests pass: <code>npm test</code>.</li>
-        <li>Ensure the TypeScript build passes: <code>npm run build</code>.</li>
-        <li>Submit your Pull Request on GitHub with a clear description of your changes.</li>
-      </ol>
+        <h2>Submitting a Pull Request</h2>
+        <ol>
+          <li>Create a feature branch: <code>git checkout -b feat/my-new-feature</code>.</li>
+          <li>Follow Conventional Commits (e.g. <code>feat: ...</code>, <code>fix: ...</code>, <code>docs: ...</code>).</li>
+          <li>Ensure all tests pass: <code>npm test</code>.</li>
+          <li>Ensure the TypeScript build passes: <code>npm run build</code>.</li>
+          <li>Submit your Pull Request on GitHub with a clear description of your changes.</li>
+        </ol>
+      </article>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="brand-title">🌱 git-grass</span>
-        <p>Your AI can write the code. It can't touch grass.</p>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>MIT Licensed. Free and open source software.</span>
+        <a href="../index.html">Back to git-grass</a>
       </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../docs/index.html">Docs</a></li>
-          <li><a href="../architecture/index.html">Architecture</a></li>
-          <li><a href="../challenges/index.html">Challenges</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Project</h4>
-        <ul>
-          <li><a href="../roadmap/index.html">Roadmap</a></li>
-          <li><a href="../changelog/index.html">Changelog</a></li>
-          <li><a href="index.html">Contributing</a></li>
-          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Sneha Tiwari & git-grass contributors. MIT License.</span>
     </div>
   </footer>
 
