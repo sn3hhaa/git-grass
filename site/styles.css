@@ -2105,14 +2105,15 @@ body.contact-body-unscrollable main {
 }
 
 .contact-left-col {
-  padding: 32px 52px;
+  padding: 20px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 520px;
+  max-width: 480px;
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .contact-right-visual {
@@ -2126,18 +2127,18 @@ body.contact-body-unscrollable main {
   border-left: 1px solid var(--cursor-border);
   display: flex;
   align-items: flex-end;
-  padding: 36px;
+  padding: 32px;
   box-sizing: border-box;
 }
 
 .contact-right-quote {
-  padding: 20px 24px;
+  padding: 16px 20px;
   background: rgba(14, 14, 13, 0.82);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   color: #EDEDEC;
-  font-size: 0.85rem;
+  font-size: 0.825rem;
   line-height: 1.5;
   width: 100%;
 }
@@ -2145,11 +2146,25 @@ body.contact-body-unscrollable main {
 .contact-seamless-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 10px;
 }
 
-.contact-seamless-form .form-input,
+.contact-seamless-form .form-group {
+  gap: 4px;
+}
+
+.contact-seamless-form .form-input {
+  padding: 8px 12px;
+  font-size: 0.825rem;
+  background: var(--cursor-dark-cmd);
+  border: 1px solid var(--cursor-border);
+  border-radius: var(--radius-sm);
+}
+
 .contact-seamless-form .form-textarea {
+  padding: 8px 12px;
+  font-size: 0.825rem;
+  min-height: 68px;
   background: var(--cursor-dark-cmd);
   border: 1px solid var(--cursor-border);
   border-radius: var(--radius-sm);
