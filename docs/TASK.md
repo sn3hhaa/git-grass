@@ -78,12 +78,12 @@ Status indicators:
 - [x] Verify staged changes integrity before committing.
 
 ## 9. Testing & Security
-- [x] Run full automated test suite with Vitest (25 passing tests, 1 opt-in skipped).
+- [x] Run full automated test suite with Vitest (43 passing tests, 1 opt-in skipped).
 - [x] Verify security boundaries (safe exec, no shell injection, local network only, bounded inputs).
 - [x] Test disposable repository end-to-end simulation.
 
 ## 10. Documentation
-- [x] Complete comprehensive `README.md` with CLI reference, Ollama setup, and troubleshooting.
+- [x] Complete comprehensive `README.md` with CLI reference, Hosted AI setup, Ollama setup, and troubleshooting.
 - [x] Complete `docs/PRD.md`.
 - [x] Complete `docs/ARCHITECTURE.md`.
 - [x] Complete `docs/SECURITY.md`.
@@ -93,9 +93,24 @@ Status indicators:
 - [x] Complete `docs/ROADMAP.md`.
 - [x] Update `CHANGELOG.md`.
 
-## 11. Final Push & Verification
+## 11. Hosted AI Backend (Render + Backboard — ₹0 Setup)
+- [x] Create Render Web Service specification (`render.yaml`) with build and start commands for Free tier.
+- [x] Implement production Express app (`src/hosted/server.ts`) binding to `0.0.0.0:${PORT}` with 25kb body limit and CORS.
+- [x] Implement health-check endpoint (`GET /health`) reporting provider, model, and uptime.
+- [x] Implement challenge endpoint (`POST /api/challenge`) validating schemas with Zod.
+- [x] Implement in-memory LRU/TTL cache (`src/hosted/cache.ts`) preventing duplicate calls and protecting credits.
+- [x] Implement sliding-window IP rate limiter (`src/hosted/rate-limiter.ts`) enforcing 15 req/min.
+- [x] Implement Backboard provider (`src/hosted/providers/backboard.ts`) calling `POST https://app.backboard.io/api/threads/messages` with Gemini 2.0 Flash.
+- [x] Evaluate Thinking Machines Tinker (`src/hosted/providers/tinker.ts`) and safely disable by default to prevent credit drain.
+- [x] Implement provider factory (`src/hosted/providers/factory.ts`) and fallback provider (`src/hosted/providers/fallback.ts`).
+- [x] Implement CLI client (`src/challenge/hosted-client.ts`) and multi-tier cascade in `src/challenge/generator.ts`.
+- [x] Add configuration support for `hostedBackendUrl` and update `git grass doctor` diagnostics.
+- [x] Create comprehensive automated tests (`tests/hosted-backend.test.ts`) with 18 test cases.
+
+## 12. Final Build & Verification
 - [x] Build TypeScript output (`dist/`).
 - [x] Verify `npm pack --dry-run` package integrity.
+- [x] Verify CLI commands: `help`, `doctor`, `challenge --test`.
 - [x] Review Git status and diffs.
 - [x] Push all milestone commits to GitHub origin (`https://github.com/sn3hhaa/git-grass`).
 - [x] Confirm remote synchronization.

@@ -5,11 +5,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org)
-[![Tests Passing](https://img.shields.io/badge/tests-17%20passed-success.svg)](./tests)
+[![Tests Passing](https://img.shields.io/badge/tests-43%20passed-success.svg)](./tests)
 
 **git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow.
 
-When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code that opens an offline-resilient mobile web experience. Using repository metadata, git-grass generates an observational outdoor challenge tailored to your project domain using local open-weight models (Ollama with Gemma 2B) or zero-config bundled fallbacks.
+When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code that opens an offline-resilient mobile web experience. Using repository metadata, git-grass generates an observational outdoor challenge tailored to your project domain using a **Render-hosted AI backend powered by Backboard**, local open-weight models (Ollama with Gemma 3), or zero-config bundled fallbacks.
 
 The developer locks their phone, steps away from their workstation for at least 10 minutes, returns refreshed, completes a short check-in on the phone, and submits their commit message directly from their yard or doorway. The local CLI safely validates staging integrity and executes the commit.
 
@@ -63,17 +63,17 @@ your outdoor challenge:
 
   █████████████████████████████████
   █████████████████████████████████
-  ████ ▄▄▄▄▄ █▀▄█▄ ▀█ █ ▄▄▄▄▄ ████
-  ████ █   █ █ █ ▀█ ▄ █ █   █ ████
-  ████ █▄▄▄█ █▀█▀ █▄▀ █ █▄▄▄█ ████
-  ████▄▄▄▄▄▄▄█▄▀ ▀▄█▄▀█▄▄▄▄▄▄▄████
-  ████▄▄█ ▄ ▄█▄▀█ ▄█▄▄█▄▄ ▄ ▄▄████
-  ████ █▄▀ ▄▄  ▄█▀▄ ▀ ▀▀▄▄▀▄ ▄████
-  ████▄█▄▄█▄▄█▄▄▀ ▀▄  █▄▄▄█ █▄████
-  ████ ▄▄▄▄▄ █▄█ ▀ ▄ ▄█ ▄ █  █████
-  ████ █   █ █ █▄▄▄▀▀ █▄▄▄█▄ ▄████
-  ████ █▄▄▄█ █ ▄ ▀▀▀█ ▄ ▄ ▄  █████
-  ████▄▄▄▄▄▄▄█▄▄▄█▄▄▄██▄█▄█▄▄▄████
+  ████ ▄▄▄▄▄ █▀▄█▄ ▀█ █ ▄▄▄▄▄ █████
+  ████ █   █ █ █ ▀█ ▄ █ █   █ █████
+  ████ █▄▄▄█ █▀█▀ █▄▀ █ █▄▄▄█ █████
+  ████▄▄▄▄▄▄▄█▄▀ ▀▄█▄▀█▄▄▄▄▄▄▄█████
+  ████▄▄█ ▄ ▄█▄▀█ ▄█▄▄█▄▄ ▄ ▄▄█████
+  ████ █▄▀ ▄▄  ▄█▀▄ ▀ ▀▀▄▄▀▄ ▄█████
+  ████▄█▄▄█▄▄█▄▄▀ ▀▄  █▄▄▄█ █▄█████
+  ████ ▄▄▄▄▄ █▄█ ▀ ▄ ▄█ ▄ █  ██████
+  ████ █   █ █ █▄▄▄▀▀ █▄▄▄█▄ ▄█████
+  ████ █▄▄▄█ █ ▄ ▀▀▀█ ▄ ▄ ▄  ██████
+  ████▄▄▄▄▄▄▄█▄▄▄█▄▄▄██▄█▄█▄▄▄█████
   █████████████████████████████████
   █████████████████████████████████
 
@@ -266,7 +266,55 @@ Safely removes git-grass pre-commit hooks and `.git-grass/` configuration, stric
 
 ---
 
-## 🧠 Local AI Setup (Ollama & Gemma 3)
+## ☁️ Hosted AI Backend (Render + Backboard — ₹0 Laptop Setup)
+
+For developers who want real AI-generated, project-aware challenges without installing Ollama, Gemma, Python, Docker, or native AI runtimes on their machine, git-grass provides a lightweight, dedicated cloud backend.
+
+### Architecture Overview
+- **Deployment Platform:** Render Web Service (Free Tier, 0.0.0.0 binding, zero persistent disk needed).
+- **Inference Engine:** [Backboard API](https://app.backboard.io) (`POST /threads/messages`) using existing account credits with default provider `google` / model `gemini-2.0-flash` ($0.10/M tokens, near-zero cost).
+- **Credit & Abuse Protection:**
+  - **In-Memory Cache:** 1-hour TTL cache (up to 1,000 entries) preventing identical queries from consuming duplicate credits.
+  - **Sliding-Window Rate Limiter:** 15 requests/minute per client IP to prevent runaway credit drainage.
+- **Thinking Machines Tinker Status:** Evaluated as an optional research provider, but **disabled by default** to safeguard user credits because Tinker is a distributed LoRA sampling/training infrastructure rather than a turnkey REST API.
+- **Local Privacy Unaltered:** The local session server remains completely private on your local LAN. The hosted API only processes repository metadata (project name, category, detected keywords) and returns the challenge text.
+
+### Deploying to Render in 3 Steps ($0 Cost)
+
+1. **Deploy with Blueprint:** Connect your git-grass repository fork to Render and select **New Web Service from Blueprint**, or deploy manually using the included `render.yaml`:
+   - **Environment:** `Node`
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm run start:hosted`
+   - **Instance Type:** `Free`
+
+2. **Configure Environment Variables in Render Dashboard:**
+   | Variable | Description | Recommended / Default |
+   | :--- | :--- | :--- |
+   | `AI_PROVIDER` | Active AI provider (`backboard`, `fallback`) | `backboard` |
+   | `BACKBOARD_API_KEY` | Your Backboard API Key from [app.backboard.io](https://app.backboard.io) | *(Your Secret Key)* |
+   | `BACKBOARD_PROVIDER` | LLM provider on Backboard | `google` |
+   | `BACKBOARD_MODEL` | LLM model on Backboard | `gemini-2.0-flash` |
+   | `RATE_LIMIT_MAX` | Max requests per minute per IP | `15` |
+   | `CACHE_TTL_MS` | Cache TTL in milliseconds | `3600000` (1 hour) |
+
+3. **Configure Your Local Git-Grass CLI:**
+   Point your local CLI to your deployed Render URL:
+   ```bash
+   git grass config hostedBackendUrl https://your-service.onrender.com
+   ```
+   *Or set the environment variable:*
+   ```bash
+   export GIT_GRASS_BACKEND_URL=https://your-service.onrender.com
+   ```
+
+Verify connectivity anytime using:
+```bash
+git grass doctor
+```
+
+---
+
+## 🧠 Local AI Setup (Ollama & Gemma 3 - Optional Alternative)
 
 git-grass is designed to work **100% out-of-the-box with bundled domain fallbacks without any mandatory AI setup**.
 

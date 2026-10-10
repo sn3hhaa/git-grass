@@ -79,6 +79,17 @@ export async function handleConfig(key?: string, value?: string): Promise<void> 
       console.log(pc.green(`Updated ollamaHost to ${value}`));
       break;
     }
+    case 'hostedBackendUrl':
+    case 'backendUrl': {
+      if (value === 'null' || value === 'none' || value === '') {
+        config.hostedBackendUrl = null;
+        console.log(pc.green('Cleared hostedBackendUrl.'));
+      } else {
+        config.hostedBackendUrl = value;
+        console.log(pc.green(`Updated hostedBackendUrl to ${value}`));
+      }
+      break;
+    }
     case 'resetLastBreak': {
       config.lastBreakCompletedAt = new Date().toISOString();
       console.log(pc.green(`Reset lastBreakCompletedAt to now.`));

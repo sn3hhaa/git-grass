@@ -30,6 +30,7 @@ export interface GitGrassConfig {
   aiModel: string;
   ollamaHost: string;
   autoPush: boolean;
+  hostedBackendUrl: string | null;
   preferences: ChallengePreferences;
   lastBreakCompletedAt: string | null;
 }

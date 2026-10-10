@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: git-grass-hosted-ai
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: node dist/hosted/index.js
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: AI_PROVIDER
+        value: backboard
+      - key: BACKBOARD_PROVIDER
+        value: google
+      - key: BACKBOARD_MODEL
+        value: gemini-2.0-flash
+      - key: BACKBOARD_API_KEY
+        sync: false
+      - key: TINKER_API_KEY
+        sync: false
+      - key: ENABLE_TINKER_PROVIDER
+        value: "false"

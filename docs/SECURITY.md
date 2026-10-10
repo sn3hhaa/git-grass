@@ -62,7 +62,13 @@ When git-grass triggers an internal commit from the server, Git invokes `.git/ho
 
 ### 2.6 Privacy & LLM Data Bounding
 - **No Source Code Uploads:** When extracting project context for AI challenges (`src/challenge/context.ts`), git-grass inspects only the repository directory name, a single excerpt sentence from the README, and keyword tags.
-- **Local AI Preference:** All inference is targeted at local Ollama instances (`http://127.0.0.1:11434`). If Ollama is unavailable, the tool falls back to local curated JSON datasets without making any outbound internet calls.
+- **Local AI Preference:** Inference is targeted at a deployed Render Web Service, local Ollama instances (`http://127.0.0.1:11434`), or offline curated JSON datasets.
+
+### 2.7 Hosted AI Backend Security & Secret Isolation
+- **No Secrets in Client Code:** The local CLI and client packages contain zero AI provider secrets or API keys. All keys (`BACKBOARD_API_KEY`) reside exclusively in server-side environment variables on Render.
+- **Error Redaction:** The hosted backend explicitly catches upstream provider exceptions and redacts error outputs to guarantee that API keys, auth headers, or upstream provider URLs are never leaked in HTTP response bodies or status messages.
+- **Credit & Abuse Protection:** An in-memory sliding-window rate limiter limits requests to 15 per minute per IP, and an in-memory 1-hour TTL cache (up to 1,000 entries) prevents duplicate inference calls and credit exhaustion attacks.
+- **Minimal Metadata Transmission:** Calls from the CLI to the hosted backend transmit only the repository name, broad category (`web`, `systems`, etc.), duration, and bounded keywords. No source files, diffs, branch names, commit hashes, or author information are ever transmitted.
 
 ---
 

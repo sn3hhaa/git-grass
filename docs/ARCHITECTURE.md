@@ -50,7 +50,11 @@ graph TD
 | **Session Storage** | `src/session/storage.ts` | Atomic JSON read/write persistence for config and active session state. |
 | **Validation Engine**| `src/session/validation.ts`| Enforces 10-minute minimums, constant-time token verification, and state transitions. |
 | **Context Extractor**| `src/challenge/context.ts`| Summarizes repository name, README excerpt, and package keywords boundedly. |
-| **AI Provider** | `src/challenge/ollama.ts` | Queries local Ollama endpoint (`gemma:2b` / `gemma2`) with strict timeouts. |
+| **Hosted AI Backend**| `src/hosted/` | Production Express service deployed to Render Web Service (`render.yaml`). |
+| **Backboard Provider**| `src/hosted/providers/backboard.ts` | Queries Backboard API (`POST /threads/messages`) using Gemini 2.0 Flash with credit safeguards. |
+| **Credit Cache & Limiter**| `src/hosted/cache.ts`, `rate-limiter.ts` | In-memory 1h TTL challenge cache and 15 req/min sliding-window rate limiter protecting API credits. |
+| **Hosted Client**    | `src/challenge/hosted-client.ts` | CLI HTTP client connecting to Render backend with automatic offline failover. |
+| **Local AI Provider**| `src/challenge/ollama.ts` | Queries optional local Ollama endpoint (`gemma3:1b`) with strict timeouts. |
 | **Fallback Engine** | `src/challenge/fallback.ts`| Loads and matches curated domain-aware challenges offline. |
 | **Local Web App** | `src/server/` & `web/` | Express HTTP server and high-contrast, offline-resilient mobile web client. |
 

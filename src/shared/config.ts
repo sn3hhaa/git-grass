@@ -44,6 +44,7 @@ export const ConfigSchema = z.object({
   aiModel: z.string().default('gemma3:1b'),
   ollamaHost: z.string().default('http://127.0.0.1:11434'),
   autoPush: z.boolean().default(false),
+  hostedBackendUrl: z.string().nullable().default(null),
   preferences: PreferencesSchema.default({}),
   lastBreakCompletedAt: z.string().datetime().nullable().default(null)
 });

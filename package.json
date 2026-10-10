@@ -18,6 +18,8 @@
   "scripts": {
     "build": "tsc && node scripts/copy-assets.js",
     "dev": "tsx src/cli/index.ts",
+    "start:hosted": "node dist/hosted/index.js",
+    "dev:hosted": "tsx src/hosted/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "tsc --noEmit",

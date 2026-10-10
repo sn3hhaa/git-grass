@@ -2,16 +2,36 @@ import type { GitGrassConfig, OutdoorChallenge } from '../shared/types.js';
 import { extractProjectContext } from './context.js';
 import { getFallbackChallenge } from './fallback.js';
 import { generateOllamaChallenge, isModelAvailable, isOllamaAvailable } from './ollama.js';
+import { fetchHostedChallenge } from './hosted-client.js';
+
+export type ChallengeEngineSource = 'backboard' | 'hosted-ai' | 'tinker' | 'ollama' | 'fallback';
 
 export async function createOutdoorChallenge(
   repoRoot: string,
   config: GitGrassConfig,
   durationMinutes: number
-): Promise<{ challenge: OutdoorChallenge; source: 'ollama' | 'fallback' }> {
+): Promise<{ challenge: OutdoorChallenge; source: ChallengeEngineSource; model?: string }> {
   const context = extractProjectContext(repoRoot);
   const duration = Math.max(10, durationMinutes);
 
-  // If configured to use Ollama or auto
+  // 1. Check for Render-hosted AI Backend first (zero laptop dependencies, no models, no Docker)
+  const backendUrl = process.env.GIT_GRASS_BACKEND_URL || config.hostedBackendUrl;
+  if (backendUrl && backendUrl.trim().length > 0) {
+    try {
+      const hostedResult = await fetchHostedChallenge(backendUrl, context, duration);
+      if (hostedResult && hostedResult.challenge) {
+        return {
+          challenge: hostedResult.challenge,
+          source: (hostedResult.source as ChallengeEngineSource) || 'hosted-ai',
+          model: hostedResult.model
+        };
+      }
+    } catch {
+      // Fall through cleanly
+    }
+  }
+
+  // 2. Check for Local Ollama if configured
   if (config.aiProvider === 'ollama' || config.aiProvider === 'auto') {
     const available = await isOllamaAvailable(config.ollamaHost, 1500);
     if (available) {
@@ -25,7 +45,7 @@ export async function createOutdoorChallenge(
           });
 
           if (generated) {
-            return { challenge: generated, source: 'ollama' };
+            return { challenge: generated, source: 'ollama', model: config.aiModel };
           }
         } catch {
           // Fall through to fallback
@@ -34,7 +54,7 @@ export async function createOutdoorChallenge(
     }
   }
 
-  // Graceful fallback to bundled challenge library
+  // 3. Graceful zero-dependency fallback to curated offline challenge library
   const fallback = getFallbackChallenge(context, duration);
   return { challenge: fallback, source: 'fallback' };
 }

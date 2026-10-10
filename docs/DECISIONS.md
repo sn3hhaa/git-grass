@@ -100,3 +100,37 @@ The project required a demonstrable, rock-solid MVP within a strict deadline.
 
 ### Decision
 Prioritize the complete end-to-end workflow (Git hook → terminal QR → phone UI → challenge engine → verified atomic commit) over optional features like multi-user team synchronization, Bluetooth proximity beacons, or custom audio synthesizers.
+
+---
+
+## ADR-08: Render-Hosted API Backend with Backboard for Zero-Local-Install AI
+
+### Context
+Developers on low-spec laptops, corporate environments with locked package managers, or machines with insufficient RAM/disk space cannot install Ollama, download multi-gigabyte models, or run Docker. They still desire real, dynamic, project-aware outdoor challenge generation without local AI runtimes.
+
+### Decision
+Provide an optional cloud inference backend deployable as a Render Web Service on the Free plan ($0 cost), backed by the Backboard API (`POST /threads/messages`) using existing credits with ultra-low token cost models (`google` / `gemini-2.0-flash`).
+Protect developer credits via an in-memory 1-hour TTL challenge cache (up to 1,000 entries) and a sliding-window rate limiter (15 req/min).
+
+### Consequences
+- **Zero local installation required:** No Ollama, Gemma, Python, Docker, or GPU needed on developer laptops.
+- **₹0 additional spending:** Utilizes existing Backboard credits on Render's free tier.
+- **Credit safeguards:** Cached responses avoid repeated provider calls for similar repository categories.
+- **Privacy preservation:** Only repository metadata (repo name, keywords, category) is transmitted; the local session server and all source code remain strictly private on the local LAN.
+
+---
+
+## ADR-09: Thinking Machines Tinker Evaluation & Default-Disabled Policy
+
+### Context
+Thinking Machines Tinker was evaluated as an alternative hosted inference provider to leverage existing credits.
+
+### Decision
+Tinker was evaluated against the project requirements. Research into Tinker documentation confirmed that Tinker is an experimental distributed framework for remote model training, LoRA fine-tuning, and sampling via low-level Python sampling clients (`SamplingClient`) with dedicated GPU cluster allocations. It is not a turnkey HTTP chat-completion endpoint. Utilizing dedicated GPU resources on Tinker risks unpredictable and rapid credit exhaustion.
+
+To strictly enforce the ₹0 additional spending constraint and protect user credits, Tinker is designated as an inactive/optional research provider (`isConfigured() === false` by default).
+
+### Consequences
+- Developer credits are 100% protected against accidental sampling burns.
+- Backboard remains the sole active hosted inference provider.
+- Clean architectural hooks remain in place should Tinker expose a turnkey chat-completion API in the future.
