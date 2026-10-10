@@ -3,55 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>git-grass — Your AI can write the code. It can't touch grass.</title>
-  <meta name="description" content="Git-native outdoor-break enforcement tool. Integrates physical outdoor recovery into your source-control workflow with zero local AI dependencies.">
+  <title>git-grass — Run Outdoor Breaks in Terminal, Git Hooks, and Workflows</title>
+  <meta name="description" content="An outdoor break built into your Git workflow. Take a challenge, get some fresh air, and return when your next commit is ready.">
   <meta property="og:title" content="git-grass — Git-Native Outdoor Break Enforcement">
-  <meta property="og:description" content="Your next commit can wait ten minutes. Git-Grass brings intentional outdoor breaks into your Git workflow.">
+  <meta property="og:description" content="An outdoor break built into your Git workflow. Take a challenge, get some fresh air, and return when your next commit is ready.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://github.com/sn3hhaa/git-grass">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="git-grass — Git-Native Outdoor Break Enforcement">
-  <meta name="twitter:description" content="Your next commit can wait ten minutes. Git-Grass brings intentional outdoor breaks into your Git workflow.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23171717%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
+  <meta name="twitter:description" content="An outdoor break built into your Git workflow. Take a challenge, get some fresh air, and return when your next commit is ready.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23EDEDEC%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="blueprint-canvas">
-  <!-- Minimal Floating Navigation Bar -->
-  <header class="site-header">
+<body class="cursor-dark">
+  <!-- Minimal Dark Top Navigation Bar -->
+  <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-group" aria-label="git-grass homepage">
-        <span class="brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="6" y1="3" x2="6" y2="15"></line>
-            <circle cx="18" cy="6" r="3"></circle>
-            <circle cx="6" cy="18" r="3"></circle>
-            <path d="M18 9a9 9 0 0 1-9 9"></path>
-          </svg>
-        </span>
-        <span class="brand-name">git-grass</span>
-      </a>
+      <div class="header-left">
+        <a href="index.html" class="brand-group" aria-label="git-grass homepage">
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="6" y1="3" x2="6" y2="15"></line>
+              <circle cx="18" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M18 9a9 9 0 0 1-9 9"></path>
+            </svg>
+          </span>
+          <span class="brand-name">git-grass</span>
+        </a>
+      </div>
 
-      <!-- Desktop Navigation -->
+      <!-- Desktop Navigation Links -->
       <nav class="nav-desktop" aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#workflow" class="nav-link">Workflow</a></li>
-          <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
-          <li><a href="#demo" class="nav-link">Interactive Demo</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#how-it-works" class="nav-link">How it works</a></li>
           <li><a href="docs/index.html" class="nav-link">Docs</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub</a></li>
         </ul>
       </nav>
 
+      <!-- Action Button -->
       <div class="nav-actions">
-        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github-pill" aria-label="GitHub repository">
-          <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-            <path d="M9 18c-4.51 2-5-2-7-2"></path>
-          </svg>
-          <span>GitHub</span>
-        </a>
-        <a href="#install" class="btn-primary">Get Started</a>
+        <a href="#install" class="btn-primary">Get started</a>
 
-        <!-- Mobile Toggle (visible only below 680px) -->
+        <!-- Mobile Menu Toggle Button -->
         <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
           <svg class="lucide-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -62,294 +58,199 @@
       </div>
     </div>
 
-    <!-- Mobile Navigation Drawer -->
+    <!-- Responsive Mobile Drawer -->
     <div id="mobileMenu" class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
-      <a href="#workflow">Workflow</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#demo">Interactive Demo</a>
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
       <a href="docs/index.html">Docs</a>
-      <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-      <a href="#install" class="btn-primary" style="margin-top: 12px; text-align: center;">Get Started</a>
+      <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="#install" class="btn-primary" style="margin-top: 16px; text-align: center;">Get started</a>
     </div>
   </header>
 
-  <main>
-    <!-- Architectural Hero Section -->
-    <section class="hero-architectural">
+  <main id="main">
+    <!-- Hero Headline Section (Matches Screenshot 1) -->
+    <section class="cursor-hero-section">
       <div class="container">
-        <!-- Blueprint Corner Markers -->
-        <div class="hero-inner">
-          <div class="hero-header-center">
-            <!-- Pill Announcement Banner -->
-            <a href="#install" class="announcement-pill">
-              <span class="status-indicator"></span>
-              <span class="announcement-text">git-grass v0.2 — Zero local AI dependencies</span>
-              <span class="announcement-arrow">Quick start &rarr;</span>
-            </a>
-
-            <!-- Hero Headline -->
-            <h1 class="headline">
-              Step outside.<br>
+        <div class="cursor-hero-headline-block">
+          <span class="cursor-eyebrow">CLI</span>
+          <h1 class="headline cursor-hero-title">
+            Step outside.<br>
               Then commit.
-            </h1>
+          </h1>
+          <p class="cursor-hero-sub">
+            An outdoor break built into your Git workflow. Take a challenge, get some fresh air, and return when your next commit is ready.
+          </p>
+          <div class="cursor-hero-cta-row">
+            <a href="#install" class="btn-primary btn-hero-cta">Get started</a>
+            <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-hero-cta">
+              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                <path d="M9 18c-4.51 2-5-2-7-2"></path>
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <p class="hero-desc">
-              Your next commit can wait ten minutes. git-grass generates outdoor challenges from your staged diffs, verifies your physical break on mobile, and unlocks your commit when you return.
+    <!-- Large Hero Stage Card (Matches Screenshot 1: card--large with wallpaper & floating window) -->
+    <section class="cursor-stage-section">
+      <div class="container">
+        <div class="cursor-card-large">
+          <!-- Left Column: Install Pitch & Command Box -->
+          <div class="cursor-stage-left">
+            <div class="cursor-stage-copy">
+              <h2 class="cursor-stage-title">Same commands, any environment.</h2>
+              <p class="cursor-stage-desc">Plug into your setup anywhere.</p>
+            </div>
+
+            <div class="cursor-os-selector">
+              <span class="os-pill active">npm</span>
+              <span class="os-pill">npx</span>
+              <span class="os-pill">source</span>
+            </div>
+
+            <!-- Working Command Box with Copy Button -->
+            <div class="cursor-cmd-container">
+              <div class="cursor-cmd-box btn-copy" data-copy="npm install -g git-grass && git grass init" tabindex="0" role="button" aria-label="Copy install command">
+                <code class="cursor-cmd-code">
+                  <span class="syn-func">npm</span>
+                  <span class="syn-pkg">install</span>
+                  <span class="syn-flag">-g</span>
+                  <span class="syn-str">git-grass</span>
+                </code>
+                <div class="cursor-copy-icon">
+                  <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Wallpaper Backdrop & Floating Window -->
+          <div class="cursor-stage-right">
+            <div class="cursor-wallpaper-frame">
+              <!-- Natural Dunes Backdrop Gradient -->
+              <div class="cursor-wallpaper-bg"></div>
+
+              <!-- Floating Dark Terminal Window -->
+              <div class="terminal-compact" id="interactiveTerminal">
+                <div class="cursor-window-bar">
+                  <div class="cursor-window-dots">
+                    <span class="window-dot dot-red"></span>
+                    <span class="window-dot dot-yellow"></span>
+                    <span class="window-dot dot-green"></span>
+                  </div>
+                  <div class="cursor-window-title">agent &mdash; git-grass</div>
+                  <div class="cursor-window-action">
+                    <span class="cursor-window-badge">CLI v0.2</span>
+                  </div>
+                </div>
+
+                <div class="cursor-window-body">
+                  <div class="cursor-term-header">
+                    <div class="cursor-term-prompt">
+                      <span class="term-arrow">&gt;</span>
+                      <span class="term-cmd">git grass</span>
+                    </div>
+                    <div class="cursor-term-repo">git-grass &bull; ~/projects/cache &bull; main</div>
+                  </div>
+
+                  <div class="cursor-term-content">
+                    <div class="cursor-term-row">
+                      <span class="term-tag">[gate]</span>
+                      <span class="term-text">Focus interval reached (last break: 74m ago).</span>
+                    </div>
+                    <div class="cursor-term-row term-dim">
+                      Staged tree SHA-1: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+                    </div>
+                    <div class="cursor-term-callout">
+                      <div class="callout-title">Kinetic Topology &amp; Flow Walk (10m)</div>
+                      <div class="callout-sub">Step outside. Observe natural pathway branching without central locking.</div>
+                    </div>
+                    <div class="cursor-term-row">
+                      <span class="term-tag">[pair]</span>
+                      <span class="term-link">http://192.168.1.48:4242/session/grass-7c42</span>
+                    </div>
+                  </div>
+
+                  <!-- Prompt Input Bar -->
+                  <div class="cursor-term-input-box">
+                    <div class="cursor-input-line">
+                      <span class="cursor-input-arrow">&rarr;</span>
+                      <span class="cursor-input-placeholder">Step outside, scan QR, touch grass to unlock commit</span>
+                    </div>
+                    <div class="cursor-input-footer">
+                      <span class="cursor-input-meta">/challenge &bull; @staged &bull; !unlock</span>
+                      <span class="cursor-status-pill">Gate Active</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: How It Works — 3 Concise Workflow Steps -->
+    <section class="cursor-workflow-section" id="how-it-works">
+      <div class="container">
+        <div class="cursor-section-header">
+          <span class="cursor-eyebrow">WORKFLOW</span>
+          <h2 class="cursor-section-title">A natural rhythm for building.</h2>
+          <p class="cursor-section-desc">Three concise steps designed to integrate intentional physical recovery into everyday source control.</p>
+        </div>
+
+        <div class="workflow-steps-grid">
+          <!-- Step 1 -->
+          <div class="workflow-card">
+            <div class="workflow-step-num">01</div>
+            <h3 class="workflow-step-heading">Trigger a break</h3>
+            <p class="workflow-step-text">
+              Run <code>git grass</code> or trigger your pre-commit hook after your focus interval expires. Git-Grass finger-prints your staged index safely in memory.
             </p>
-
-            <div class="hero-cta-group">
-              <a href="#install" class="btn-primary">
-                <span>Get Started</span>
-                <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </a>
-              <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-                <span>View on GitHub</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Hero Asymmetric Composition: Terminal + Original Geometric Visual -->
-          <div class="hero-asymmetric-stage">
-            <!-- Left: Terminal Preview -->
-            <div class="terminal-compact" id="interactiveTerminal">
-              <div class="terminal-topbar">
-                <div class="terminal-dots">
-                  <span class="terminal-dot"></span>
-                  <span class="terminal-dot"></span>
-                  <span class="terminal-dot"></span>
-                </div>
-                <span class="terminal-label">bash — git commit</span>
-                <span class="terminal-badge-gate">LOCKED</span>
-              </div>
-              <div class="terminal-code">
-                <pre><code><span class="tc-dim">$</span> <span class="tc-white">git commit -m "feat: complete distributed cache cluster"</span>
-
-<span class="tc-green">[git-grass]</span> Focus interval reached (last break: 74m ago).
-<span class="tc-dim">Pre-commit hook paused. Staged tree SHA-1 fingerprinted:</span>
-<span class="tc-dim">4b825dc642cb6eb9a060e54bf8d69288fbee4904</span>
-
-Your outdoor challenge:
-<span class="tc-white">Kinetic Topology &amp; Flow Walk</span>
-Step outside for 10 minutes.
-Observe how natural pathways branch without central coordination.
-
-<span class="tc-dim">Local QR session listening on</span> <span class="tc-green">http://192.168.1.48:4242</span>
-<span class="tc-dim">Scan with phone on local Wi-Fi to unlock your commit.</span></code></pre>
-              </div>
-            </div>
-
-            <!-- Right: Original Geometric Wireframe Sculpture -->
-            <div class="hero-geometric-card">
-              <div class="geometric-card-header">
-                <span class="tag-pill"><span class="grass-indicator"></span>Git Tree &bull; Topography</span>
-                <span class="corner-crossmark">+</span>
-              </div>
-              <div class="geometric-svg-wrap">
-                <!-- Original Bespoke Isometric SVG Illustration -->
-                <svg viewBox="0 0 320 240" fill="none" class="geometric-svg" aria-label="Isometric Git commit geometry and stepped terraces">
-                  <!-- Stepped Topographic Contours (Grass terraces in muted green) -->
-                  <path d="M30 190 C 80 180, 150 200, 290 170" stroke="#2D6A4F" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"></path>
-                  <path d="M20 150 C 90 140, 170 160, 300 130" stroke="#2D6A4F" stroke-width="1.5" opacity="0.75"></path>
-                  <path d="M40 110 C 110 100, 190 120, 280 90" stroke="#2D6A4F" stroke-width="1.25" stroke-dasharray="2 2" opacity="0.5"></path>
-
-                  <!-- Isometric Base Axis Guidelines -->
-                  <line x1="160" y1="210" x2="50" y2="145" stroke="#E5E5E5" stroke-width="1"></line>
-                  <line x1="160" y1="210" x2="270" y2="145" stroke="#E5E5E5" stroke-width="1"></line>
-                  <line x1="160" y1="210" x2="160" y2="40" stroke="#E5E5E5" stroke-width="1"></line>
-
-                  <!-- Isometric Cube 1 (Base Commit Node) -->
-                  <polygon points="160,195 200,172 160,149 120,172" fill="#FAFAF9" stroke="#171717" stroke-width="1.5"></polygon>
-                  <polygon points="120,172 160,149 160,185 120,208" fill="#F0F0EE" stroke="#171717" stroke-width="1.5"></polygon>
-                  <polygon points="160,149 200,172 200,208 160,185" fill="#E8E8E6" stroke="#171717" stroke-width="1.5"></polygon>
-
-                  <!-- Isometric Cube 2 (Staged Tree Node, Elevated) -->
-                  <polygon points="205,145 245,122 205,99 165,122" fill="#FFFFFF" stroke="#171717" stroke-width="1.5"></polygon>
-                  <polygon points="165,122 205,99 205,135 165,158" fill="#FAFAF9" stroke="#171717" stroke-width="1.5"></polygon>
-                  <polygon points="205,99 245,122 245,158 205,135" fill="#EBF5EE" stroke="#171717" stroke-width="1.5"></polygon>
-
-                  <!-- Isometric Cube 3 (Released Node, Apex) -->
-                  <polygon points="130,115 170,92 130,69 90,92" fill="#FFFFFF" stroke="#2D6A4F" stroke-width="1.75"></polygon>
-                  <polygon points="90,92 130,69 130,105 90,128" fill="#EBF5EE" stroke="#2D6A4F" stroke-width="1.5"></polygon>
-                  <polygon points="130,69 170,92 170,128 130,105" fill="#D8EEDF" stroke="#2D6A4F" stroke-width="1.5"></polygon>
-
-                  <!-- Connecting Branch Vectors (Git DAG Lines) -->
-                  <line x1="160" y1="149" x2="205" y2="122" stroke="#2D6A4F" stroke-width="2" stroke-linecap="round"></line>
-                  <line x1="165" y1="122" x2="130" y2="92" stroke="#171717" stroke-width="1.75" stroke-dasharray="3 3"></line>
-
-                  <!-- Node Vertices / Anchor Markers -->
-                  <circle cx="160" cy="149" r="3.5" fill="#171717"></circle>
-                  <circle cx="205" cy="122" r="3.5" fill="#2D6A4F"></circle>
-                  <circle cx="130" cy="92" r="4" fill="#2D6A4F"></circle>
-                  <circle cx="130" cy="92" r="7" stroke="#2D6A4F" stroke-width="1" opacity="0.4"></circle>
-                </svg>
-              </div>
-              <div class="geometric-card-footer">
-                <span class="geo-stat-label">Atomic lock</span>
-                <span class="geo-stat-val">100% offline verification</span>
+            <div class="workflow-card-preview">
+              <div class="workflow-card-code">
+                <code><span class="syn-dim">$</span> git commit -m "feat: cache"
+<span class="syn-periwinkle">[git-grass]</span> Break interval reached.
+<span class="syn-dim">Staged index preserved in memory.</span></code>
               </div>
             </div>
           </div>
 
-          <!-- Architectural Category Chips Row (from Reference 2) -->
-          <div class="category-chips-row">
-            <span class="arch-chip"><span class="chip-bracket">[</span> Git Hook Gate <span class="chip-bracket">]</span></span>
-            <span class="arch-chip"><span class="chip-bracket">[</span> Local Wi-Fi QR <span class="chip-bracket">]</span></span>
-            <span class="arch-chip"><span class="chip-bracket">[</span> Project-Aware Diffs <span class="chip-bracket">]</span></span>
-            <span class="arch-chip"><span class="chip-bracket">[</span> Zero-Cost Fallback <span class="chip-bracket">]</span></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Asymmetric Bento Showcase (Ref 1 & Ref 2 Composition) -->
-    <section id="capabilities" class="section bento-section">
-      <div class="container">
-        <div class="section-head-minimal">
-          <span class="section-tag-pill">Architecture</span>
-          <h2 class="section-title-clean">Designed for developer integrity.</h2>
-          <p class="section-subtitle-clean">A focused, minimal system with zero telemetry, zero mandatory cloud services, and atomic Git staging protection.</p>
-        </div>
-
-        <!-- Asymmetric Bento Grid -->
-        <div class="bento-layout">
-          <!-- Card 1: Diff-Aware Challenges (Light, Tall) -->
-          <div class="bento-card bento-light card-diff">
-            <div class="bento-card-top">
-              <span class="bento-badge">Diff Analysis</span>
-              <a href="challenges/index.html" class="bento-arrow" aria-label="Explore challenges">&nearr;</a>
-            </div>
-            
-            <div class="bento-visual-container">
-              <!-- Geometric Wireframe Helix / Coil (Ref 1 inspired) -->
-              <svg viewBox="0 0 200 120" fill="none" class="bento-svg" aria-label="Wireframe helix">
-                <ellipse cx="100" cy="30" rx="60" ry="14" stroke="#171717" stroke-width="1.5"></ellipse>
-                <ellipse cx="100" cy="50" rx="60" ry="14" stroke="#171717" stroke-width="1.25" opacity="0.8"></ellipse>
-                <ellipse cx="100" cy="70" rx="60" ry="14" stroke="#2D6A4F" stroke-width="1.5"></ellipse>
-                <ellipse cx="100" cy="90" rx="60" ry="14" stroke="#171717" stroke-width="1" opacity="0.5"></ellipse>
-                <line x1="40" y1="30" x2="40" y2="90" stroke="#171717" stroke-width="1.25"></line>
-                <line x1="160" y1="30" x2="160" y2="90" stroke="#171717" stroke-width="1.25"></line>
-                <circle cx="100" cy="70" r="3.5" fill="#2D6A4F"></circle>
-              </svg>
-            </div>
-
-            <div class="bento-card-content">
-              <h3 class="bento-card-title">Diff-Aware Outdoor Tasks</h3>
-              <p class="bento-card-desc">Parses your staged changes and project manifest to generate relevant physical metaphors, connecting your code to outdoor observations.</p>
-              <div class="bento-tags-cluster">
-                <span class="bento-tag">git diff --cached</span>
-                <span class="bento-tag">systems</span>
-                <span class="bento-tag">web</span>
-                <span class="bento-tag">ml</span>
+          <!-- Step 2 -->
+          <div class="workflow-card">
+            <div class="workflow-step-num">02</div>
+            <h3 class="workflow-step-heading">Complete an outdoor challenge</h3>
+            <p class="workflow-step-text">
+              Scan the terminal session link with your phone over local Wi-Fi. Step outside into open air for a 10-minute screen-free reflection tailored to your code.
+            </p>
+            <div class="workflow-card-preview">
+              <div class="workflow-challenge-sample">
+                <div class="sample-tag">Outdoor Challenge</div>
+                <div class="sample-title">Kinetic Topology Walk</div>
+                <div class="sample-desc">Observe pedestrian flow at intersections to rethink hash routing.</div>
               </div>
             </div>
           </div>
 
-          <!-- Card 2: Local Wi-Fi Pairing (Light, Compact) -->
-          <div class="bento-card bento-light card-wifi">
-            <div class="bento-card-top">
-              <span class="bento-badge">Local Network</span>
-              <a href="architecture/index.html" class="bento-arrow" aria-label="View architecture">&nearr;</a>
-            </div>
-
-            <div class="bento-visual-container">
-              <!-- Geometric Radar / Planar Orbits -->
-              <svg viewBox="0 0 160 120" fill="none" class="bento-svg" aria-label="Planar network orbits">
-                <circle cx="80" cy="60" r="45" stroke="#E5E5E5" stroke-width="1"></circle>
-                <circle cx="80" cy="60" r="30" stroke="#171717" stroke-width="1.25"></circle>
-                <circle cx="80" cy="60" r="14" stroke="#2D6A4F" stroke-width="1.5" stroke-dasharray="2 2"></circle>
-                <line x1="20" y1="60" x2="140" y2="60" stroke="#E5E5E5" stroke-width="1"></line>
-                <line x1="80" y1="10" x2="80" y2="110" stroke="#E5E5E5" stroke-width="1"></line>
-                <circle cx="80" cy="60" r="3" fill="#171717"></circle>
-                <circle cx="102" cy="60" r="3.5" fill="#2D6A4F"></circle>
-              </svg>
-            </div>
-
-            <div class="bento-card-content">
-              <h3 class="bento-card-title">Zero-Cloud Local LAN</h3>
-              <p class="bento-card-desc">Pairs your mobile browser directly with your laptop over Wi-Fi. No external servers, no tracking, and no subscriptions.</p>
-              <div class="bento-tags-cluster">
-                <span class="bento-tag">192.168.x.x</span>
-                <span class="bento-tag">HTTP Local</span>
-                <span class="bento-tag">Port 4242</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3: High-Contrast Dark Card (Signature element from Reference 1) -->
-          <div class="bento-card bento-dark card-gate">
-            <div class="bento-dark-grid">
-              <div class="bento-dark-text">
-                <div class="bento-card-top">
-                  <span class="bento-badge bento-badge-dark">Pre-Commit Gate</span>
-                  <a href="docs/index.html#staged-protection" class="bento-arrow bento-arrow-dark" aria-label="Learn about commit gate">&nearr;</a>
-                </div>
-
-                <h3 class="bento-dark-title">Locks your commit.<br>Unlocks your clarity.</h3>
-                <p class="bento-dark-desc">
-                  The pre-commit hook holds your staged tree in memory without modifying working files. When your 10-minute walk finishes, your commit proceeds atomically.
-                </p>
-
-                <div class="bento-dark-pills">
-                  <span class="pill-dark-step">1. git commit</span>
-                  <span class="pill-dark-arrow">&rarr;</span>
-                  <span class="pill-dark-step">2. Step outside</span>
-                  <span class="pill-dark-arrow">&rarr;</span>
-                  <span class="pill-dark-step pill-dark-accent">3. Unlocked</span>
-                </div>
-              </div>
-
-              <div class="bento-dark-visual">
-                <!-- Isometric Wireframe Cluster of Cubes (Ref 1 inspired) -->
-                <svg viewBox="0 0 180 180" fill="none" class="bento-dark-svg" aria-label="Isometric wireframe block cluster">
-                  <!-- Cluster of 3D Wireframe Blocks -->
-                  <polygon points="90,40 130,62 90,84 50,62" stroke="#FFFFFF" stroke-width="1.5" fill="none"></polygon>
-                  <polygon points="50,62 90,84 90,124 50,102" stroke="#FFFFFF" stroke-width="1.5" fill="none"></polygon>
-                  <polygon points="90,84 130,62 130,102 90,124" stroke="#FFFFFF" stroke-width="1.5" fill="none"></polygon>
-
-                  <!-- Overlapping Interlocking Cube in Green Accent -->
-                  <polygon points="120,95 160,117 120,139 80,117" stroke="#52B788" stroke-width="1.5" fill="rgba(45, 106, 79, 0.25)"></polygon>
-                  <polygon points="80,117 120,139 120,165 80,143" stroke="#52B788" stroke-width="1.5" fill="none"></polygon>
-                  <polygon points="120,139 160,117 160,143 120,165" stroke="#52B788" stroke-width="1.5" fill="none"></polygon>
-
-                  <!-- Internal Wireframe lines -->
-                  <line x1="90" y1="40" x2="90" y2="84" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="2 2" opacity="0.6"></line>
-                  <circle cx="120" cy="139" r="3" fill="#52B788"></circle>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4: Built-in Offline Library (Light, Compact) -->
-          <div class="bento-card bento-light card-offline">
-            <div class="bento-card-top">
-              <span class="bento-badge">Zero Latency</span>
-              <a href="challenges/index.html" class="bento-arrow" aria-label="View offline challenges">&nearr;</a>
-            </div>
-
-            <div class="bento-visual-container">
-              <!-- Geometric Layered Planes -->
-              <svg viewBox="0 0 160 110" fill="none" class="bento-svg" aria-label="Layered planes">
-                <polygon points="80,25 130,45 80,65 30,45" stroke="#E5E5E5" stroke-width="1.25" fill="#FAFAF9"></polygon>
-                <polygon points="80,45 130,65 80,85 30,65" stroke="#171717" stroke-width="1.25" fill="#FFFFFF"></polygon>
-                <polygon points="80,65 130,85 80,105 30,85" stroke="#2D6A4F" stroke-width="1.5" fill="#EBF5EE"></polygon>
-                <circle cx="80" cy="65" r="3" fill="#2D6A4F"></circle>
-              </svg>
-            </div>
-
-            <div class="bento-card-content">
-              <h3 class="bento-card-title">Bundled Offline Library</h3>
-              <p class="bento-card-desc">Complete built-in catalog ensures every challenge triggers instantly even without an internet connection.</p>
-              <div class="bento-tags-cluster">
-                <span class="bento-tag">0ms Latency</span>
-                <span class="bento-tag">Offline-First</span>
-                <span class="bento-tag">Zod Validated</span>
+          <!-- Step 3 -->
+          <div class="workflow-card">
+            <div class="workflow-step-num">03</div>
+            <h3 class="workflow-step-heading">Return and commit</h3>
+            <p class="workflow-step-text">
+              Check in from your phone. Workstation verifies cryptographic token equality, releases the lock, and executes your commit atomically.
+            </p>
+            <div class="workflow-card-preview">
+              <div class="workflow-card-code">
+                <code><span class="syn-periwinkle">[ok]</span> Token verified (constant-time).
+<span class="syn-periwinkle">[ok]</span> Staged tree SHA-1 verified.
+<span class="syn-dim">[main 8e4b2] commit created atomically.</span></code>
               </div>
             </div>
           </div>
@@ -357,21 +258,121 @@ Observe how natural pathways branch without central coordination.
       </div>
     </section>
 
-    <!-- Interactive Terminal Demonstration (Useful Product Demonstration) -->
-    <section id="demo" class="section demo-section">
+    <!-- Section 2: Three Core Features (Matches Screenshot 2: 3-Column Grid) -->
+    <section class="cursor-features-section" id="features">
       <div class="container">
-        <div class="section-head-minimal">
-          <span class="section-tag-pill">Demonstration</span>
-          <h2 class="section-title-clean">Experience the rhythm in action.</h2>
-          <p class="section-subtitle-clean">Step through the complete developer journey from commit interception to verified physical outdoor release.</p>
+        <div class="cursor-three-grid">
+          <!-- Card 1: Project-aware outdoor challenges -->
+          <div class="cursor-grid-card">
+            <div class="cursor-card-header">
+              <h2 class="cursor-card-h2">Project-aware outdoor challenges</h2>
+              <p class="cursor-card-p">AST and diff analysis generates stack-relevant analogies across systems, web, graphics, audio, and ML.</p>
+            </div>
+            <div class="cursor-card-visual-frame">
+              <div class="cursor-model-selector-box">
+                <div class="model-terminal-head">
+                  <span class="model-head-label">git-grass / challenge</span>
+                  <span class="model-head-path">~/project/src</span>
+                </div>
+                <div class="model-menu-list">
+                  <div class="model-item active">
+                    <span class="model-pointer">&rarr;</span>
+                    <span class="model-name">/challenge Systems Flow Walk</span>
+                    <span class="model-badge">Active</span>
+                  </div>
+                  <div class="model-item">
+                    <span class="model-pointer">&nbsp;</span>
+                    <span class="model-name">/challenge Web Layout Botany</span>
+                  </div>
+                  <div class="model-item">
+                    <span class="model-pointer">&nbsp;</span>
+                    <span class="model-name">/challenge Gamedev Physics Trail</span>
+                  </div>
+                  <div class="model-item">
+                    <span class="model-pointer">&nbsp;</span>
+                    <span class="model-name">/challenge ML Stochastic Stroll</span>
+                  </div>
+                  <div class="model-item">
+                    <span class="model-pointer">&nbsp;</span>
+                    <span class="model-name">/challenge Audio Acoustic Echo Walk</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Use in your preferred workflow -->
+          <div class="cursor-grid-card">
+            <div class="cursor-card-header">
+              <h2 class="cursor-card-h2">Use in your preferred workflow</h2>
+              <p class="cursor-card-p">Wherever you code, Git-Grass hooks integrate seamlessly with terminal, Git hooks, VS Code, and Cursor.</p>
+            </div>
+            <div class="cursor-card-visual-frame">
+              <div class="cursor-workflow-box">
+                <div class="workflow-tree-header">
+                  <span class="workflow-dot-periwinkle"></span>
+                  <span class="workflow-title">Git Pre-Commit Gate Intercept</span>
+                </div>
+                <div class="workflow-steps">
+                  <div class="workflow-step-line">
+                    <span class="wf-cmd">$ git commit -m "refactor: api"</span>
+                  </div>
+                  <div class="workflow-step-line wf-highlight">
+                    <span class="wf-indicator">&bull;</span>
+                    <span>Hook pauses execution</span>
+                  </div>
+                  <div class="workflow-step-line wf-highlight">
+                    <span class="wf-indicator">&bull;</span>
+                    <span>Staged tree SHA-1 validated</span>
+                  </div>
+                  <div class="workflow-step-line wf-success">
+                    <span class="wf-indicator">&check;</span>
+                    <span>Commit unlocked after walk</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Write custom intervals and automations -->
+          <div class="cursor-grid-card">
+            <div class="cursor-card-header">
+              <h2 class="cursor-card-h2">Write custom intervals and rules</h2>
+              <p class="cursor-card-p">Configure focus intervals, minimum outdoor walk durations, and verification rules per repository.</p>
+            </div>
+            <div class="cursor-card-visual-frame">
+              <div class="cursor-config-box">
+                <div class="config-code-pre">
+                  <code><span class="syn-dim"># Set focus window to 90 minutes</span>
+<span class="syn-func">git grass config</span> <span class="syn-flag">--interval</span> <span class="syn-str">90m</span>
+
+<span class="syn-dim"># Set outdoor walk duration</span>
+<span class="syn-func">git grass config</span> <span class="syn-flag">--duration</span> <span class="syn-str">15m</span>
+
+<span class="syn-dim"># Verify local LAN environment</span>
+<span class="syn-func">git grass</span> <span class="syn-pkg">doctor</span></code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Interactive Terminal Demonstration -->
+    <section class="cursor-demo-section" id="terminal-demo">
+      <div class="container">
+        <div class="cursor-section-header">
+          <span class="cursor-eyebrow">TERMINAL DEMO</span>
+          <h2 class="cursor-section-title">See the CLI and hook in action.</h2>
+          <p class="cursor-section-desc">Interactive step-by-step console demonstration from hook intercept to confirmed outdoor completion.</p>
         </div>
 
         <div class="interactive-demo-card">
-          <!-- Step Selector Tabs -->
           <div class="demo-tabs-bar">
             <button class="demo-tab-btn active" data-step="0">
               <span class="demo-tab-index">01</span>
-              <span class="demo-tab-title">Commit Intercept</span>
+              <span class="demo-tab-title">Hook Intercept</span>
             </button>
             <button class="demo-tab-btn" data-step="1">
               <span class="demo-tab-index">02</span>
@@ -387,120 +388,192 @@ Observe how natural pathways branch without central coordination.
             </button>
           </div>
 
-          <!-- Interactive Console Window -->
           <div class="demo-console-window">
             <div class="demo-console-header">
-              <div class="terminal-dots">
-                <span class="terminal-dot"></span>
-                <span class="terminal-dot"></span>
-                <span class="terminal-dot"></span>
+              <div class="cursor-window-dots">
+                <span class="window-dot dot-red"></span>
+                <span class="window-dot dot-yellow"></span>
+                <span class="window-dot dot-green"></span>
               </div>
               <span id="demoStepTitle" class="demo-console-title">bash — git commit (hook intercept)</span>
               <span class="demo-step-badge" id="demoStepIndicator">Step 1 of 4</span>
             </div>
 
             <div class="demo-console-body">
-              <pre><code id="demoConsoleOutput"><!-- Dynamic JS Injection --></code></pre>
+              <pre><code id="demoConsoleOutput"><!-- Dynamic Injection --></code></pre>
             </div>
           </div>
 
-          <!-- Controls Bar -->
           <div class="demo-controls-bar">
             <div class="demo-controls-left">
-              <button id="demoBtnPrev" class="btn-demo-nav" aria-label="Previous step">
-                &larr; Previous
-              </button>
-              <button id="demoBtnNext" class="btn-demo-nav btn-demo-primary" aria-label="Next step">
-                Next Step &rarr;
-              </button>
+              <button id="demoBtnPrev" class="btn-demo-nav" aria-label="Previous step">&larr; Previous</button>
+              <button id="demoBtnNext" class="btn-demo-nav btn-demo-primary" aria-label="Next step">Next Step &rarr;</button>
             </div>
-            <button id="demoBtnReset" class="btn-demo-reset" aria-label="Reset demonstration">
-              Reset Demo
-            </button>
+            <button id="demoBtnReset" class="btn-demo-reset" aria-label="Reset demonstration">Reset</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Essential Setup / Installation Section -->
-    <section id="install" class="section install-section">
-      <div class="container container-narrow">
-        <div class="section-head-minimal">
-          <span class="section-tag-pill">Quickstart</span>
-          <h2 class="section-title-clean">Begin in 60 seconds.</h2>
-          <p class="section-subtitle-clean">Install globally via npm or initialize inside any existing Git repository.</p>
+    <!-- Section 4: Learn More 2x2 Grid (Matches Screenshot 2) -->
+    <section class="cursor-learn-section" id="resources">
+      <div class="container">
+        <div class="cursor-section-title-wrap">
+          <h2 class="cursor-section-h2">Learn more</h2>
         </div>
 
-        <div class="install-box">
-          <div class="install-box-header">
-            <div class="terminal-dots">
-              <span class="terminal-dot"></span>
-              <span class="terminal-dot"></span>
-              <span class="terminal-dot"></span>
+        <div class="cursor-learn-grid">
+          <!-- Card 1 -->
+          <div class="cursor-learn-card">
+            <div class="learn-card-content">
+              <h3 class="learn-card-title">Get started with Git-Grass CLI</h3>
+              <p class="learn-card-desc">Installation guides, Git hook setup, configuration options, and phone QR pairing.</p>
             </div>
-            <span class="install-box-label">Terminal — Global Install</span>
-            <button class="btn-copy" data-copy="npm install -g git-grass && git grass init" aria-label="Copy install command">
-              <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-              <span>Copy</span>
-            </button>
+            <div class="learn-card-footer">
+              <a href="docs/index.html" class="learn-card-link">Read documentation &rarr;</a>
+            </div>
           </div>
-          <div class="install-box-code">
-            <pre><code><span class="tc-dim"># Install CLI globally</span>
-npm install -g git-grass
 
-<span class="tc-dim"># Enable pre-commit outdoor gate in your repository</span>
-git grass init
+          <!-- Card 2 -->
+          <div class="cursor-learn-card">
+            <div class="learn-card-content">
+              <h3 class="learn-card-title">System Architecture &amp; Hook Gate</h3>
+              <p class="learn-card-desc">Local vs. cloud trust boundaries, atomic write-tree safety, and constant-time token verification.</p>
+            </div>
+            <div class="learn-card-footer">
+              <a href="architecture/index.html" class="learn-card-link">Read documentation &rarr;</a>
+            </div>
+          </div>
 
-<span class="tc-dim"># Verify local LAN environment</span>
-git grass doctor</code></pre>
+          <!-- Card 3 -->
+          <div class="cursor-learn-card">
+            <div class="learn-card-content">
+              <h3 class="learn-card-title">Outdoor Challenge Catalog</h3>
+              <p class="learn-card-desc">Curated physical analogies across systems, web, graphics, audio, and ML.</p>
+            </div>
+            <div class="learn-card-footer">
+              <a href="challenges/index.html" class="learn-card-link">Read documentation &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="cursor-learn-card">
+            <div class="learn-card-content">
+              <h3 class="learn-card-title">Privacy Policy &amp; Trust Commitments</h3>
+              <p class="learn-card-desc">Zero code telemetry, zero trackers, and local LAN execution guarantees.</p>
+            </div>
+            <div class="learn-card-footer">
+              <a href="privacy/index.html" class="learn-card-link">Read documentation &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Bottom CTA (Matches Screenshot 3) -->
+    <section class="cursor-cta-section" id="install">
+      <div class="container">
+        <div class="cursor-cta-box">
+          <!-- Geometric Wireframe Icon (Cursor Style) -->
+          <div class="cursor-cta-icon-wrap">
+            <svg viewBox="0 0 48 48" fill="none" class="cursor-cta-svg" aria-hidden="true">
+              <polygon points="24,6 40,15 40,33 24,42 8,33 8,15" stroke="#7B9EEA" stroke-width="1.5" fill="none"></polygon>
+              <polygon points="24,14 34,20 34,30 24,36 14,30 14,20" stroke="#EDEDEC" stroke-width="1.25" fill="none" opacity="0.6"></polygon>
+              <circle cx="24" cy="24" r="3" fill="#7B9EEA"></circle>
+            </svg>
+          </div>
+
+          <h2 class="cursor-cta-heading">Try Git-Grass CLI.</h2>
+
+          <div class="cursor-os-selector">
+            <span class="os-pill active">npm</span>
+            <span class="os-pill">npx</span>
+            <span class="os-pill">source</span>
+          </div>
+
+          <div class="cursor-cta-cmd-wrap">
+            <div class="cursor-cmd-box btn-copy" data-copy="npm install -g git-grass && git grass init" tabindex="0" role="button" aria-label="Copy install command">
+              <code class="cursor-cmd-code">
+                <span class="syn-func">npm</span>
+                <span class="syn-pkg">install</span>
+                <span class="syn-flag">-g</span>
+                <span class="syn-str">git-grass</span>
+              </code>
+              <div class="cursor-copy-icon">
+                <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Clean, Restrained Footer -->
-  <footer class="site-footer">
+  <!-- Clean Minimal Dark Footer (Matches Screenshot 3) -->
+  <footer class="cursor-site-footer" id="site-footer">
     <div class="container">
-      <div class="footer-simple-row">
-        <div class="footer-left">
-          <div class="brand-group">
-            <span class="brand-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="6" y1="3" x2="6" y2="15"></line>
-                <circle cx="18" cy="6" r="3"></circle>
-                <circle cx="6" cy="18" r="3"></circle>
-                <path d="M18 9a9 9 0 0 1-9 9"></path>
-              </svg>
-            </span>
-            <span class="brand-name">git-grass</span>
-          </div>
-          <p class="footer-tagline">
-            Your AI can write the code. It can't touch grass.
-          </p>
+      <div class="cursor-footer-columns">
+        <div class="footer-col">
+          <h3 class="footer-col-title">Product</h3>
+          <ul class="footer-col-list">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="challenges/index.html">Challenges</a></li>
+            <li><a href="#install">CLI Installation</a></li>
+          </ul>
         </div>
 
-        <div class="footer-links-clean">
-          <a href="docs/index.html">Documentation</a>
-          <a href="architecture/index.html">Architecture</a>
-          <a href="challenges/index.html">Challenges</a>
-          <a href="privacy/index.html">Privacy</a>
-          <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Resources</h3>
+          <ul class="footer-col-list">
+            <li><a href="docs/index.html">Documentation</a></li>
+            <li><a href="architecture/index.html">Architecture</a></li>
+            <li><a href="roadmap/index.html">Roadmap</a></li>
+            <li><a href="changelog/index.html">Changelog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Project</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="contributing/index.html">Contributing</a></li>
+            <li><a href="privacy/index.html">Privacy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Legal</h3>
+          <ul class="footer-col-list">
+            <li><a href="privacy/index.html">Privacy Policy</a></li>
+            <li><a href="https://github.com/sn3hhaa/git-grass/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Connect</h3>
+          <ul class="footer-col-list">
+            <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+            <li><a href="https://github.com/sn3hhaa/git-grass/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+          </ul>
         </div>
       </div>
 
-      <div class="footer-fine-print">
-        <span>MIT Open Source License</span>
-        <span>Zero cloud telemetry &bull; Offline first</span>
+      <div class="cursor-footer-bottom">
+        <div class="footer-bottom-left">
+          <span>&copy; 2026 git-grass. Open-source software.</span>
+          <span class="footer-shield-badge">Zero telemetry &bull; 100% Local LAN</span>
+        </div>
+        <div class="footer-bottom-right">
+          <span>Your AI can write the code. It can't touch grass.</span>
+        </div>
       </div>
     </div>
   </footer>
 
-  <!-- GSAP CDN for smooth, subtle animations -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
