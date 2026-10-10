@@ -128,6 +128,5 @@
   - `docs/TESTING.md`
   - `docs/CONTRIBUTING.md`
   - `docs/DECISIONS.md`
-  - `docs/ROADMAP.md`
   - `CHANGELOG.md`
 - [x] Verify full test suite (17/17 passing) and compilation build (`npm run build`).

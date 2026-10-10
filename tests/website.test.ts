@@ -16,7 +16,6 @@ describe('git-grass public website and mobile UX integrity', () => {
     path.join('architecture', 'index.html'),
     path.join('challenges', 'index.html'),
     path.join('privacy', 'index.html'),
-    path.join('roadmap', 'index.html'),
     path.join('changelog', 'index.html'),
     path.join('contributing', 'index.html'),
     path.join('license', 'index.html'),

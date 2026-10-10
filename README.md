@@ -413,7 +413,6 @@ git-grass never deletes existing pre-commit hooks. It prepends its wrapper block
 - [Testing & Quality Assurance Guide](./docs/TESTING.md)
 - [Contributing Guidelines](./docs/CONTRIBUTING.md)
 - [Architectural Decision Records (ADRs)](./docs/DECISIONS.md)
-- [Project Roadmap](./docs/ROADMAP.md)
 
 ---
 

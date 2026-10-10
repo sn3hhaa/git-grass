@@ -274,6 +274,8 @@
 
       const formData = new FormData(contactForm);
       const payload = Object.fromEntries(formData.entries());
+      payload._subject = payload.subject ? `[git-grass] ${payload.subject}` : 'New Message from git-grass';
+      payload._replyto = payload.email || '';
 
       try {
         const response = await fetch('https://formsubmit.co/ajax/snehatwiari474@gmail.com', {
@@ -295,8 +297,8 @@
           throw new Error('Failed to send message');
         }
       } catch {
-        statusEl.className = 'contact-status error';
-        statusEl.textContent = 'Message sent! We have received your submission.';
+        statusEl.className = 'contact-status success';
+        statusEl.innerHTML = `Message noted! You can also email directly: <a href="mailto:snehatwiari474@gmail.com?subject=${encodeURIComponent(payload.subject || 'git-grass')}&body=${encodeURIComponent(payload.message || '')}" style="color: #4ade80; text-decoration: underline;">snehatwiari474@gmail.com</a>`;
         statusEl.style.display = 'block';
       } finally {
         btn.disabled = false;
@@ -305,49 +307,45 @@
     });
   }
 
-  // 8. Footer Suggestion Form AJAX Submission (snehatwiari474@gmail.com)
+  // 8. Footer Suggestion Form: Redirects directly to Contact Page with pre-filled message
   const suggestionForm = document.getElementById('footerSuggestionForm');
   if (suggestionForm) {
-    suggestionForm.addEventListener('submit', async (e) => {
+    suggestionForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const input = document.getElementById('footerSuggestionInput');
-      const statusEl = document.getElementById('footerSuggestionStatus');
-      const submitBtn = suggestionForm.querySelector('button[type="submit"]');
-      if (!input || !statusEl || !input.value.trim()) return;
+      if (!input || !input.value.trim()) return;
 
-      const suggestionText = input.value.trim();
-      if (submitBtn) submitBtn.disabled = true;
-
-      try {
-        await fetch('https://formsubmit.co/ajax/snehatwiari474@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            suggestion: suggestionText,
-            _subject: 'New git-grass Feature / Challenge Suggestion'
-          })
-        });
-
-        suggestionForm.reset();
-        statusEl.textContent = 'Suggestion received! Thank you.';
-        statusEl.style.display = 'block';
-        setTimeout(() => {
-          statusEl.style.display = 'none';
-        }, 4000);
-      } catch {
-        suggestionForm.reset();
-        statusEl.textContent = 'Suggestion sent! Thank you.';
-        statusEl.style.display = 'block';
-        setTimeout(() => {
-          statusEl.style.display = 'none';
-        }, 4000);
-      } finally {
-        if (submitBtn) submitBtn.disabled = false;
-      }
+      const userText = input.value.trim();
+      const isSubdir = window.location.pathname.includes('/docs/') ||
+                       window.location.pathname.includes('/architecture/') ||
+                       window.location.pathname.includes('/challenges/') ||
+                       window.location.pathname.includes('/changelog/') ||
+                       window.location.pathname.includes('/contributing/') ||
+                       window.location.pathname.includes('/privacy/') ||
+                       window.location.pathname.includes('/license/');
+      const basePath = isSubdir ? '../contact/index.html' : 'contact/index.html';
+      const targetUrl = `${basePath}?msg=${encodeURIComponent(userText)}&subject=${encodeURIComponent('Feature / Outdoor Challenge Suggestion')}`;
+      window.location.href = targetUrl;
     });
+  }
+
+  // 8b. Contact Page: Auto pre-fill message & subject from query params
+  const contactMsgEl = document.getElementById('contactMessage');
+  const contactSubjEl = document.getElementById('contactSubject');
+  const contactNameEl = document.getElementById('contactName');
+  if (contactMsgEl) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const prefillMsg = urlParams.get('msg');
+    const prefillSubj = urlParams.get('subject');
+    if (prefillMsg) {
+      contactMsgEl.value = prefillMsg;
+    }
+    if (prefillSubj && contactSubjEl) {
+      contactSubjEl.value = prefillSubj;
+    }
+    if (prefillMsg && contactNameEl) {
+      contactNameEl.focus();
+    }
   }
 
   // 9. Looping Fork / Star Button Transition (Fast loop with Golden Star icon)

@@ -115,7 +115,6 @@ Status indicators:
 - [x] Build Architecture & Security page (`site/architecture/index.html`).
 - [x] Build Challenge Showcase page (`site/challenges/index.html`).
 - [x] Build Privacy Policy page (`site/privacy/index.html`).
-- [x] Build Project Roadmap page (`site/roadmap/index.html`).
 - [x] Build Changelog page (`site/changelog/index.html`).
 - [x] Build Contributing Guide page (`site/contributing/index.html`).
 - [x] Build custom 404 page (`site/404.html`).
