@@ -81,7 +81,7 @@
       copy: 'npx git-grass init'
     },
     source: {
-      html: '<span class="syn-func">git</span> <span class="syn-pkg">clone</span> <span class="syn-str">https://github.com/sn3hhaa/git-grass.git</span>',
+      html: '<span class="syn-func">git</span> <span class="syn-pkg">clone</span> <span class="syn-str">github.com/sn3hhaa/git-grass</span>',
       copy: 'git clone https://github.com/sn3hhaa/git-grass.git && cd git-grass && npm install && npm run build'
     }
   };
@@ -378,25 +378,46 @@
     });
   }
 
-  // 9. Looping Fork / Star Button Transition
+  // 9. Looping Fork / Star Button Transition (Fast loop with Golden Star icon)
+  const btnForkLoop = document.getElementById('btnForkLoop');
   const forkLoopText = document.getElementById('forkLoopText');
+  const forkLoopIcon = document.getElementById('forkLoopIcon');
+
   if (forkLoopText) {
-    const loopPhrases = [
-      'Fork repository',
-      'Star on GitHub',
-      'Get Started'
+    const loopStates = [
+      {
+        text: 'Fork repository',
+        href: 'https://github.com/sn3hhaa/git-grass/fork',
+        icon: '<svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path><path d="M12 12v3"></path></svg>'
+      },
+      {
+        text: 'Star on GitHub',
+        href: 'https://github.com/sn3hhaa/git-grass',
+        icon: '<svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="#EAB308" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>'
+      }
     ];
     let loopIdx = 0;
     setInterval(() => {
       forkLoopText.style.opacity = '0';
-      forkLoopText.style.transform = 'translateY(3px)';
+      forkLoopText.style.transform = 'translateY(2px)';
+      if (forkLoopIcon) {
+        forkLoopIcon.style.opacity = '0';
+        forkLoopIcon.style.transform = 'scale(0.85)';
+      }
       setTimeout(() => {
-        loopIdx = (loopIdx + 1) % loopPhrases.length;
-        forkLoopText.textContent = loopPhrases[loopIdx];
+        loopIdx = (loopIdx + 1) % loopStates.length;
+        const current = loopStates[loopIdx];
+        forkLoopText.textContent = current.text;
+        if (btnForkLoop) btnForkLoop.href = current.href;
+        if (forkLoopIcon) {
+          forkLoopIcon.innerHTML = current.icon;
+          forkLoopIcon.style.opacity = '1';
+          forkLoopIcon.style.transform = 'scale(1)';
+        }
         forkLoopText.style.opacity = '1';
         forkLoopText.style.transform = 'translateY(0)';
-      }, 250);
-    }, 2600);
+      }, 180);
+    }, 1600);
   }
 
   // 10. Contact / Suggestion / Report Issue Intent Switcher (Image 3)

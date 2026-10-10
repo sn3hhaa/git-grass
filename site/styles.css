@@ -365,10 +365,10 @@ body[data-theme="light"] .logo-dark-mode {
 
 .cursor-hero-title {
   font-family: var(--font-sans);
-  font-size: clamp(2.75rem, 5.5vw, 4.4rem);
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
   font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.035em;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   color: #FFFFFF;
   margin-bottom: 16px;
 }
@@ -376,8 +376,8 @@ body[data-theme="light"] .logo-dark-mode {
 .hero-green-line {
   color: #8E8D8A;
   display: inline-block;
-  border-bottom: 2px solid rgba(142, 141, 138, 0.4);
-  padding-bottom: 2px;
+  border-bottom: none;
+  text-decoration: none;
 }
 
 /* Tagline Two-Tone: White & Grey (Matches Screenshot 1) */
@@ -495,24 +495,30 @@ body[data-theme="light"] .logo-dark-mode {
   border-color: rgba(255, 255, 255, 0.18);
 }
 
-/* Command Box with Working Copy Button */
+/* Command Box with Working Copy Button (Overflow Protected) */
 .cursor-cmd-container {
   display: flex;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .cursor-cmd-box {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   background: var(--cursor-dark-cmd);
   border: 1px solid var(--cursor-border);
   border-radius: var(--radius-sm);
   padding: 10px 14px;
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .cursor-cmd-box:hover {
@@ -522,15 +528,21 @@ body[data-theme="light"] .logo-dark-mode {
 
 .cursor-cmd-code {
   font-family: var(--font-mono);
-  font-size: 0.825rem;
+  font-size: 0.8rem;
   color: #EDEDEC;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 }
 
-.syn-func { color: #EDEDEC; font-weight: 500; }
-.syn-pkg { color: var(--accent-periwinkle); font-weight: 500; }
-.syn-flag { color: var(--cursor-text-secondary); }
-.syn-str { color: #EDEDEC; }
+/* VS Code Inspired Syntax Highlighting */
+.syn-func { color: #4EC9B0; font-weight: 500; }
+.syn-pkg { color: #6A9955; font-weight: 500; }
+.syn-flag { color: #9CDCFE; }
+.syn-str { color: #CE9178; }
+.syn-dim { color: #6A9955; }
 
 .cursor-copy-icon {
   color: var(--cursor-text-secondary);
@@ -576,18 +588,18 @@ body[data-theme="light"] .logo-dark-mode {
   display: none;
 }
 
-/* Floating Window Component (terminal-compact) - Shortened so wallpaper is visible */
+/* Floating Window Component (terminal-compact) - Clean Minimal Rectangle */
 .terminal-compact {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 440px;
-  background: rgba(14, 14, 13, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: var(--radius-md);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.4);
+  max-width: 420px;
+  background: rgba(14, 14, 13, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75), 0 4px 16px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 
@@ -649,7 +661,7 @@ body[data-theme="light"] .logo-dark-mode {
 }
 
 .term-arrow { color: #706F6C; }
-.term-cmd { color: #FFFFFF; font-weight: 500; }
+.term-cmd { color: #6A9955; font-weight: 500; }
 
 .cursor-term-repo {
   font-family: var(--font-mono);
@@ -672,16 +684,16 @@ body[data-theme="light"] .logo-dark-mode {
   color: #EDEDEC;
 }
 
-.term-tag { color: var(--accent-periwinkle); font-weight: 500; }
+.term-tag { color: var(--accent-orange); font-weight: 500; }
 .term-text { color: #EDEDEC; }
 .term-dim { color: #706F6C; }
-.term-link { color: var(--accent-periwinkle); text-decoration: underline; text-underline-offset: 2px; }
+.term-link { color: var(--accent-orange); text-decoration: underline; text-underline-offset: 2px; }
 
 .cursor-term-callout {
-  background: var(--accent-periwinkle-subtle);
-  border-left: 2px solid var(--accent-periwinkle);
+  background: rgba(245, 78, 0, 0.08);
+  border-left: 2px solid var(--accent-orange);
   padding: 8px 10px;
-  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  border-radius: 0 4px 4px 0;
   margin: 2px 0;
 }
 
@@ -694,6 +706,13 @@ body[data-theme="light"] .logo-dark-mode {
 .callout-sub {
   color: var(--cursor-text-secondary);
   font-size: 0.7rem;
+}
+
+.fork-loop-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 .cursor-term-input-box {

@@ -13,4 +13,6 @@ coverage/
 scratch/
 tmp/
 *.local
+.env
+.env.*
 
