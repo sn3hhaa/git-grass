@@ -13,8 +13,14 @@
   <div class="app-container">
     <header class="app-header">
       <div class="brand">
-        <span class="sprout-ic
-        on">🌱</span>
+        <span class="sprout-icon" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#171717;border-radius:4px;color:#fff;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="6" y1="3" x2="6" y2="15"></line>
+            <circle cx="18" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <path d="M18 9a9 9 0 0 1-9 9"></path>
+          </svg>
+        </span>
         <h1 class="brand-title">git-grass</h1>
       </div>
       <span id="headerStatusBadge" class="status-badge">Break Gateway</span>
@@ -30,9 +36,23 @@
 
       <!-- State: Error / Disconnected -->
       <section id="stateError" class="state-view">
-        <div class="alert-icon">⚠️</div>
+        <div class="alert-icon" style="font-size: 1.5rem; color: #171717;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
         <h2 id="errorMessageTitle">Connection Issue</h2>
         <p id="errorMessageBody" class="subtext">Could not communicate with the local workstation.</p>
+        <div style="text-align: left; background: #fafaf9; border: 1px solid #e5e5e5; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 0.85rem; color: #525252; line-height: 1.5;">
+          <p style="font-weight: 600; color: #171717; margin-bottom: 6px;">Troubleshooting steps:</p>
+          <ol style="padding-left: 18px; margin: 0;">
+            <li>Ensure your phone and workstation are on the same Wi-Fi network.</li>
+            <li>If on an enterprise or guest network with client isolation, connect via your phone's personal hotspot.</li>
+            <li>Ensure the workstation CLI session is active and port 4242 is open.</li>
+          </ol>
+        </div>
         <button id="btnRetryConnection" class="btn btn-secondary">Retry Connection</button>
       </section>
 
@@ -62,7 +82,7 @@
           </div>
         </div>
 
-        <button id="btnViewChallenge" class="btn btn-primary">Receive Outdoor Challenge →</button>
+        <button id="btnViewChallenge" class="btn btn-primary">Receive Outdoor Challenge &rarr;</button>
       </section>
 
       <!-- State 4 & 5: Challenge Instructions & Start -->
@@ -82,25 +102,24 @@
         </div>
 
         <div class="safety-box" id="safetyBox">
-          <h4>Safety & Awareness</h4>
+          <h4>Safety &amp; Awareness</h4>
           <ul id="safetyList">
             <!-- Populated via JavaScript -->
           </ul>
         </div>
 
         <div class="phone-advisory">
-          <span class="advisory-icon">📵</span>
           <p><strong>Phone-Free Break:</strong> Once started, lock your phone and put it away in your pocket.</p>
         </div>
 
         <div class="action-row">
-          <button id="btnStartBreak" class="btn btn-primary btn-large">Start Break & Step Outside 🌲</button>
+          <button id="btnStartBreak" class="btn btn-primary btn-large">Start Break &amp; Step Outside</button>
         </div>
       </section>
 
       <!-- State 6: Break in Progress -->
       <section id="stateInProgress" class="state-view">
-        <div class="in-progress-badge">🌿 Break in Progress</div>
+        <div class="in-progress-badge">Break in Progress</div>
 
         <div class="timer-display">
           <div class="timer-time" id="timerValue">15:00</div>
@@ -112,7 +131,12 @@
         </div>
 
         <div class="lock-card">
-          <div class="lock-icon">🔒</div>
+          <div class="lock-icon" style="font-size:1.5rem;color:#171717;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
           <h3>Put your phone away</h3>
           <p>
             Lock your screen and look at the sky, trees, and horizon.
@@ -133,7 +157,7 @@
       <!-- State 7 & 8: Completion Check-in & Commit Message -->
       <section id="stateCompletion" class="state-view">
         <div class="tag-row">
-          <span class="success-pill">✓ Minimum Duration Satisfied</span>
+          <span class="success-pill">Minimum Duration Satisfied</span>
         </div>
 
         <h2 class="section-title">Welcome Back Indoors</h2>
@@ -163,7 +187,7 @@
           </div>
 
           <button type="submit" id="btnSubmitCommit" class="btn btn-primary btn-large">
-            Commit & Release Workstation 🚀
+            Commit &amp; Release Workstation
           </button>
         </form>
       </section>
@@ -177,8 +201,12 @@
 
       <!-- State 10: Final Success -->
       <section id="stateSuccess" class="state-view">
-        <div class="success-circle">✓</div>
-        <h2>Commit Completed!</h2>
+        <div class="success-circle" style="display:inline-flex;align-items:center;justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2>Commit Completed</h2>
         <p class="subtext">Your Git gate has been released. You may return to your workstation.</p>
 
         <div class="commit-receipt">
@@ -207,19 +235,19 @@
 
         <div class="share-box">
           <button id="btnShareProduct" class="btn btn-secondary btn-full">
-            <span>Share git-grass 🌿</span>
+            <span>Share git-grass</span>
           </button>
           <span id="shareFeedback" class="share-feedback" style="display: none;">Link copied to clipboard!</span>
         </div>
 
         <div class="well-done-banner">
-          <span>🌿 You took your break and touched grass. Great job!</span>
+          <span>You took your break and touched grass. Great job!</span>
         </div>
       </section>
     </main>
 
     <footer class="app-footer">
-      <span>git-grass • Open Source Developer Wellness</span>
+      <span>git-grass &middot; Open Source Developer Wellness</span>
     </footer>
   </div>
 

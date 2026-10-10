@@ -259,9 +259,13 @@ button {
   padding: 6px;
   color: var(--text-primary);
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
-.mobile-menu {
+/* Mobile Drawer & Menu (Strictly hidden on desktop) */
+.mobile-menu,
+.mobile-drawer {
   display: none;
   position: fixed;
   top: 64px;
@@ -270,21 +274,32 @@ button {
   bottom: 0;
   background: var(--bg-page);
   border-top: 1px solid var(--border-subtle);
-  z-index: 49;
+  z-index: 99;
   padding: 24px;
   flex-direction: column;
   gap: 16px;
+  overflow-y: auto;
 }
 
-.mobile-menu.open {
+.mobile-menu.open,
+.mobile-drawer.open {
   display: flex;
 }
 
-.mobile-menu a {
-  font-size: 1.1rem;
+.mobile-menu a,
+.mobile-drawer a {
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--text-primary);
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-muted);
+}
+
+@media (min-width: 681px) {
+  .mobile-drawer,
+  .mobile-menu {
+    display: none !important;
+  }
 }
 
 /* ==========================================================================

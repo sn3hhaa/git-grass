@@ -245,5 +245,34 @@ To github.com:user/distributed-cache.git
       btn.setAttribute('aria-expanded', String(isOpen));
     });
   });
+
+  // 6. Restrained, Accessible GSAP Animations
+  if (typeof window.gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const gsap = window.gsap;
+
+    // Subtle hero entrance
+    gsap.from('.eyebrow', { opacity: 0, y: 10, duration: 0.6, ease: 'power2.out', delay: 0.05 });
+    gsap.from('.headline', { opacity: 0, y: 14, duration: 0.7, ease: 'power2.out', delay: 0.15 });
+    gsap.from('.hero-desc', { opacity: 0, y: 12, duration: 0.65, ease: 'power2.out', delay: 0.25 });
+    gsap.from('.hero-cta', { opacity: 0, y: 10, duration: 0.55, ease: 'power2.out', delay: 0.35 });
+    gsap.from('.terminal-compact', { opacity: 0, y: 16, duration: 0.75, ease: 'power2.out', delay: 0.3 });
+
+    // Subtle scroll reveals
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.from(entry.target, { opacity: 0, y: 16, duration: 0.6, ease: 'power2.out' });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.section-head, .step-item, .feature-block, .install-panel, .roadmap-row').forEach((el) => {
+        observer.observe(el);
+      });
+    }
+  }
 })();
+
 

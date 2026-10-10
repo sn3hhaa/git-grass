@@ -248,8 +248,8 @@
       if (currentSession.pushResult?.attempted) {
         pushReceiptRow.style.display = 'flex';
         receiptPushStatus.textContent = currentSession.pushResult.success
-          ? `✓ Pushed to ${currentSession.pushResult.remote}/${currentSession.pushResult.branch}`
-          : `⚠️ Push failed: ${currentSession.pushResult.error || 'Check network'}`;
+          ? `Pushed to ${currentSession.pushResult.remote}/${currentSession.pushResult.branch}`
+          : `Push failed: ${currentSession.pushResult.error || 'Check network'}`;
       } else {
         pushReceiptRow.style.display = 'none';
       }
@@ -310,7 +310,7 @@
       } catch (err) {
         alert(err.message || 'Failed to start break');
         btnStartBreak.disabled = false;
-        btnStartBreak.textContent = 'Start Break & Step Outside 🌲';
+        btnStartBreak.textContent = 'Start Break & Step Outside';
       }
     });
   }
@@ -380,7 +380,7 @@
     btnShareProduct.addEventListener('click', async () => {
       const shareData = {
         title: 'git-grass — Open-Source Developer Wellness',
-        text: 'Your AI can write the code. It can\'t touch grass. Just completed an outdoor break with git-grass! 🌿',
+        text: 'Your AI can write the code. It cannot touch grass. Just completed an outdoor break with git-grass.',
         url: 'https://github.com/sn3hhaa/git-grass'
       };
 
