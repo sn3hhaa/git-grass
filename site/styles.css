@@ -1745,45 +1745,35 @@ body[data-theme="light"] .logo-dark-mode {
 }
 
 /* ==========================================================================
-   Footer Controls: Light/Dark/System Switcher & Language Pill (Image 1)
+   Footer Controls: Protocol Status Badge (Developer Tool Aesthetic)
    ========================================================================== */
 
-.footer-theme-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.theme-switch-pill {
+.footer-status-badge {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
   background: var(--cursor-dark-cmd);
   border: 1px solid var(--cursor-border);
   border-radius: var(--radius-pill);
-  padding: 3px;
-  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  color: #A3A29E;
+  letter-spacing: 0.02em;
 }
 
-.theme-btn {
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-pill);
-  color: var(--cursor-text-muted);
-  padding: 4px 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.15s ease;
+.status-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3DA768;
+  box-shadow: 0 0 8px #3DA768;
+  animation: statusPulse 2s ease-in-out infinite;
 }
 
-.theme-btn:hover {
-  color: var(--cursor-text-white);
-}
-
-.theme-btn.active {
-  background: rgba(255, 255, 255, 0.14);
-  color: #FFFFFF;
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
 }
 
 .lang-selector-pill {
@@ -2175,140 +2165,36 @@ body[data-theme="light"] .footer-col-list a:hover {
   border-radius: var(--radius-sm);
 }
 
-/* Animated Rotating Brand Logo in CTA Section (Dot Formation & Spin Loop) */
+/* Animated 3D Revolving Brand Logo in CTA Section (Upright 3D Spin, No Circles) */
 .cursor-cta-logo-stage {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   margin: 0 auto 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.dotted-halo-ring {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px dotted rgba(61, 167, 104, 0.55);
-  animation: dottedFormAndSpin 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.dotted-orbit-dot {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #3DA768;
-  box-shadow: 0 0 10px #3DA768;
-  pointer-events: none;
-}
-
-.dotted-orbit-dot.dot-1 {
-  animation: orbitDotLead 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.dotted-orbit-dot.dot-2 {
-  animation: orbitDotFollow 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  perspective: 800px;
 }
 
 .cta-rotating-logo {
-  width: 68px;
-  height: 68px;
+  width: 76px;
+  height: 76px;
   object-fit: contain;
-  animation: logoFormAndSpin 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: revolveLogo3D 5s linear infinite;
   filter: drop-shadow(0 0 16px rgba(61, 167, 104, 0.45));
+  transform-style: preserve-3d;
 }
 
-body[data-theme="light"] .cta-rotating-logo {
-  content: url('logo-light-theme.png');
-  filter: drop-shadow(0 0 14px rgba(24, 24, 27, 0.18));
-}
-
-body[data-theme="light"] .dotted-halo-ring {
-  border-color: rgba(21, 128, 61, 0.45);
-}
-
-body[data-theme="light"] .dotted-orbit-dot {
-  background: #16A34A;
-  box-shadow: 0 0 8px #16A34A;
-}
-
-@keyframes dottedFormAndSpin {
+@keyframes revolveLogo3D {
   0% {
-    transform: scale(0.2) rotate(0deg);
-    opacity: 0;
+    transform: rotateY(0deg);
   }
-  24% {
-    transform: scale(1.05) rotate(90deg);
-    opacity: 0.9;
-  }
-  30% {
-    transform: scale(1) rotate(110deg);
-    opacity: 0.85;
+  50% {
+    transform: rotateY(180deg);
   }
   100% {
-    transform: scale(1) rotate(470deg);
-    opacity: 0.85;
-  }
-}
-
-@keyframes logoFormAndSpin {
-  0% {
-    transform: scale(0.3) rotate(0deg);
-    opacity: 0;
-    filter: blur(4px) drop-shadow(0 0 24px rgba(61, 167, 104, 0.8));
-  }
-  24% {
-    transform: scale(1.06) rotate(20deg);
-    opacity: 1;
-    filter: blur(0px) drop-shadow(0 0 20px rgba(61, 167, 104, 0.5));
-  }
-  32% {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1) rotate(360deg);
-    opacity: 1;
-  }
-}
-
-@keyframes orbitDotLead {
-  0% {
-    transform: rotate(0deg) translateX(0) scale(1.6);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-    transform: rotate(90deg) translateX(56px) scale(1.2);
-  }
-  28% {
-    opacity: 0.6;
-    transform: rotate(180deg) translateX(56px) scale(0.8);
-  }
-  100% {
-    opacity: 0.4;
-    transform: rotate(540deg) translateX(56px) scale(0.8);
-  }
-}
-
-@keyframes orbitDotFollow {
-  0% {
-    transform: rotate(180deg) translateX(0) scale(1.6);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-    transform: rotate(270deg) translateX(56px) scale(1.2);
-  }
-  28% {
-    opacity: 0.6;
-    transform: rotate(360deg) translateX(56px) scale(0.8);
-  }
-  100% {
-    opacity: 0.4;
-    transform: rotate(720deg) translateX(56px) scale(0.8);
+    transform: rotateY(360deg);
   }
 }
 

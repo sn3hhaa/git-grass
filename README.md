@@ -427,4 +427,4 @@ git-grass never deletes existing pre-commit hooks. It prepends its wrapper block
 
 ## 📄 License
 
-MIT © [Sneha Tiwari](https://github.com/sn3hhaa) and git-grass contributors.
+MIT © [Sneha Tiwari](https://github.com/sn3hhaa).

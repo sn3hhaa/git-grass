@@ -15,4 +15,5 @@ tmp/
 *.local
 .env
 .env.*
+!.env.example
 

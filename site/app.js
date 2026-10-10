@@ -255,36 +255,8 @@
     });
   });
 
-  // 6. Interactive Theme Switcher (System / Light / Dark - Matching Image 1)
-  function applyTheme(theme) {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const effectiveTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
-
-    document.body.setAttribute('data-theme', effectiveTheme);
-    localStorage.setItem('git-grass-theme', theme);
-
-    document.querySelectorAll('.theme-btn').forEach((btn) => {
-      const btnTheme = btn.getAttribute('data-theme-set');
-      btn.classList.toggle('active', btnTheme === theme);
-    });
-  }
-
-  const savedTheme = localStorage.getItem('git-grass-theme') || 'dark';
-  applyTheme(savedTheme);
-
-  document.querySelectorAll('.theme-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetTheme = btn.getAttribute('data-theme-set');
-      if (targetTheme) applyTheme(targetTheme);
-    });
-  });
-
-  // Listen for OS scheme change if in system mode
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (localStorage.getItem('git-grass-theme') === 'system') {
-      applyTheme('system');
-    }
-  });
+  // 6. Theme: Pure Dark Developer Tool Mode (Locked to Pitch Dark)
+  document.body.setAttribute('data-theme', 'dark');
 
   // 7. Contact Form AJAX Submission (snehatwiari474@gmail.com)
   const contactForm = document.getElementById('contactForm');
