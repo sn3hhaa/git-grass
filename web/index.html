@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>git-grass | Outdoor Break Gateway</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="brand">
+        <span class="sprout-icon">🌱</span>
+        <h1 class="brand-title">git-grass</h1>
+      </div>
+      <span id="headerStatusBadge" class="status-badge">Break Gateway</span>
+    </header>
+
+    <main class="content-card" id="mainCard">
+      <!-- State 1: Loading -->
+      <section id="stateLoading" class="state-view active">
+        <div class="spinner"></div>
+        <h2>Connecting to workstation...</h2>
+        <p class="subtext">Validating secure session token</p>
+      </section>
+
+      <!-- State: Error / Disconnected -->
+      <section id="stateError" class="state-view">
+        <div class="alert-icon">⚠️</div>
+        <h2 id="errorMessageTitle">Connection Issue</h2>
+        <p id="errorMessageBody" class="subtext">Could not communicate with the local workstation.</p>
+        <button id="btnRetryConnection" class="btn btn-secondary">Retry Connection</button>
+      </section>
+
+      <!-- State 2 & 3: Project Info & Duration Selection -->
+      <section id="stateSetup" class="state-view">
+        <div class="tag-row">
+          <span class="project-tag" id="repoNameTag">Repository</span>
+          <span class="category-tag" id="categoryTag">General</span>
+        </div>
+        <h2 class="section-title">Outdoor Break Required</h2>
+        <p class="tagline">"Your AI can write the code. It can't touch grass."</p>
+
+        <div class="info-box">
+          <p class="info-text">
+            Your Git commit is paused at your workstation. Staged files are safely preserved.
+            Select your break duration and take your outdoor break.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Break Duration (Minimum 10 min):</label>
+          <div class="duration-selector" id="durationSelector">
+            <button class="duration-chip" data-mins="10">10 min</button>
+            <button class="duration-chip selected" data-mins="15">15 min</button>
+            <button class="duration-chip" data-mins="20">20 min</button>
+            <button class="duration-chip" data-mins="30">30 min</button>
+          </div>
+        </div>
+
+        <button id="btnViewChallenge" class="btn btn-primary">Receive Outdoor Challenge →</button>
+      </section>
+
+      <!-- State 4 & 5: Challenge Instructions & Start -->
+      <section id="stateChallenge" class="state-view">
+        <div class="challenge-header">
+          <span class="challenge-category" id="challengeCategoryLabel">Observational Walk</span>
+          <span class="challenge-duration" id="challengeDurationLabel">15 min</span>
+        </div>
+
+        <h2 class="challenge-title" id="challengeTitle">Curiosity Walk</h2>
+
+        <div class="instructions-card">
+          <h3>Activity Instructions</h3>
+          <ol id="instructionsList" class="instructions-list">
+            <!-- Populated via JavaScript -->
+          </ol>
+        </div>
+
+        <div class="safety-box" id="safetyBox">
+          <h4>Safety & Awareness</h4>
+          <ul id="safetyList">
+            <!-- Populated via JavaScript -->
+          </ul>
+        </div>
+
+        <div class="phone-advisory">
+          <span class="advisory-icon">📵</span>
+          <p><strong>Phone-Free Break:</strong> Once started, lock your phone and put it away in your pocket.</p>
+        </div>
+
+        <div class="action-row">
+          <button id="btnStartBreak" class="btn btn-primary btn-large">Start Break & Step Outside 🌲</button>
+        </div>
+      </section>
+
+      <!-- State 6: Break in Progress -->
+      <section id="stateInProgress" class="state-view">
+        <div class="in-progress-badge">🌿 Break in Progress</div>
+
+        <div class="timer-display">
+          <div class="timer-time" id="timerValue">15:00</div>
+          <div class="timer-label" id="timerSubLabel">Remaining of 15 min outdoor walk</div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="timerProgressBar"></div>
+        </div>
+
+        <div class="lock-card">
+          <div class="lock-icon">🔒</div>
+          <h3>Put your phone away</h3>
+          <p>
+            Lock your screen and look at the sky, trees, and horizon.
+            Timing is synchronized with your workstation.
+          </p>
+        </div>
+
+        <div class="reflection-preview">
+          <span class="preview-heading">Upcoming Reflection:</span>
+          <p id="reflectionPromptPreview" class="preview-prompt">What did you notice outdoors?</p>
+        </div>
+
+        <div class="secondary-actions">
+          <button id="btnCheckTimer" class="btn btn-outline">Check Status</button>
+        </div>
+      </section>
+
+      <!-- State 7 & 8: Completion Check-in & Commit Message -->
+      <section id="stateCompletion" class="state-view">
+        <div class="tag-row">
+          <span class="success-pill">✓ Minimum Duration Satisfied</span>
+        </div>
+
+        <h2 class="section-title">Welcome Back Indoors</h2>
+        <p class="subtext">Answer the prompt and write your commit message to release the Git gate.</p>
+
+        <form id="completionForm" class="completion-form">
+          <div class="form-group">
+            <label class="form-label" id="reflectionLabel">Your Reflection:</label>
+            <textarea
+              id="reflectionInput"
+              class="form-textarea"
+              rows="3"
+              placeholder="Describe what you observed outdoors..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Git Commit Message:</label>
+            <input
+              type="text"
+              id="commitMessageInput"
+              class="form-input"
+              placeholder="feat: implemented feature or description"
+              required
+            />
+          </div>
+
+          <button type="submit" id="btnSubmitCommit" class="btn btn-primary btn-large">
+            Commit & Release Workstation 🚀
+          </button>
+        </form>
+      </section>
+
+      <!-- State 9: Committing in progress -->
+      <section id="stateCommitting" class="state-view">
+        <div class="spinner"></div>
+        <h2>Executing Git Commit...</h2>
+        <p class="subtext">Validating staged changes fingerprint and triggering workstation Git execution</p>
+      </section>
+
+      <!-- State 10: Final Success -->
+      <section id="stateSuccess" class="state-view">
+        <div class="success-circle">✓</div>
+        <h2>Commit Completed!</h2>
+        <p class="subtext">Your Git gate has been released. You may return to your workstation.</p>
+
+        <div class="commit-receipt">
+          <div class="receipt-row">
+            <span class="receipt-label">Commit Hash:</span>
+            <span class="receipt-val mono" id="receiptCommitHash">abc1234</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Message:</span>
+            <span class="receipt-val" id="receiptCommitMsg">Initial feature</span>
+          </div>
+          <div class="receipt-row" id="pushReceiptRow">
+            <span class="receipt-label">Git Push:</span>
+            <span class="receipt-val" id="receiptPushStatus">Pushed to remote</span>
+          </div>
+        </div>
+
+        <div class="well-done-banner">
+          <span>🌿 You took your break and touched grass. Great job!</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>git-grass • Open Source Developer Wellness</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
