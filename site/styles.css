@@ -1745,35 +1745,19 @@ body[data-theme="light"] .logo-dark-mode {
 }
 
 /* ==========================================================================
-   Footer Controls: Protocol Status Badge (Developer Tool Aesthetic)
+   Footer Controls: Professional Minimal Legal Tag
    ========================================================================== */
 
-.footer-status-badge {
-  display: inline-flex;
+.footer-bottom-right {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background: var(--cursor-dark-cmd);
-  border: 1px solid var(--cursor-border);
-  border-radius: var(--radius-pill);
+}
+
+.footer-legal-note {
   font-family: var(--font-mono);
   font-size: 0.725rem;
-  color: #A3A29E;
+  color: var(--cursor-text-muted);
   letter-spacing: 0.02em;
-}
-
-.status-pulse-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #3DA768;
-  box-shadow: 0 0 8px #3DA768;
-  animation: statusPulse 2s ease-in-out infinite;
-}
-
-@keyframes statusPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(0.85); }
 }
 
 .lang-selector-pill {
@@ -2086,6 +2070,15 @@ body.contact-body-unscrollable {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body.contact-body-unscrollable::-webkit-scrollbar,
+body.contact-body-unscrollable *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 body.contact-body-unscrollable main {
@@ -2105,7 +2098,7 @@ body.contact-body-unscrollable main {
 }
 
 .contact-left-col {
-  padding: 20px 40px;
+  padding: 24px 44px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2113,7 +2106,9 @@ body.contact-body-unscrollable main {
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
-  overflow-y: auto;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .contact-right-visual {
