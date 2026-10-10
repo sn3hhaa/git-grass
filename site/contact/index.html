@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — git-grass</title>
   <meta name="description" content="Contact the git-grass maintainers. Submit feedback, report bugs, or inquire about open source collaboration.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23EDEDEC%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
+  <link rel="icon" type="image/png" href="../logo-dark-theme.png">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="cursor-dark">
@@ -15,12 +15,8 @@
       <div class="header-left">
         <a href="../index.html" class="brand-group" aria-label="git-grass homepage">
           <span class="brand-mark">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="6" y1="3" x2="6" y2="15"></line>
-              <circle cx="18" cy="6" r="3"></circle>
-              <circle cx="6" cy="18" r="3"></circle>
-              <path d="M18 9a9 9 0 0 1-9 9"></path>
-            </svg>
+            <img src="../logo-dark-theme.png" alt="git-grass" class="logo-dark-mode">
+            <img src="../logo-light-theme.png" alt="git-grass" class="logo-light-mode">
           </span>
           <span class="brand-name">git-grass</span>
         </a>
@@ -61,53 +57,58 @@
     </div>
   </header>
 
-  <main class="doc-page">
-    <div class="container">
-      <div class="doc-breadcrumb">Connect &bull; Direct Message &amp; Suggestions</div>
-      
-      <div class="contact-split-stage">
-        <!-- Left Side: Atmospheric Green Tree Visual (Uploaded by User) -->
-        <div class="contact-tree-visual">
-          <img src="../contact-tree.jpg" alt="Observational outdoor pathway" class="contact-tree-img">
-          <div class="contact-tree-overlay">
-            &ldquo;The compiler cannot feel the wind. Step outside, touch grass, and return refreshed.&rdquo;
-          </div>
+  <main>
+    <div class="contact-fullscreen-stage">
+      <!-- Left Side: Clean Form with 3 Intent Pills (Image 3 Style) -->
+      <div class="contact-left-col">
+        <div class="contact-intent-pills" role="tablist" aria-label="Contact options">
+          <button type="button" class="intent-pill active" data-intent="contact">Contact</button>
+          <button type="button" class="intent-pill" data-intent="suggest">Suggest Idea</button>
+          <button type="button" class="intent-pill" data-intent="report">Report Issue</button>
         </div>
 
-        <!-- Right Side: Clean Seamless Form (No clunky box container) -->
-        <div class="contact-form-col">
-          <h1 class="headline" style="color: #FFFFFF; font-size: 2.25rem; margin-bottom: 8px;">Contact &amp; Suggestions</h1>
-          <p class="doc-lead" style="font-size: 0.95rem; margin-bottom: 24px; color: var(--cursor-text-secondary);">
-            Suggest an outdoor challenge, share feedback on the Git hook, or ask a question. Messages dispatch straight to maintainer email.
-          </p>
+        <h1 class="headline" id="contactHeading" style="color: #FFFFFF; font-size: 2.4rem; margin-bottom: 8px;">Let's connect.</h1>
+        <p class="doc-lead" id="contactSubtitle" style="font-size: 0.95rem; margin-bottom: 24px; color: var(--cursor-text-secondary);">
+          Have a question about git-grass, architecture, or open-source collaboration? Reach out directly.
+        </p>
 
-          <form class="contact-seamless-form" id="contactForm" novalidate>
-            <div class="form-group">
-              <label class="form-label" for="contactName">Name</label>
-              <input type="text" id="contactName" name="name" class="form-input" placeholder="Your name or handle" required>
-            </div>
+        <form class="contact-seamless-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="contactName">Name</label>
+            <input type="text" id="contactName" name="name" class="form-input" placeholder="Your name or handle" required>
+          </div>
 
-            <div class="form-group">
-              <label class="form-label" for="contactEmail">Email</label>
-              <input type="email" id="contactEmail" name="email" class="form-input" placeholder="developer@example.com" required>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">Email</label>
+            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="developer@example.com" required>
+          </div>
 
-            <div class="form-group">
-              <label class="form-label" for="contactSubject">Topic</label>
-              <input type="text" id="contactSubject" name="subject" class="form-input" placeholder="Challenge suggestion, feature idea, or question" required>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="contactSubject">Topic</label>
+            <input type="text" id="contactSubject" name="subject" class="form-input" value="Question or collaboration inquiry" required>
+          </div>
 
-            <div class="form-group">
-              <label class="form-label" for="contactMessage">Message</label>
-              <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Write your suggestion or message here..." required></textarea>
-            </div>
+          <div class="form-group">
+            <label class="form-label" for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Write your message or idea here..." required style="min-height: 90px;"></textarea>
+          </div>
 
-            <div id="contactStatus" class="contact-status" role="alert"></div>
+          <div id="contactStatus" class="contact-status" role="alert"></div>
 
-            <button type="submit" id="btnSubmitContact" class="btn-primary btn-hero-cta" style="width: 100%; justify-content: center;">
-              <span>Send Message</span>
-            </button>
-          </form>
+          <button type="submit" id="btnSubmitContact" class="btn-primary btn-hero-cta" style="width: 100%; justify-content: center; padding: 10px;">
+            <span>Send Message</span>
+          </button>
+        </form>
+
+        <div style="margin-top: 24px; font-size: 0.75rem; color: var(--cursor-text-muted); display: flex; align-items: center; gap: 8px;">
+          <span>Zero telemetry &bull; 100% Local LAN execution &bull; Staged tree SHA-1 verified</span>
+        </div>
+      </div>
+
+      <!-- Right Side: Full Container Surreal Green Tree Visual (Uploaded by User, No Dead Space) -->
+      <div class="contact-right-visual">
+        <div class="contact-right-quote">
+          &ldquo;The compiler cannot feel the wind. Step outside, touch grass, and return refreshed.&rdquo;
         </div>
       </div>
     </div>

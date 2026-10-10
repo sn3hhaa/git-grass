@@ -12,7 +12,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="git-grass — Git-Native Outdoor Break Enforcement">
   <meta name="twitter:description" content="An outdoor break built into your Git workflow. Take a challenge, get some fresh air, and return when your next commit is ready.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23EDEDEC%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
+  <link rel="icon" type="image/png" href="logo-dark-theme.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="cursor-dark">
@@ -22,12 +22,8 @@
       <div class="header-left">
         <a href="index.html" class="brand-group" aria-label="git-grass homepage">
           <span class="brand-mark">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="6" y1="3" x2="6" y2="15"></line>
-              <circle cx="18" cy="6" r="3"></circle>
-              <circle cx="6" cy="18" r="3"></circle>
-              <path d="M18 9a9 9 0 0 1-9 9"></path>
-            </svg>
+            <img src="logo-dark-theme.png" alt="git-grass" class="logo-dark-mode">
+            <img src="logo-light-theme.png" alt="git-grass" class="logo-light-mode">
           </span>
           <span class="brand-name">git-grass</span>
         </a>
@@ -90,7 +86,7 @@
               </svg>
               <span>GitHub</span>
             </a>
-            <a href="https://github.com/sn3hhaa/git-grass/fork" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-hero-cta" title="Fork repository">
+            <a href="https://github.com/sn3hhaa/git-grass/fork" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-hero-cta btn-fork-loop" id="btnForkLoop" title="Fork or Star on GitHub">
               <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="18" r="3"></circle>
                 <circle cx="6" cy="6" r="3"></circle>
@@ -98,7 +94,7 @@
                 <path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"></path>
                 <path d="M12 12v3"></path>
               </svg>
-              <span>Fork</span>
+              <span class="fork-loop-text" id="forkLoopText">Fork repository</span>
             </a>
           </div>
         </div>
@@ -144,10 +140,7 @@
           <!-- Right Column: Wallpaper Backdrop & Floating Window -->
           <div class="cursor-stage-right">
             <div class="cursor-wallpaper-frame">
-              <!-- Natural Dunes Backdrop Gradient -->
-              <div class="cursor-wallpaper-bg"></div>
-
-              <!-- Floating Dark Terminal Window -->
+              <!-- Floating Dark Terminal Window (Shortened for Background Visibility) -->
               <div class="terminal-compact" id="interactiveTerminal">
                 <div class="cursor-window-bar">
                   <div class="cursor-window-dots">
@@ -175,9 +168,6 @@
                       <span class="term-tag">[gate]</span>
                       <span class="term-text">Focus interval reached (last break: 74m ago).</span>
                     </div>
-                    <div class="cursor-term-row term-dim">
-                      Staged tree SHA-1: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
-                    </div>
                     <div class="cursor-term-callout">
                       <div class="callout-title">Kinetic Topology &amp; Flow Walk (10m)</div>
                       <div class="callout-sub">Step outside. Observe natural pathway branching without central locking.</div>
@@ -185,18 +175,6 @@
                     <div class="cursor-term-row">
                       <span class="term-tag">[pair]</span>
                       <span class="term-link">http://192.168.1.48:4242/session/grass-7c42</span>
-                    </div>
-                  </div>
-
-                  <!-- Prompt Input Bar -->
-                  <div class="cursor-term-input-box">
-                    <div class="cursor-input-line">
-                      <span class="cursor-input-arrow">&rarr;</span>
-                      <span class="cursor-input-placeholder">Step outside, scan QR, touch grass to unlock commit</span>
-                    </div>
-                    <div class="cursor-input-footer">
-                      <span class="cursor-input-meta">/challenge &bull; @staged &bull; !unlock</span>
-                      <span class="cursor-status-pill">Gate Active</span>
                     </div>
                   </div>
                 </div>
@@ -484,13 +462,11 @@
     <section class="cursor-cta-section" id="install">
       <div class="container">
         <div class="cursor-cta-box">
-          <!-- Geometric Wireframe Icon (Cursor Style) -->
-          <div class="cursor-cta-icon-wrap">
-            <svg viewBox="0 0 48 48" fill="none" class="cursor-cta-svg" aria-hidden="true">
-              <polygon points="24,6 40,15 40,33 24,42 8,33 8,15" stroke="#7B9EEA" stroke-width="1.5" fill="none"></polygon>
-              <polygon points="24,14 34,20 34,30 24,36 14,30 14,20" stroke="#EDEDEC" stroke-width="1.25" fill="none" opacity="0.6"></polygon>
-              <circle cx="24" cy="24" r="3" fill="#7B9EEA"></circle>
-            </svg>
+          <!-- Animated Rotating Brand Logo (Video/Dotted Loop) -->
+          <div class="cursor-cta-logo-stage">
+            <div class="dotted-halo-ring"></div>
+            <img src="logo-dark-theme.png" alt="git-grass" class="cta-rotating-logo logo-dark-mode">
+            <img src="logo-light-theme.png" alt="git-grass" class="cta-rotating-logo logo-light-mode">
           </div>
 
           <h2 class="cursor-cta-heading">Try Git-Grass CLI.</h2>

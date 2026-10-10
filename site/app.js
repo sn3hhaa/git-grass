@@ -377,4 +377,76 @@
       }
     });
   }
+
+  // 9. Looping Fork / Star Button Transition
+  const forkLoopText = document.getElementById('forkLoopText');
+  if (forkLoopText) {
+    const loopPhrases = [
+      'Fork repository',
+      'Star on GitHub',
+      'Get Started'
+    ];
+    let loopIdx = 0;
+    setInterval(() => {
+      forkLoopText.style.opacity = '0';
+      forkLoopText.style.transform = 'translateY(3px)';
+      setTimeout(() => {
+        loopIdx = (loopIdx + 1) % loopPhrases.length;
+        forkLoopText.textContent = loopPhrases[loopIdx];
+        forkLoopText.style.opacity = '1';
+        forkLoopText.style.transform = 'translateY(0)';
+      }, 250);
+    }, 2600);
+  }
+
+  // 10. Contact / Suggestion / Report Issue Intent Switcher (Image 3)
+  const intentPills = document.querySelectorAll('.intent-pill');
+  const contactHeading = document.getElementById('contactHeading');
+  const contactSubtitle = document.getElementById('contactSubtitle');
+  const contactSubject = document.getElementById('contactSubject');
+
+  if (intentPills.length && contactHeading) {
+    const intentData = {
+      contact: {
+        heading: "Let's connect.",
+        subtitle: 'Have a question about git-grass, architecture, or open-source collaboration? Reach out directly.',
+        placeholder: 'Question or collaboration inquiry'
+      },
+      suggest: {
+        heading: 'Suggest an idea.',
+        subtitle: 'Have a clever physical outdoor challenge or workflow feature idea? We would love to add it.',
+        placeholder: 'Challenge suggestion or feature proposal'
+      },
+      report: {
+        heading: 'Report an issue.',
+        subtitle: 'Encountered unexpected hook behavior, session glitch, or platform bug? Let us know.',
+        placeholder: 'Bug report / unexpected behavior'
+      }
+    };
+
+    intentPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const intent = pill.getAttribute('data-intent');
+        intentPills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const data = intentData[intent];
+        if (data) {
+          contactHeading.textContent = data.heading;
+          if (contactSubtitle) contactSubtitle.textContent = data.subtitle;
+          if (contactSubject) contactSubject.value = data.placeholder;
+        }
+      });
+    });
+  }
+
+  // 11. Docs Left Sidebar Interactive Accordion
+  document.querySelectorAll('.doc-nav-toggle-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest('.doc-nav-group');
+      if (group) {
+        group.classList.toggle('collapsed');
+      }
+    });
+  });
 })();

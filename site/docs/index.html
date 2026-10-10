@@ -5,22 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentation — git-grass</title>
   <meta name="description" content="Complete developer documentation for git-grass: welcome guide, quickstart, CLI installation, commands, tech stack, staged tree protection, and hosted AI.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23EDEDEC%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><line x1=%226%22 y1=%223%22 x2=%226%22 y2=%2215%22/><circle cx=%2218%22 cy=%226%22 r=%223%22/><circle cx=%226%22 cy=%2218%22 r=%223%22/><path d=%22M18 9a9 9 0 0 1-9 9%22/></svg>">
+  <link rel="icon" type="image/png" href="../logo-dark-theme.png">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="cursor-dark">
-  <!-- Minimal Dark Header with Docs Search & Nav (Image 2) -->
+  <!-- Minimal Dark Header with Navigation -->
   <header class="site-header" id="site-header">
     <div class="container header-inner">
       <div class="header-left" style="display: flex; align-items: center; gap: 24px;">
         <a href="../index.html" class="brand-group" aria-label="git-grass homepage">
           <span class="brand-mark">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="6" y1="3" x2="6" y2="15"></line>
-              <circle cx="18" cy="6" r="3"></circle>
-              <circle cx="6" cy="18" r="3"></circle>
-              <path d="M18 9a9 9 0 0 1-9 9"></path>
-            </svg>
+            <img src="../logo-dark-theme.png" alt="git-grass" class="logo-dark-mode">
+            <img src="../logo-light-theme.png" alt="git-grass" class="logo-light-mode">
           </span>
           <span class="brand-name">git-grass</span>
         </a>
@@ -37,16 +33,6 @@
       </div>
 
       <div class="nav-actions">
-        <!-- Search Docs Box with ⌘K icon (Image 2) -->
-        <div class="doc-search-box" tabindex="0" role="button" aria-label="Search documentation">
-          <svg class="lucide-icon lucide-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <span>Search docs...</span>
-          <kbd class="doc-search-kbd">&#8984;K</kbd>
-        </div>
-
         <a href="../index.html#install" class="btn-primary">Get started</a>
 
         <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -74,10 +60,13 @@
   <!-- 3-Column Documentation Layout (Matches Images 2, 3, 4) -->
   <div class="doc-page">
     <div class="doc-container">
-      <!-- Left Sidebar: Category Navigation (Image 2 & 3) -->
+      <!-- Left Sidebar: Category Navigation (Interactive Accordion) -->
       <aside class="doc-nav" aria-label="Documentation Navigation">
-        <div>
-          <div class="doc-nav-section-title">Get Started</div>
+        <div class="doc-nav-group">
+          <button type="button" class="doc-nav-toggle-btn">
+            <span>Get Started</span>
+            <svg class="doc-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
           <ul class="doc-nav-list">
             <li><a href="#welcome" class="active">Welcome</a></li>
             <li><a href="#quickstart">Quickstart</a></li>
@@ -87,8 +76,11 @@
           </ul>
         </div>
 
-        <div>
-          <div class="doc-nav-section-title">CLI Reference</div>
+        <div class="doc-nav-group">
+          <button type="button" class="doc-nav-toggle-btn">
+            <span>CLI Reference</span>
+            <svg class="doc-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
           <ul class="doc-nav-list">
             <li><a href="#commands">Overview</a></li>
             <li><a href="#installation">Installation</a></li>
@@ -103,8 +95,11 @@
           </ul>
         </div>
 
-        <div>
-          <div class="doc-nav-section-title">Tech Stack &amp; Architecture</div>
+        <div class="doc-nav-group">
+          <button type="button" class="doc-nav-toggle-btn">
+            <span>Tech Stack &amp; Architecture</span>
+            <svg class="doc-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
           <ul class="doc-nav-list">
             <li><a href="#tech-stack">How We Built It</a></li>
             <li><a href="#staged-protection">Staged-Tree SHA-1 Guard</a></li>
@@ -113,16 +108,22 @@
           </ul>
         </div>
 
-        <div>
-          <div class="doc-nav-section-title">Cloud &amp; Hosted AI</div>
+        <div class="doc-nav-group">
+          <button type="button" class="doc-nav-toggle-btn">
+            <span>Cloud &amp; Hosted AI</span>
+            <svg class="doc-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
           <ul class="doc-nav-list">
             <li><a href="#hosted-ai">Render + Backboard API</a></li>
             <li><a href="#fallback-catalog">Bundled Offline Catalog</a></li>
           </ul>
         </div>
 
-        <div>
-          <div class="doc-nav-section-title">Guides &amp; Help</div>
+        <div class="doc-nav-group">
+          <button type="button" class="doc-nav-toggle-btn">
+            <span>Guides &amp; Help</span>
+            <svg class="doc-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
           <ul class="doc-nav-list">
             <li><a href="#emergency-bypass">Emergency Bypass</a></li>
             <li><a href="#troubleshooting">Troubleshooting FAQ</a></li>
