@@ -1,0 +1,16 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+Thumbs.db
+
+# Test coverage & artifacts
+coverage/
+.vitest/
+
+# Local git-grass state and config for developers testing locally
+.git-grass/
+scratch/
+tmp/
+*.local
+
