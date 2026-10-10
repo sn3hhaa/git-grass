@@ -127,7 +127,7 @@
       {
         step: 1,
         title: 'bash — git commit (hook intercept)',
-        content: `<span class="syn-dim">$</span> git commit -m "feat: distributed cache"
+        content: `<span class="syn-dim">$</span> <span class="syn-func">git</span> <span class="syn-pkg">commit</span> <span class="syn-flag">-m</span> <span class="syn-str">"feat: distributed cache"</span>
 
 <span class="syn-pkg">[git-grass]</span> Break interval reached (74m since last break).
 <span class="syn-dim">Staged tree SHA-1: 4b825dc642cb6eb9... (preserved)</span>

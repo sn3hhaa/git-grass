@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — git-grass</title>
   <meta name="description" content="Contact the git-grass maintainers. Submit feedback, report bugs, or inquire about open source collaboration.">
-  <link rel="icon" type="image/png" href="../logo-dark-theme.png">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="alternate icon" type="image/png" href="../favicon.png">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="cursor-dark">
@@ -59,17 +60,11 @@
 
   <main>
     <div class="contact-fullscreen-stage">
-      <!-- Left Side: Clean Form with 3 Intent Pills (Image 3 Style) -->
+      <!-- Left Side: Clean Reach Out Form -->
       <div class="contact-left-col">
-        <div class="contact-intent-pills" role="tablist" aria-label="Contact options">
-          <button type="button" class="intent-pill active" data-intent="contact">Contact</button>
-          <button type="button" class="intent-pill" data-intent="suggest">Suggest Idea</button>
-          <button type="button" class="intent-pill" data-intent="report">Report Issue</button>
-        </div>
-
-        <h1 class="headline" id="contactHeading" style="color: #FFFFFF; font-size: 2.4rem; margin-bottom: 8px;">Let's connect.</h1>
-        <p class="doc-lead" id="contactSubtitle" style="font-size: 0.95rem; margin-bottom: 24px; color: var(--cursor-text-secondary);">
-          Have a question about git-grass, architecture, or open-source collaboration? Reach out directly.
+        <h1 class="headline" id="contactHeading" style="color: #FFFFFF; font-size: 2.5rem; margin-bottom: 8px; letter-spacing: -0.03em;">Reach out.</h1>
+        <p class="doc-lead" id="contactSubtitle" style="font-size: 0.95rem; margin-bottom: 28px; color: var(--cursor-text-secondary); line-height: 1.5;">
+          Have a question about git-grass, architecture, or want to collaborate? Send a message directly.
         </p>
 
         <form class="contact-seamless-form" id="contactForm" novalidate>
@@ -84,8 +79,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="contactSubject">Topic</label>
-            <input type="text" id="contactSubject" name="subject" class="form-input" value="Question or collaboration inquiry" required>
+            <label class="form-label" for="contactSubject">Subject</label>
+            <input type="text" id="contactSubject" name="subject" class="form-input" placeholder="What is this regarding?" required>
           </div>
 
           <div class="form-group">

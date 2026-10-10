@@ -88,31 +88,31 @@ Git commit paused. Workstation will resume after outdoor break check-in.
 
 ## 📱 Mobile Workflow & User Journey
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Dev as Developer
-    participant Git as Workstation Git
-    participant Srv as git-grass Server (:4242)
-    participant Phone as Mobile Browser
-
-    Dev->>Git: git commit
-    Git->>Srv: Focus interval expired (Break Due)
-    Srv->>Dev: Displays Terminal QR code
-    Dev->>Phone: Scans QR code (Local LAN)
-    Phone->>Srv: Authenticate with 48-char session token
-    Srv-->>Phone: Project-aware outdoor challenge instructions
-    Dev->>Phone: Clicks "Start Break & Step Outside 🌲"
-    Srv->>Srv: Authoritative break timer starts on workstation
-    Phone->>Dev: "Lock your phone and put it in your pocket"
-    Dev->>Dev: Steps outside for 10-15 minutes (Phone locked)
-    Dev->>Phone: Returns inside, answers reflection prompt
-    Dev->>Phone: Enters commit message & clicks "Commit & Release"
-    Phone->>Srv: Submits check-in & commit message
-    Srv->>Git: Validates staged tree SHA & executes git commit
-    Git-->>Srv: Commit created successfully
-    Srv-->>Phone: Displays commit receipt with hash
-    Srv-->>Dev: Releases workstation terminal gate
+```text
+┌──────────────┐     git commit      ┌─────────────────────────┐
+│  Developer   │ ──────────────────> │  Workstation Git Hook   │
+└──────────────┘                     └────────────┬────────────┘
+       ▲                                          │ Focus Expired
+       │                                          ▼
+       │  Scans Terminal QR Code     ┌─────────────────────────┐
+       ├──────────────────────────── │ git-grass Server (:4242)│
+       │                             └────────────┬────────────┘
+       ▼                                          │ Local LAN HTTP
+┌──────────────┐     Outdoor Mission              │
+│ Phone / LAN  │ <────────────────────────────────┘
+└──────┬───────┘
+       │
+       │ Taps [Start Break] ──> Locks Phone ──> 10m+ Walk Outside
+       │
+       ▼
+┌──────────────┐     Submits Check-in & Message     ┌─────────────────────────┐
+│ Phone / LAN  │ ─────────────────────────────────> │ Validates Token & SHA-1 │
+└──────────────┘                                    └────────────┬────────────┘
+                                                                 │ Native Release
+                                                                 ▼
+                                                    ┌─────────────────────────┐
+                                                    │ Commit Released & Pushed│
+                                                    └─────────────────────────┘
 ```
 
 ---
@@ -134,31 +134,31 @@ git-grass inspects your repository context and selects an outdoor observation ta
 
 ## 🏗️ Architecture Overview
 
-```mermaid
-graph TD
-    subgraph Workstation
-        Dev["Developer"] -->|git commit| Hook[".git/hooks/pre-commit"]
-        Hook --> CLI["git-grass check"]
-        CLI --> Config[".git-grass/config.json"]
-        CLI --> Storage[".git-grass/session.json"]
-        CLI --> Engine["Challenge Engine"]
-        Engine --> Ollama["Ollama Local AI (Gemma 2B)"]
-        Engine --> Fallbacks["Curated Fallbacks Dataset"]
-        CLI --> Srv["Local HTTP Server (Express :4242)"]
-        CLI --> QR["Terminal ANSI QR"]
-    end
-
-    subgraph Mobile
-        QR -.-> Browser["Mobile Web Client"]
-        Browser -->|HTTP LAN| Srv
-        Browser --> Walk["Screen-Locked Walk (>=10m)"]
-        Walk --> Checkin["Reflection & Commit Form"]
-    end
-
-    Checkin -->|POST /commit| Srv
-    Srv --> GitExec["Safe Native Git Executor"]
-    GitExec --> Bypass["GIT_GRASS_BYPASS_TOKEN"]
-    Bypass --> Repo["Local Git Index & Remote"]
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│                        WORKSTATION RUNTIME                             │
+│                                                                        │
+│   git commit ──> .git/hooks/pre-commit ──> git-grass check             │
+│                                                   │                    │
+│   ┌───────────────────────────────────────────────┴────────────────┐   │
+│   │                                                                │   │
+│   ▼                                                                ▼   │
+│  [Local Session Server]                               [AI Engine]      │
+│  • Express HTTP (:4242)                               • Render Backend │
+│  • ANSI Terminal QR Generator                         • Backboard AI   │
+│  • Cryptographic Token Store                          • 12 Built-in    │
+│  • Atomic Git Release Engine                            Fallbacks ($0) │
+└───────────────────────────────┬────────────────────────────────────────┘
+                                │ Local LAN (Zero Cloud Telemetry)
+                                ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                        MOBILE CLIENT / BROWSER                         │
+│                                                                        │
+│   • Instant Vanilla HTML/CSS/JS (Zero dependencies, instant load)      │
+│   • Step Outside & Lock Phone Guidance                                 │
+│   • Minimum 10-Minute Workstation Hard Timer Check                     │
+│   • Reflection Prompt & Remote Commit Release Dispatch                 │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -175,7 +175,7 @@ graph TD
 | **QR Generation** | `qrcode-terminal` & `qrcode` | Crisp ANSI QR codes displayed directly in terminal windows. |
 | **Git Integration** | Native Git via `child_process.execFile` | Safe execution with argument arrays; zero shell interpolation. |
 | **Mobile Client** | Vanilla HTML5, CSS3, JavaScript | Zero-dependency, lightweight, offline-resilient, instant mobile load. |
-| **AI Inference** | Ollama (`gemma:2b` / `gemma2`) | Open-weight local LLM; 100% private, $0 cost, zero API keys. |
+| **AI Inference** | Backboard API (Gemini 2.0 Flash) on Render | Free-tier cloud backend; zero laptop setup, ₹0 cost. *(Optional local Ollama)* |
 | **Fallback Library** | Curated JSON (`challenges/fallback-challenges.json`) | Immediate graceful failover when AI server is absent. |
 | **Test Suite** | Vitest | High-speed ESM native testing across isolated disposable repos. |
 
