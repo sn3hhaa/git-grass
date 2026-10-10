@@ -5,12 +5,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org)
-[![Tests Passing](https://img.shields.io/badge/tests-49%20passed-success.svg)](./tests)
+[![Tests Passing](https://img.shields.io/badge/tests-51%20passed-success.svg)](./tests)
 [![Website](https://img.shields.io/badge/website-online-brightgreen.svg)](./site/index.html)
 
 **git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website](./site/index.html).
 
-When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code that opens an offline-resilient mobile web experience. Using repository metadata, git-grass generates an observational outdoor challenge tailored to your project domain using a **Render-hosted AI backend powered by Backboard**, local open-weight models (Ollama with Gemma 3), or zero-config bundled fallbacks.
+When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code that opens an offline-resilient mobile web experience. Using repository metadata, git-grass generates an observational outdoor challenge tailored to your project domain using a **Render-hosted AI backend powered by Backboard**, Thinking Machines Tinker, local open-weight models (Ollama with Gemma 3), or zero-config bundled fallbacks.
 
 The developer locks their phone, steps away from their workstation for at least 10 minutes, returns refreshed, completes a short check-in on the phone, and submits their commit message directly from their yard or doorway. The local CLI safely validates staging integrity and executes the commit.
 

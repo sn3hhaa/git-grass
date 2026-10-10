@@ -120,7 +120,8 @@ describe('git-grass public website and mobile UX integrity', () => {
 
     const homeHtml = fs.readFileSync(path.join(siteDir, 'index.html'), 'utf8');
     expect(homeHtml).toContain('class="lucide-icon');
-    expect(homeHtml).toContain('Step outside.<br>\n              Then commit.');
+    expect(homeHtml).toContain('Your AI can write code.');
+    expect(homeHtml).toContain('It can\'t touch grass.');
     expect(homeHtml).toContain('class="terminal-compact"');
   });
 });

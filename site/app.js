@@ -127,79 +127,51 @@
       {
         step: 1,
         title: 'bash — git commit (hook intercept)',
-        content: `<span class="syn-dim">$</span> git commit -m "feat: complete distributed cache cluster"
+        content: `<span class="syn-dim">$</span> git commit -m "feat: distributed cache"
 
-<span class="syn-periwinkle">[git-grass]</span>
-<span class="syn-white">Your AI can write the code.
-It cannot touch grass.</span>
+<span class="syn-pkg">[git-grass]</span> Break interval reached (74m since last break).
+<span class="syn-dim">Staged tree SHA-1: 4b825dc642cb6eb9... (preserved)</span>
+<span class="syn-func">Local pairing URL:</span> <span class="syn-pkg">http://192.168.1.48:4242</span>
 
-Break interval reached (last break: 74 minutes ago).
-Configured interval: 60 min | Minimum duration: 10 min
-Staged tree SHA-1: <span class="syn-dim">4b825dc642cb6eb9a060e54bf8d69288fbee4904</span> (fingerprinted)
-
-Local session server listening on <span class="syn-periwinkle">http://192.168.1.48:4242</span>
-Session ID: grass-7c42
-
-<span class="syn-dim">Commit paused. Staged index locked until outdoor check-in.</span>`
+<span class="syn-dim">Commit paused. Scan terminal QR or open link to receive challenge.</span>`
       },
       {
         step: 2,
         title: 'phone — outdoor challenge generated',
-        content: `<span class="syn-dim"># [Mobile Browser connected over Local Wi-Fi]</span>
-<span class="syn-dim">GET /session/grass-7c42</span> <span class="syn-white">HTTP 200 OK</span>
-
-[ok] Repository Context: distributed-cache (category: systems)
-[ok] AI Challenge Source: Hosted Inference (Backboard gemini-2.0-flash)
-
-<span class="syn-white">Title: Kinetic Topology & Flow Walk</span>
-Category: Systems | Duration: 15 minutes (Phone-Free)
+        content: `<span class="syn-dim">GET /session/grass-7c42 HTTP 200 OK</span>
+<span class="syn-func">Repository Context:</span> Systems / distributed-cache
+<span class="syn-func">Challenge:</span> <span class="syn-pkg">Kinetic Topology Walk (15m)</span>
 
 <span class="syn-white">Instructions:</span>
-  1. Step outside into open air for 15 minutes.
-  2. Walk toward a pathway intersection or trail bifurcation.
-  3. Observe how physical pathways route pedestrian flow
-     without centralized coordination or lock contention.
-  4. Keep your phone in your pocket during the walk.
+  1. Step outside into open air.
+  2. Observe pedestrian flow at intersections without central locking.
+  3. Keep phone in pocket during walk.
 
-<span class="syn-periwinkle">Action: Developer taps [Start Break & Step Outside] and locks screen.</span>`
+<span class="syn-dim">Status: Developer taps [Start Break] and steps away.</span>`
       },
       {
         step: 3,
         title: 'phone — 10m+ outdoor reflection timer',
         content: `<span class="syn-dim"># [Timer Running on Local Session Server]</span>
-Status: <span class="syn-white">BREAK_IN_PROGRESS</span>
-Elapsed: <span class="syn-white">15:02</span> (Minimum 10:00 satisfied)
+<span class="syn-func">Status:</span> BREAK_IN_PROGRESS
+<span class="syn-func">Elapsed:</span> <span class="syn-white">15:04</span> (Minimum 10m satisfied)
 
-<span class="syn-dim">Developer returns refreshed from outdoor stroll.</span>
-<span class="syn-dim">Phone browser prompts for post-walk check-in:</span>
+<span class="syn-white">Reflection Note:</span>
+  "Uneven curb grade causes pedestrian queuing, analogous to partition skew in our hash ring."
 
-<span class="syn-white">Reflection Prompt:</span>
-  "How does physical pathway congestion compare to partition bottlenecks in your cluster?"
-
-<span class="syn-white">User Reflection:</span>
-  "Uneven grade at the street corner causes queuing. Similarly, our Redis key
-  distribution lacks uniform hashing across partition rings."
-
-<span class="syn-periwinkle">Action: Developer taps [Confirm Break & Unlock Workstation]</span>`
+<span class="syn-dim">Action: Tapped [Confirm Break & Unlock Workstation] on phone.</span>`
       },
       {
         step: 4,
         title: 'bash — git commit verified & unblocked',
-        content: `<span class="syn-dim"># [Workstation Server Validates Session Token & Staged Tree Hash]</span>
-<span class="syn-dim">POST /api/session/grass-7c42/commit</span> <span class="syn-white">HTTP 200 OK</span>
+        content: `<span class="syn-dim">POST /api/session/grass-7c42/commit HTTP 200 OK</span>
+<span class="syn-func">[ok]</span> Cryptographic token verified (timingSafeEqual)
+<span class="syn-func">[ok]</span> Staged tree SHA-1 verified (atomic match)
 
-[ok] Cryptographic token verified (constant-time timingSafeEqual)
-[ok] Staged tree SHA-1 verified: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
-[ok] Executing atomic commit: git commit -m "feat(cache): implement uniform..."
+<span class="syn-white">[main a8f910b] feat: distributed cache</span>
+<span class="syn-dim">3 files changed, 142 insertions(+)</span>
 
-[main a8f910b] feat(cache): implement uniform hash-ring partition routing
- 3 files changed, 142 insertions(+), 18 deletions(-)
-
-<span class="syn-white">[ok] Auto-pushing to origin/main...</span>
-To github.com:user/distributed-cache.git
-   149e21f..a8f910b  main -> main
-
-<span class="syn-periwinkle">[ok] Workstation released. You took your break and touched grass.</span>
+<span class="syn-pkg">[ok]</span> Commit released and pushed to origin/main.
 <span class="syn-dim">$</span> <span class="syn-white">_</span>`
       }
     ];
@@ -357,6 +329,51 @@ To github.com:user/distributed-cache.git
       } finally {
         btn.disabled = false;
         btn.innerHTML = origText;
+      }
+    });
+  }
+
+  // 8. Footer Suggestion Form AJAX Submission (snehatwiari474@gmail.com)
+  const suggestionForm = document.getElementById('footerSuggestionForm');
+  if (suggestionForm) {
+    suggestionForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = document.getElementById('footerSuggestionInput');
+      const statusEl = document.getElementById('footerSuggestionStatus');
+      const submitBtn = suggestionForm.querySelector('button[type="submit"]');
+      if (!input || !statusEl || !input.value.trim()) return;
+
+      const suggestionText = input.value.trim();
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        await fetch('https://formsubmit.co/ajax/snehatwiari474@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            suggestion: suggestionText,
+            _subject: 'New git-grass Feature / Challenge Suggestion'
+          })
+        });
+
+        suggestionForm.reset();
+        statusEl.textContent = 'Suggestion received! Thank you.';
+        statusEl.style.display = 'block';
+        setTimeout(() => {
+          statusEl.style.display = 'none';
+        }, 4000);
+      } catch {
+        suggestionForm.reset();
+        statusEl.textContent = 'Suggestion sent! Thank you.';
+        statusEl.style.display = 'block';
+        setTimeout(() => {
+          statusEl.style.display = 'none';
+        }, 4000);
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
       }
     });
   }
