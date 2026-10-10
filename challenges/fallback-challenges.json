@@ -1,0 +1,133 @@
+[
+  {
+    "title": "Real-World Level Designer",
+    "projectContext": "Game Development / 3D Environments",
+    "durationMinutes": 15,
+    "category": "gamedev",
+    "instructions": [
+      "Take a short outdoor walk around your immediate neighborhood, park, or yard.",
+      "Notice three distinct shapes, elevation changes, or natural obstacles.",
+      "Think about how these physical forms could translate into game mechanics, cover objects, or environmental puzzles.",
+      "Keep your phone locked in your pocket throughout the walk."
+    ],
+    "reflectionPrompt": "Which real-world obstacle or elevation change could inspire the most engaging mechanic?",
+    "phoneFree": true,
+    "safetyNotes": [
+      "Stay on public sidewalks or parks.",
+      "Watch your step around uneven terrain.",
+      "Do not trespass on private property."
+    ]
+  },
+  {
+    "title": "Soundscape Explorer",
+    "projectContext": "Audio / Media / Signal Processing",
+    "durationMinutes": 15,
+    "category": "audio",
+    "instructions": [
+      "Step outside into the open air without headphones or earbuds.",
+      "Close your eyes for one minute and identify at least three distinct acoustic layers: nearby, mid-range, and distant ambient sound.",
+      "Walk slowly and observe how materials (brick, foliage, open pavement) filter and reverberate these sounds.",
+      "Put your phone away and tune into acoustic textures."
+    ],
+    "reflectionPrompt": "Which sound was most difficult to distinguish from the ambient noise floor?",
+    "phoneFree": true,
+    "safetyNotes": [
+      "Stay mindful of pedestrian traffic and crossings.",
+      "Open your eyes whenever you are moving.",
+      "Avoid standing in bike lanes or roads."
+    ]
+  },
+  {
+    "title": "Pattern & Texture Observer",
+    "projectContext": "Machine Learning / Computer Vision / Data Science",
+    "durationMinutes": 15,
+    "category": "ml",
+    "instructions": [
+      "Take a quiet outdoor stroll and observe natural patterns (leaf veins, bark textures, ripple formations, or shadow gradients).",
+      "Notice how lighting conditions and angles shift the contrast of these textures.",
+      "Mentally consider what features differentiate one natural texture from an adjacent one.",
+      "Do not photograph them—use your biological vision and memory."
+    ],
+    "reflectionPrompt": "What distinctive feature or edge made one natural pattern immediately recognizable?",
+    "phoneFree": true,
+    "safetyNotes": [
+      "Protect your eyes from direct sun glare.",
+      "Remain in familiar, well-lit outdoor spaces.",
+      "Respect local wildlife and plants."
+    ]
+  },
+  {
+    "title": "Everyday Information Systems",
+    "projectContext": "Web Development / Frontend / UI/UX",
+    "durationMinutes": 15,
+    "category": "web",
+    "instructions": [
+      "Step outside and examine public physical signage, noticeboards, storefronts, or transit markers.",
+      "Analyze visual hierarchy in physical typography: contrast, readability from 10 paces, and visual clutter.",
+      "Observe how natural ambient lighting affects readability compared to digital screens.",
+      "Complete your walk with your device stored away."
+    ],
+    "reflectionPrompt": "What design element made the most effective physical sign immediately understandable?",
+    "phoneFree": true,
+    "safetyNotes": [
+      "Remain aware of personal space and surrounding pedestrian traffic.",
+      "Do not obstruct doorways or sidewalks."
+    ]
+  },
+  {
+    "title": "Distributed Infrastructure Walk",
+    "projectContext": "Backend / Systems / DevOps / Infrastructure",
+    "durationMinutes": 15,
+    "category": "systems",
+    "instructions": [
+      "Walk outdoors and observe the physical conduits and connections around you: utility lines, storm drains, streetlights, or pathway junctions.",
+      "Notice how physical redundancy and failovers are built into real-world civil infrastructure.",
+      "Take deep breaths and enjoy the open sky without thinking about server logs.",
+      "Keep your phone safely stowed in your pocket."
+    ],
+    "reflectionPrompt": "What physical junction or routing system did you spot that reminded you of backend architecture?",
+    "phoneFree": true,
+    "safetyNotes": [
+      "Never touch or tamper with electrical or utility fixtures.",
+      "Observe from a safe walking distance on public paths."
+    ]
+  },
+  {
+    "title": "Curiosity Walk",
+    "projectContext": "General Software Engineering & Problem Solving",
+    "durationMinutes": 15,
+    "category": "general",
+    "instructions": [
+      "Step outside away from all monitors, keyboards, and notifications.",
+      "Walk in a direction you usually don't take, or deliberately slow your walking pace by half.",
+      "Look upwards at the tree canopies, sky, clouds, or architectural rooftops.",
+      "Notice three tiny details in nature or architecture you normally walk right past.",
+      "Let your mind drift freely away from pending pull requests."
+    ],
+    "reflectionPrompt": "What unexpected detail did you notice during your walk that you usually overlook?",
+    "phoneFree": true,
+    "safetyNotes": [
+      "Dress appropriately for current weather.",
+      "Stay hydrated.",
+      "Remain on safe pedestrian routes."
+    ]
+  },
+  {
+    "title": "Natural Rhythm & Respiration Reset",
+    "projectContext": "Deep Focus & Cognitive Recovery",
+    "durationMinutes": 10,
+    "category": "wellness",
+    "instructions": [
+      "Walk out into the fresh air or sit on an outdoor bench/balcony.",
+      "Inhale deeply through your nose for 4 seconds, hold for 4 seconds, exhale for 6 seconds.",
+      "Focus your eyes on the farthest visible horizon, skyline, or distant tree line to relax your ciliary optical muscles.",
+      "Keep your hands free and your phone locked."
+    ],
+    "reflectionPrompt": "How did shifting your optical focus to the distant horizon feel compared to your monitor screen?",
+    "phoneFree": true,
+    "safetyNotes": [
+      "Choose a comfortable, safe spot away from traffic.",
+      "Sit down if you feel lightheaded at any point."
+    ]
+  }
+]
