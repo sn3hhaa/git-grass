@@ -29,7 +29,17 @@ export async function isModelAvailable(modelName: string, host: string = 'http:/
     if (!res.ok) return false;
     const data: any = await res.json();
     if (!data.models || !Array.isArray(data.models)) return false;
-    return data.models.some((m: any) => m.name === modelName || m.name.startsWith(modelName));
+    const target = modelName.toLowerCase();
+    return data.models.some((m: any) => {
+      const name = (m.name || '').toLowerCase();
+      return (
+        name === target ||
+        name.startsWith(`${target}:`) ||
+        target.startsWith(`${name}:`) ||
+        name === `${target}:latest` ||
+        name.replace(/:latest$/, '') === target.replace(/:latest$/, '')
+      );
+    });
   } catch {
     return false;
   }
@@ -41,7 +51,7 @@ export async function generateOllamaChallenge(
   options: OllamaOptions = {}
 ): Promise<OutdoorChallenge | null> {
   const host = options.host || 'http://127.0.0.1:11434';
-  const model = options.model || 'gemma:2b';
+  const model = options.model || 'gemma3:1b';
   const timeoutMs = options.timeoutMs || 8000;
 
   const prompt = `

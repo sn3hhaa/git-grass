@@ -41,7 +41,7 @@ export const ConfigSchema = z.object({
     .literal(MIN_ALLOWED_BREAK_MINUTES)
     .default(MIN_ALLOWED_BREAK_MINUTES),
   aiProvider: z.enum(['ollama', 'fallback', 'auto']).default('auto'),
-  aiModel: z.string().default('gemma:2b'),
+  aiModel: z.string().default('gemma3:1b'),
   ollamaHost: z.string().default('http://127.0.0.1:11434'),
   autoPush: z.boolean().default(false),
   preferences: PreferencesSchema.default({}),

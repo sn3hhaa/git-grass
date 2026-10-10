@@ -26,29 +26,30 @@ npm run test:watch
 |---|---|---|
 | `tests/config.test.ts` | `src/shared/config.ts` | Default values (60m interval, 15m duration); strict enforcement of minimum 10-minute break constraint; calculation of elapsed time and break-due logic. |
 | `tests/session.test.ts` | `src/session/validation.ts` | Unique ID generation; 24-byte crypto token generation; state machine transition constraints; server-side duration requirement checks (rejecting premature completion). |
-| `tests/challenge.test.ts` | `src/challenge/` | Schema validation for `OutdoorChallengeSchema`; rejection of screen-based or <10m tasks; fallback challenge loading and tech-stack domain matching. |
+| `tests/challenge.test.ts` | `src/challenge/` | Schema validation for `OutdoorChallengeSchema`; rejection of screen-based or <10m tasks; fallback challenge loading and tech-stack domain matching; mocked Ollama request formatting with `gemma3:1b`; JSON validation; schema-violation rejection; connection timeout failover; model tag inspection; prompt confidentiality (no source-code/secret disclosure); opt-in live Ollama integration test. |
 | `tests/server.test.ts` | `src/server/` | Express HTTP server startup on dynamic ports; rejection of unauthenticated requests; token verification; retrieval of sanitized session data; break initiation; rejection of premature completion. |
-| `tests/git-gate.test.ts` | `src/git/` | Creation of isolated disposable Git repositories in OS temp directories; safe installation of pre-commit hook; preservation of existing custom hooks during installation and uninstallation; staged index tree fingerprinting (`git write-tree`); detection of modified staged content; atomic commit execution with recursion bypass. |
+| `tests/git-gate.test.ts` | `src/git/` | Creation of isolated disposable Git repositories in OS temp directories; safe installation of pre-commit hook; preservation of existing custom hooks during installation and uninstallation; staged index tree fingerprinting (`git write-tree`); detection of modified staged content; atomic commit execution with recursion bypass; auto-push to disposable bare remote; preservation of local commit if push fails. |
 
 ---
 
-## 3. Real Test Suite Execution Results
+## 3. Test Suite Execution Results
 
-Running `npm test` produces:
+Running `npm test` (`vitest run`) produces:
 
 ```text
 ✓ tests/session.test.ts (4 tests)
 ✓ tests/config.test.ts (3 tests)
-✓ tests/challenge.test.ts (3 tests)
+✓ tests/challenge.test.ts (11 tests | 1 skipped)
 ✓ tests/server.test.ts (4 tests)
-✓ tests/git-gate.test.ts (3 tests)
+✓ tests/git-gate.test.ts (4 tests)
 
 Test Files  5 passed (5)
-     Tests  17 passed (17)
-  Duration  1.97s
+     Tests  25 passed | 1 skipped (26)
+  Duration  6.35s
 ```
 
-All 17 tests passed with zero regressions.
+- **25 automated tests passed** without requiring external services or local model downloads.
+- **1 opt-in test skipped:** `tests/challenge.test.ts > performs real local inference through local Ollama API if TEST_REAL_OLLAMA=1`. (To execute live inference tests against a running local Ollama instance with `gemma3:1b`, run `$env:TEST_REAL_OLLAMA="1"; npm test`).
 
 ---
 

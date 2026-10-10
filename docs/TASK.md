@@ -14,16 +14,19 @@ Status indicators:
 - [x] Create project manifest (`package.json`) with dependencies and CLI entry point.
 - [x] Create TypeScript configuration (`tsconfig.json`) targeting ES2022 / NodeNext.
 - [x] Create `.gitignore` and `.editorconfig`.
-- [x] Create MIT `LICENSE`.
+- [x] Create and verify full MIT `LICENSE` text (1101 bytes).
 - [x] Create initial `README.md` and `CHANGELOG.md`.
 - [x] Install npm dependencies and verify compiler toolchain (`vitest`, `tsx`, `typescript`).
 
 ## 2. CLI & Configuration
 - [x] Define Zod schemas and TypeScript interfaces for configuration (`src/shared/config.ts`).
+- [x] Standardize on `gemma3:1b` model identifier across configuration, documentation, diagnostics, and tests.
 - [x] Implement configuration read/write and atomic migration helpers (`src/session/storage.ts`).
 - [x] Implement `git grass init` command (`src/cli/commands/init.ts`).
 - [x] Implement `git grass status` command (`src/cli/commands/status.ts`).
 - [x] Implement `git grass config` command (`src/cli/commands/config.ts`).
+- [x] Implement `git grass doctor` command (`src/cli/commands/doctor.ts`) for environment, Ollama, model, and inference diagnostics.
+- [x] Implement `git grass challenge` command (`src/cli/commands/challenge.ts`) for test previewing and schema validation.
 - [x] Implement `git grass uninstall` command (`src/cli/commands/uninstall.ts`).
 - [x] Write unit tests for configuration parsing, duration constraints, and elapsed calculations (`tests/config.test.ts`).
 
@@ -60,26 +63,27 @@ Status indicators:
 ## 7. AI Challenge Engine
 - [x] Define outdoor challenge schema with Zod (`src/challenge/schema.ts`).
 - [x] Implement project context extractor: repo name, readme summary, dependency keywords (`src/challenge/context.ts`).
-- [x] Implement Ollama / Gemma client with strict timeouts and error fallbacks (`src/challenge/ollama.ts`).
+- [x] Implement Ollama client with strict timeouts and model presence checks (`src/challenge/ollama.ts`).
 - [x] Create curated offline fallback challenge dataset across tech stacks (`challenges/fallback-challenges.json`).
 - [x] Implement challenge generator combining context, AI, and fallbacks (`src/challenge/generator.ts`).
-- [x] Write unit tests for challenge generation and fallback resilience (`tests/challenge.test.ts`).
+- [x] Write mocked unit tests for challenge generation, prompt safety, and fallback resilience (`tests/challenge.test.ts`).
+- [x] Write opt-in live Ollama integration test (`TEST_REAL_OLLAMA=1`).
 
 ## 8. Commit & Push Workflow
 - [x] Implement `git grass start` command (`src/cli/commands/start.ts`).
 - [x] Implement `git grass verify` command (`src/cli/commands/verify.ts`).
 - [x] Implement safe commit execution with commit message from mobile check-in (`src/git/commit-flow.ts`).
 - [x] Implement recursion prevention flag (`GIT_GRASS_BYPASS_TOKEN`).
-- [x] Implement optional push execution with graceful failure reporting.
+- [x] Implement auto-push against bare remote and graceful failure handling preserving local commits.
 - [x] Verify staged changes integrity before committing.
 
 ## 9. Testing & Security
-- [x] Run full automated test suite with Vitest (17 passing tests).
+- [x] Run full automated test suite with Vitest (25 passing tests, 1 opt-in skipped).
 - [x] Verify security boundaries (safe exec, no shell injection, local network only, bounded inputs).
 - [x] Test disposable repository end-to-end simulation.
 
 ## 10. Documentation
-- [x] Complete comprehensive `README.md`.
+- [x] Complete comprehensive `README.md` with CLI reference, Ollama setup, and troubleshooting.
 - [x] Complete `docs/PRD.md`.
 - [x] Complete `docs/ARCHITECTURE.md`.
 - [x] Complete `docs/SECURITY.md`.
@@ -91,7 +95,7 @@ Status indicators:
 
 ## 11. Final Push & Verification
 - [x] Build TypeScript output (`dist/`).
-- [x] Run full test suite (`npm test`).
+- [x] Verify `npm pack --dry-run` package integrity.
 - [x] Review Git status and diffs.
 - [x] Push all milestone commits to GitHub origin (`https://github.com/sn3hhaa/git-grass`).
 - [x] Confirm remote synchronization.

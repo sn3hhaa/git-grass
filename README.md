@@ -249,23 +249,67 @@ git grass config autoPush true
 git grass config resetLastBreak
 ```
 
+### `git grass doctor`
+Runs a comprehensive environment diagnostic check:
+- Node.js & Git version check
+- Active repository configuration
+- Ollama CLI installation status
+- Local Ollama API connectivity (`http://127.0.0.1:11434`)
+- Target model (`gemma3:1b`) availability and live test inference
+- Bundled offline fallback dataset availability
+
+### `git grass challenge [--test]`
+Generates and displays an outdoor observation challenge for the current repository without triggering a Git commit or starting a break session. Tests the challenge generation pipeline and schema validation directly.
+
 ### `git grass uninstall [--yes]`
 Safely removes git-grass pre-commit hooks and `.git-grass/` configuration, strictly preserving any unrelated custom hooks.
 
 ---
 
-## 🧠 Local AI Setup (Ollama & Gemma)
+## 🧠 Local AI Setup (Ollama & Gemma 3)
 
-git-grass is designed to work **100% out-of-the-box with bundled fallback challenges without any AI setup**.
+git-grass is designed to work **100% out-of-the-box with bundled domain fallbacks without any mandatory AI setup**.
 
-If you wish to enable dynamic local AI challenge generation:
-1. Install [Ollama](https://ollama.com).
-2. Pull the lightweight Gemma model:
-   ```bash
-   ollama pull gemma:2b
-   ```
-3. Start Ollama (`ollama serve`).
-4. git-grass will automatically detect the local endpoint (`http://127.0.0.1:11434`) and generate dynamic observational challenges tailored to your repository.
+If you wish to enable dynamic, project-aware outdoor challenge generation powered by local open-weight AI:
+
+### 1. Install Ollama
+- **Windows:** Download the official Windows installer from [ollama.com/download](https://ollama.com/download), or install via Windows Package Manager:
+  ```powershell
+  winget install Ollama.Ollama
+  ```
+- **macOS / Linux:** Follow instructions at [ollama.com](https://ollama.com).
+
+### 2. Pull the Lightweight Gemma Model
+We standardize on **`gemma3:1b`** as the default model. It is Google's compact, high-efficiency model optimized for low-resource environments:
+- **Download Size:** ~1.0 GB
+- **Required Disk Space:** ~1.5 GB
+- **Active Memory (RAM):** ~2 GB
+- **Cost:** $0, 100% local, no API keys or cloud accounts
+
+To download:
+```bash
+ollama pull gemma3:1b
+```
+
+Verify your installed models:
+```bash
+ollama list
+```
+
+### 3. Verify AI Readiness
+Run the built-in diagnostic doctor:
+```bash
+git grass doctor
+```
+If Ollama is running and `gemma3:1b` is installed, git-grass will report `Status: READY` and run a live test generation.
+
+To preview a live challenge generation without making a commit:
+```bash
+git grass challenge --test
+```
+
+### 4. Offline Fallback Behavior
+If Ollama is not installed, not running, times out (>6s), or if the model is missing, git-grass **instantly and transparently falls back to its bundled curated challenge library** (`challenges/fallback-challenges.json`). Your Git commit workflow is never interrupted by AI failures.
 
 ---
 

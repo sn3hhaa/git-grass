@@ -7,6 +7,8 @@ import { handleStart } from './commands/start.js';
 import { handleVerify } from './commands/verify.js';
 import { handleConfig } from './commands/config.js';
 import { handleUninstall } from './commands/uninstall.js';
+import { handleDoctor } from './commands/doctor.js';
+import { handleChallenge } from './commands/challenge.js';
 
 const program = new Command();
 
@@ -50,6 +52,18 @@ program
   .command('config [key] [value]')
   .description('Inspect or update configuration values')
   .action(handleConfig);
+
+program
+  .command('doctor')
+  .description('Diagnose environment, Git, local Ollama API, and AI model readiness')
+  .action(handleDoctor);
+
+program
+  .command('challenge')
+  .description('Generate and validate a test outdoor challenge without starting a session')
+  .option('-t, --test', 'Test generation')
+  .option('-d, --duration <minutes>', 'Duration in minutes (min: 10)')
+  .action(handleChallenge);
 
 program
   .command('uninstall')

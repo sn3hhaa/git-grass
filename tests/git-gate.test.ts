@@ -117,4 +117,90 @@ describe('git-grass Git integration & hook gate', () => {
     const logRes = await runGit(['log', '-n', '1', '--oneline'], tempRepo);
     expect(logRes.stdout).toContain('feat: verified outdoor commit');
   });
+
+  it('preserves staged changes and handles auto-push against a bare remote', async () => {
+    // 1. Create a disposable bare remote repository
+    const bareRemotePath = fs.mkdtempSync(path.join(os.tmpdir(), 'git-grass-bare-remote-'));
+    await runGit(['init', '--bare', '-b', 'main'], bareRemotePath);
+
+    // 2. Add as origin remote to tempRepo
+    await runGit(['remote', 'add', 'origin', bareRemotePath], tempRepo);
+    await runGit(['push', '-u', 'origin', 'main'], tempRepo);
+
+    // 3. Stage a change
+    fs.writeFileSync(path.join(tempRepo, 'pushed-work.txt'), 'Content to push');
+    await runGit(['add', 'pushed-work.txt'], tempRepo);
+    const hash = await getStagedTreeHash(tempRepo);
+
+    const config = getDefaultConfig();
+    config.autoPush = true; // enable auto-push
+
+    const session: SessionData = {
+      sessionId: 'test-session-autopush',
+      sessionToken: 'test-token-autopush',
+      repositoryRoot: tempRepo,
+      repositoryName: 'test-repo',
+      createdAt: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + 3600000).toISOString(),
+      status: 'COMPLETED',
+      requiredDurationMinutes: 10,
+      breakStartedAt: new Date(Date.now() - 15 * 60 * 1000).toISOString(), // 15m ago (satisfied)
+      breakCompletedAt: new Date().toISOString(),
+      challenge: null,
+      stagedTreeHash: hash,
+      userReflection: 'Walked in park',
+      commitMessage: 'feat: verified auto push commit',
+      commitResult: null,
+      pushResult: null
+    };
+
+    const result = await executeSessionCommit(tempRepo, session, config, 'feat: verified auto push commit');
+    expect(result.commitSuccess).toBe(true);
+    expect(result.pushAttempted).toBe(true);
+    expect(result.pushSuccess).toBe(true);
+
+    // 4. Verify bare remote received the commit
+    const remoteLog = await runGit(['log', '-n', '1', '--oneline'], bareRemotePath);
+    expect(remoteLog.stdout).toContain('feat: verified auto push commit');
+
+    // 5. Test push failure does NOT undo local commit
+    // Configure an invalid remote URL
+    await runGit(['remote', 'set-url', 'origin', 'http://127.0.0.1:59999/unreachable.git'], tempRepo);
+
+    fs.writeFileSync(path.join(tempRepo, 'offline-work.txt'), 'Local work while push fails');
+    await runGit(['add', 'offline-work.txt'], tempRepo);
+    const hashOffline = await getStagedTreeHash(tempRepo);
+
+    const offlineSession: SessionData = {
+      sessionId: 'test-session-failed-push',
+      sessionToken: 'test-token-offline',
+      repositoryRoot: tempRepo,
+      repositoryName: 'test-repo',
+      createdAt: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + 3600000).toISOString(),
+      status: 'COMPLETED',
+      requiredDurationMinutes: 10,
+      breakStartedAt: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+      breakCompletedAt: new Date().toISOString(),
+      challenge: null,
+      stagedTreeHash: hashOffline,
+      userReflection: 'Took a walk',
+      commitMessage: 'feat: local commit survives push failure',
+      commitResult: null,
+      pushResult: null
+    };
+
+    const failResult = await executeSessionCommit(tempRepo, offlineSession, config, 'feat: local commit survives push failure');
+    // Commit must succeed even if push fails!
+    expect(failResult.commitSuccess).toBe(true);
+    expect(failResult.pushAttempted).toBe(true);
+    expect(failResult.pushSuccess).toBe(false);
+
+    // Local git log must have the commit intact
+    const localLog = await runGit(['log', '-n', '1', '--oneline'], tempRepo);
+    expect(localLog.stdout).toContain('feat: local commit survives push failure');
+
+    // Clean up bare remote
+    fs.rmSync(bareRemotePath, { recursive: true, force: true });
+  });
 });

@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-10-10
+
+### Added
+- `git grass doctor` diagnostic command to audit Node.js, Git, Ollama CLI, local API connectivity, model presence, and fallback datasets.
+- `git grass challenge` (`--test`) command to preview and schema-validate project-aware challenges without triggering a Git commit or break session.
+- Comprehensive mocked AI test suite in `tests/challenge.test.ts` verifying request formatting, prompt safety, timeout handling, JSON validation, and model tag inspection.
+- Opt-in live integration test for real local Ollama inference (`TEST_REAL_OLLAMA=1`).
+- Bare remote push test in `tests/git-gate.test.ts` verifying remote synchronization and local commit preservation on push failure.
+
+### Changed
+- Standardized default local AI model identifier to `gemma3:1b` across configuration, documentation, tests, and CLI diagnostics.
+- Added explicit model availability pre-check in `createOutdoorChallenge` before initiating inference requests.
+- Restored full MIT License legal text in `LICENSE`.
+
 ## [0.1.0] - 2026-10-10
 
 ### Added
@@ -34,10 +48,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Project-Aware Challenge Engine:**
   - Repository context extractor analyzing repo name, README excerpts, and dependency keywords.
-  - Local AI integration supporting Ollama (`gemma:2b` / `gemma2`) with strict timeouts.
+  - Local AI integration supporting Ollama (`gemma3:1b`) with strict timeouts.
   - Curated offline fallback challenge library (`challenges/fallback-challenges.json`) covering 6 domains: GameDev, Audio, ML, Web, Systems, and General Curiosity.
   - Strict Zod validation ensuring challenges are 100% physical, screen-free, and safe.
 
 - **Comprehensive Documentation & Quality Assurance:**
   - Full suite of 9 technical markdown documents (`PRD`, `ARCHITECTURE`, `IMPLEMENTATION_PLAN`, `TASK`, `SECURITY`, `TESTING`, `CONTRIBUTING`, `DECISIONS`, `ROADMAP`).
-  - Automated test suite using Vitest with 17 passing tests across unit, server, and Git integration boundaries.
+  - Automated test suite using Vitest with unit, server, and Git integration boundaries.
