@@ -78,7 +78,7 @@ Status indicators:
 - [x] Verify staged changes integrity before committing.
 
 ## 9. Testing & Security
-- [x] Run full automated test suite with Vitest (43 passing tests, 1 opt-in skipped).
+- [x] Run full automated test suite with Vitest (49 passing tests, 1 opt-in skipped).
 - [x] Verify security boundaries (safe exec, no shell injection, local network only, bounded inputs).
 - [x] Test disposable repository end-to-end simulation.
 
@@ -107,7 +107,23 @@ Status indicators:
 - [x] Add configuration support for `hostedBackendUrl` and update `git grass doctor` diagnostics.
 - [x] Create comprehensive automated tests (`tests/hosted-backend.test.ts`) with 18 test cases.
 
-## 12. Final Build & Verification
+## 12. Public Website & Mobile UX Polish
+- [x] Create technical, responsive CSS stylesheet (`site/styles.css`).
+- [x] Create lightweight interactive script (`site/app.js`) with mobile drawer, copy buttons, terminal demo, and category filters.
+- [x] Build comprehensive Home page (`site/index.html`) with interactive terminal demo.
+- [x] Build Documentation page (`site/docs/index.html`).
+- [x] Build Architecture & Security page (`site/architecture/index.html`).
+- [x] Build Challenge Showcase page (`site/challenges/index.html`).
+- [x] Build Privacy Policy page (`site/privacy/index.html`).
+- [x] Build Project Roadmap page (`site/roadmap/index.html`).
+- [x] Build Changelog page (`site/changelog/index.html`).
+- [x] Build Contributing Guide page (`site/contributing/index.html`).
+- [x] Build custom 404 page (`site/404.html`).
+- [x] Polish mobile session web app (`web/`) with completion summary and safe share action.
+- [x] Add automated website integrity tests (`tests/website.test.ts`).
+- [x] Add Render static site blueprint specification (`render.yaml`).
+
+## 13. Final Build & Verification
 - [x] Build TypeScript output (`dist/`).
 - [x] Verify `npm pack --dry-run` package integrity.
 - [x] Verify CLI commands: `help`, `doctor`, `challenge --test`.

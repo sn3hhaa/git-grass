@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — git-grass</title>
+  <meta name="description" content="Release notes, version history, and notable changes for git-grass.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌱</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-text">git-grass</span>
+        <span class="brand-version">Changelog</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../docs/index.html">Docs</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="../challenges/index.html">Challenges</a></li>
+          <li><a href="../privacy/index.html">Privacy</a></li>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <span>GitHub</span>
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="docs-content" style="margin: 0 auto;">
+      <h1>git-grass Changelog</h1>
+      <p>All notable changes to this project are documented in this file, adhering to <a href="https://semver.org" target="_blank" rel="noopener">Semantic Versioning</a>.</p>
+
+      <h2>[0.2.0] — 2026-10-10</h2>
+      <p><strong>Major Milestone: Hosted AI via Render + Backboard with ₹0 Laptop Setup</strong></p>
+      <h3>Added</h3>
+      <ul>
+        <li><strong>Render-Hosted AI API Backend:</strong> Production Express service in <code>src/hosted/</code> with <code>/health</code> and <code>POST /api/challenge</code> endpoints, 25kb body limit, CORS, and graceful shutdown.</li>
+        <li><strong>Backboard AI Provider:</strong> Production integration in <code>src/hosted/providers/backboard.ts</code> calling Backboard API (Gemini 2.0 Flash) with configurable models and prompt formatting.</li>
+        <li><strong>Credit & Cost Safeguards:</strong> In-memory 1-hour TTL cache (1000 items) and 15 req/min sliding-window rate limiter protecting API credits from abuse or duplicate calls.</li>
+        <li><strong>Thinking Machines Tinker Evaluation:</strong> Evaluated Tinker framework; safely kept disabled by default (<code>isConfigured() === false</code>) to protect developer credits from GPU sampling costs.</li>
+        <li><strong>CLI Hosted AI Integration:</strong> Client module <code>src/challenge/hosted-client.ts</code> with automatic failover, <code>hostedBackendUrl</code> configuration key, and <code>git grass doctor</code> cold-start diagnostics.</li>
+        <li><strong>Automated Test Suite Expansion:</strong> 18 new automated tests in <code>tests/hosted-backend.test.ts</code> bringing the total test suite to 43 passing tests.</li>
+        <li><strong>Public Marketing & Documentation Website:</strong> Complete responsive, mobile-first website in <code>site/</code> with interactive terminal demo, challenge showcase, documentation, architecture, and FAQ.</li>
+      </ul>
+
+      <h2>[0.1.1] — 2026-10-10</h2>
+      <h3>Added</h3>
+      <ul>
+        <li><code>git grass doctor</code> diagnostic command to audit Node.js, Git, local API connectivity, model presence, and fallback datasets.</li>
+        <li><code>git grass challenge [--test]</code> command to preview and schema-validate project-aware challenges without triggering a Git commit.</li>
+        <li>Mocked AI test suite verifying prompt confidentiality and JSON validation.</li>
+      </ul>
+
+      <h2>[0.1.0] — 2026-10-10</h2>
+      <h3>Initial Release</h3>
+      <ul>
+        <li>Core CLI with Commander.js: <code>init</code>, <code>status</code>, <code>check</code>, <code>start</code>, <code>verify</code>, <code>config</code>, <code>uninstall</code>.</li>
+        <li>Git commit pre-commit hook gating with staged tree fingerprinting (<code>git write-tree</code>).</li>
+        <li>Local Express HTTP server (:4242) and terminal ANSI QR code generation.</li>
+        <li>Lightweight 10-state mobile web app on local LAN Wi-Fi with authoritative workstation timers.</li>
+        <li>Curated offline fallback challenge library (7 domain challenges).</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-title">🌱 git-grass</span>
+        <p>Your AI can write the code. It can't touch grass.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../docs/index.html">Docs</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="../challenges/index.html">Challenges</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+          <li><a href="index.html">Changelog</a></li>
+          <li><a href="../contributing/index.html">Contributing</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sneha Tiwari & git-grass contributors. MIT License.</span>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>

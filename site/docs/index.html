@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — git-grass</title>
+  <meta name="description" content="Complete developer documentation for git-grass: CLI commands, configuration, Git hook setup, hosted AI integration, and troubleshooting.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌱</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-text">git-grass</span>
+        <span class="brand-version">Docs</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="index.html" class="active">Docs</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="../challenges/index.html">Challenges</a></li>
+          <li><a href="../privacy/index.html">Privacy</a></li>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <span>GitHub</span>
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <a href="../index.html">Home</a>
+    <a href="index.html">Documentation</a>
+    <a href="../architecture/index.html">Architecture</a>
+    <a href="../challenges/index.html">Challenges</a>
+    <a href="../privacy/index.html">Privacy</a>
+    <a href="../roadmap/index.html">Roadmap</a>
+    <a href="../changelog/index.html">Changelog</a>
+    <a href="../contributing/index.html">Contributing</a>
+  </div>
+
+  <div class="docs-layout">
+    <!-- Sidebar -->
+    <aside class="docs-sidebar" aria-label="Documentation Navigation">
+      <div class="docs-nav-group">
+        <div class="docs-nav-heading">Getting Started</div>
+        <ul class="docs-nav-list">
+          <li><a href="#prerequisites" class="active">Prerequisites</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#initialization">Repository Init</a></li>
+          <li><a href="#how-it-works">Commit Workflow</a></li>
+        </ul>
+      </div>
+
+      <div class="docs-nav-group">
+        <div class="docs-nav-heading">CLI Reference</div>
+        <ul class="docs-nav-list">
+          <li><a href="#commands">Commands Overview</a></li>
+          <li><a href="#cmd-init">git grass init</a></li>
+          <li><a href="#cmd-status">git grass status</a></li>
+          <li><a href="#cmd-check">git grass check</a></li>
+          <li><a href="#cmd-config">git grass config</a></li>
+          <li><a href="#cmd-doctor">git grass doctor</a></li>
+          <li><a href="#cmd-challenge">git grass challenge</a></li>
+          <li><a href="#cmd-uninstall">git grass uninstall</a></li>
+        </ul>
+      </div>
+
+      <div class="docs-nav-group">
+        <div class="docs-nav-heading">Cloud & AI Setup</div>
+        <ul class="docs-nav-list">
+          <li><a href="#hosted-ai">Render + Backboard</a></li>
+          <li><a href="#zero-laptop">Zero Laptop Setup</a></li>
+          <li><a href="#render-deploy">render.yaml Deployment</a></li>
+          <li><a href="#offline-fallback">Offline Fallback Library</a></li>
+        </ul>
+      </div>
+
+      <div class="docs-nav-group">
+        <div class="docs-nav-heading">Safety & Troubleshooting</div>
+        <ul class="docs-nav-list">
+          <li><a href="#staged-protection">Staged-Tree Fingerprints</a></li>
+          <li><a href="#emergency-bypass">Emergency Commit Bypass</a></li>
+          <li><a href="#troubleshooting">Troubleshooting Guide</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-main">
+      <article class="docs-content">
+        <h1>git-grass Developer Documentation</h1>
+        <p>Complete installation, configuration, and operational guide for git-grass.</p>
+
+        <section id="prerequisites">
+          <h2>Prerequisites</h2>
+          <ul>
+            <li><strong>Node.js:</strong> Version 18.0.0 or later (verified on Node 18, 20, 22, and 24).</li>
+            <li><strong>Git:</strong> Version 2.20 or later accessible in your system <code>PATH</code>.</li>
+            <li><strong>Operating System:</strong> macOS, Linux, or Windows (tested on PowerShell and bash).</li>
+            <li><strong>Local Network:</strong> Computer and mobile phone connected to the same Wi-Fi network or mobile hotspot for QR code check-in.</li>
+          </ul>
+        </section>
+
+        <section id="installation">
+          <h2>Installation</h2>
+          <p>Clone the repository and install dependencies:</p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git clone https://github.com/sn3hhaa/git-grass.git&#10;cd git-grass&#10;npm install&#10;npm run build">Copy</button>
+            </div>
+            <pre><code>git clone https://github.com/sn3hhaa/git-grass.git
+cd git-grass
+npm install
+npm run build</code></pre>
+          </div>
+
+          <p>Optionally link globally so <code>git grass</code> can be run from any repository on your machine:</p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="npm link">Copy</button>
+            </div>
+            <pre><code>npm link</code></pre>
+          </div>
+        </section>
+
+        <section id="initialization">
+          <h2>Repository Initialization</h2>
+          <p>In any Git repository where you want outdoor break gating, run:</p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git grass init">Copy</button>
+            </div>
+            <pre><code>git grass init</code></pre>
+          </div>
+          <p>This command performs three safe setup steps:</p>
+          <ol>
+            <li>Creates the <code>.git-grass/</code> directory with default configuration.</li>
+            <li>Inspects your existing <code>.git/hooks/pre-commit</code> hook.</li>
+            <li>Wraps the hook with git-grass delimiters without overwriting or deleting any of your existing linters or test scripts.</li>
+          </ol>
+        </section>
+
+        <section id="commands">
+          <h2>CLI Commands Reference</h2>
+
+          <h3 id="cmd-init"><code>git grass init</code></h3>
+          <p>Initializes git-grass in the current Git repository and installs the pre-commit hook.</p>
+
+          <h3 id="cmd-status"><code>git grass status</code></h3>
+          <p>Displays elapsed focus time since your last completed outdoor break, current break requirement status, and active session timers.</p>
+
+          <h3 id="cmd-check"><code>git grass check</code></h3>
+          <p>Called automatically by Git during <code>git commit</code>. Evaluates whether a break is due. If due, exits with code 1 and launches the session server with the terminal QR code.</p>
+
+          <h3 id="cmd-config"><code>git grass config [key] [value]</code></h3>
+          <p>Inspects or updates repository-specific configuration values.</p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git grass config breakIntervalMinutes 90&#10;git grass config defaultDurationMinutes 20&#10;git grass config autoPush true">Copy</button>
+            </div>
+            <pre><code>git grass config breakIntervalMinutes 90     # Set break interval to 90 min
+git grass config defaultDurationMinutes 20   # Set walk duration to 20 min
+git grass config autoPush true               # Enable auto-push after commit</code></pre>
+          </div>
+
+          <h3 id="cmd-doctor"><code>git grass doctor</code></h3>
+          <p>Diagnoses environment readiness: Node.js version, Git availability, repository configuration, Render hosted AI connectivity, and bundled fallback datasets.</p>
+
+          <h3 id="cmd-challenge"><code>git grass challenge [--test]</code></h3>
+          <p>Previews and validates challenge generation for the current repository without triggering a Git commit or starting a break session.</p>
+
+          <h3 id="cmd-uninstall"><code>git grass uninstall [--yes]</code></h3>
+          <p>Safely removes git-grass pre-commit hooks and deletes <code>.git-grass/</code>. Strictly restores your original custom hooks.</p>
+        </section>
+
+        <section id="hosted-ai">
+          <h2>Hosted AI Setup (Render + Backboard)</h2>
+          <p>
+            git-grass connects to a lightweight cloud API deployed on Render's Free tier backed by Backboard.
+            This gives you real AI-generated, project-aware challenges with <strong>zero local AI installations</strong> and <strong>₹0 in additional costs</strong>.
+          </p>
+
+          <h3 id="render-deploy">Deploying via render.yaml</h3>
+          <ol>
+            <li>Fork or connect the repository to <a href="https://render.com" target="_blank" rel="noopener">Render</a>.</li>
+            <li>Create a new Web Service using the included <code>render.yaml</code> blueprint.</li>
+            <li>Set your Backboard API key in the Render environment variables: <code>BACKBOARD_API_KEY=&lt;key&gt;</code>.</li>
+            <li>Deploy the service on the Free plan.</li>
+          </ol>
+
+          <p>Once deployed, point your local CLI to your service URL:</p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git grass config hostedBackendUrl https://your-service.onrender.com&#10;git grass doctor">Copy</button>
+            </div>
+            <pre><code>git grass config hostedBackendUrl https://your-service.onrender.com
+git grass doctor</code></pre>
+          </div>
+        </section>
+
+        <section id="staged-protection">
+          <h2>Staged Index Fingerprinting</h2>
+          <p>
+            When a break is enforced, git-grass immediately executes <code>git write-tree</code> to compute the cryptographic SHA of your current staging index.
+          </p>
+          <p>
+            When you return from outside and submit your commit from your phone, git-grass re-verifies the index hash before committing. If any staged file was modified, deleted, or altered while you were outside, the commit halts immediately to prevent committing unexpected changes.
+          </p>
+        </section>
+
+        <section id="emergency-bypass">
+          <h2>Emergency Commit Bypass</h2>
+          <p>
+            If you need to ship an urgent hotfix or security patch without taking a break, use Git's standard pre-commit bypass flag:
+          </p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git commit --no-verify -m &quot;fix: emergency security patch&quot;">Copy</button>
+            </div>
+            <pre><code>git commit --no-verify -m "fix: emergency security patch"</code></pre>
+          </div>
+        </section>
+
+        <section id="troubleshooting">
+          <h2>Troubleshooting Guide</h2>
+          <div class="callout callout-warning">
+            <div class="callout-icon">⚠️</div>
+            <div>
+              <strong>Phone cannot connect to QR URL?</strong><br>
+              Ensure both your workstation and phone are on the same local Wi-Fi network or mobile hotspot.
+              If on an enterprise network with client isolation, use your phone's personal hotspot.
+            </div>
+          </div>
+          <div class="callout callout-note">
+            <div class="callout-icon">💡</div>
+            <div>
+              <strong>Render backend timing out?</strong><br>
+              Render Free Web Services spin down after 15 minutes of inactivity. When woken up, initial start takes ~50 seconds.
+              git-grass has a built-in fast timeout and seamlessly falls back to bundled offline challenges if the service is asleep.
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-title">🌱 git-grass</span>
+        <p>Your AI can write the code. It can't touch grass.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="../challenges/index.html">Challenges</a></li>
+          <li><a href="../privacy/index.html">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+          <li><a href="../changelog/index.html">Changelog</a></li>
+          <li><a href="../contributing/index.html">Contributing</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sneha Tiwari & git-grass contributors. MIT License.</span>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>

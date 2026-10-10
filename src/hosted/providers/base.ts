@@ -39,3 +39,4 @@ RULES FOR CHALLENGE:
 }
 `.trim();
 }
+

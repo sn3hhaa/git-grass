@@ -9,10 +9,18 @@ export interface HostedChallengeResult {
   cached: boolean;
 }
 
+export interface HostedAvailabilityResult {
+  available: boolean;
+  provider?: string;
+  model?: string;
+  isColdStart?: boolean;
+  statusMessage?: string;
+}
+
 export async function isHostedBackendAvailable(
   baseUrl: string,
   timeoutMs: number = 2500
-): Promise<{ available: boolean; provider?: string; model?: string }> {
+): Promise<HostedAvailabilityResult> {
   try {
     const cleanUrl = baseUrl.replace(/\/$/, '');
     const controller = new AbortController();
@@ -23,15 +31,25 @@ export async function isHostedBackendAvailable(
     });
     clearTimeout(timer);
 
-    if (!res.ok) return { available: false };
+    if (!res.ok) {
+      return { available: false, statusMessage: `HTTP ${res.status}` };
+    }
     const data: any = await res.json();
     return {
       available: data?.status === 'ok',
       provider: data?.provider,
-      model: data?.model
+      model: data?.model,
+      statusMessage: data?.status === 'ok' ? 'Online' : 'Unexpected response'
     };
-  } catch {
-    return { available: false };
+  } catch (err: any) {
+    const isTimeout = err?.name === 'AbortError' || err?.message?.includes('aborted');
+    return {
+      available: false,
+      isColdStart: isTimeout,
+      statusMessage: isTimeout
+        ? 'Timed out (service may be waking up from Render Free sleep)'
+        : 'Connection failed / offline'
+    };
   }
 }
 
@@ -85,3 +103,4 @@ export async function fetchHostedChallenge(
     clearTimeout(timer);
   }
 }
+

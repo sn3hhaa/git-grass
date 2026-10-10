@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>git-grass — Your AI can write the code. It can't touch grass.</title>
+  <meta name="description" content="Git-native outdoor-break enforcement tool. Integrates real physical outdoor recovery into your source-control workflow with zero local AI dependencies.">
+  <meta property="og:title" content="git-grass — Git-Native Outdoor Break Enforcement">
+  <meta property="og:description" content="Your AI can write the code. It can't touch grass. Pause your commit, step outside for 10 minutes, and ship refreshed.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/sn3hhaa/git-grass">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="git-grass — Git-Native Outdoor Break Enforcement">
+  <meta name="twitter:description" content="Your AI can write the code. It can't touch grass. Free open-source developer wellness tool.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌱</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link" aria-label="git-grass homepage">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-text">git-grass</span>
+        <span class="brand-version">v0.2.0</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#challenges">Challenges</a></li>
+          <li><a href="docs/index.html">Docs</a></li>
+          <li><a href="architecture/index.html">Architecture</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="roadmap/index.html">Roadmap</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          <span>Star on GitHub</span>
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="#challenges">Challenges</a>
+    <a href="docs/index.html">Documentation</a>
+    <a href="architecture/index.html">Architecture & Security</a>
+    <a href="#privacy">Privacy & Trust</a>
+    <a href="roadmap/index.html">Project Roadmap</a>
+    <a href="changelog/index.html">Changelog</a>
+    <a href="contributing/index.html">Contributing</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pill">v0.2.0</span>
+          <span>Hosted AI (Render + Backboard) & Zero Laptop Installs</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Your AI can write the code.<br>
+          It can't touch grass.
+        </h1>
+
+        <p class="hero-tagline">
+          <strong>git-grass</strong> is a Git-native outdoor break enforcement tool.
+          When your focus interval expires, your next protected <code>git commit</code> is paused.
+          Scan a terminal QR code, step outdoors for 10+ minutes, and return refreshed to ship.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#install" class="btn-primary">Get Started in 60s →</a>
+          <a href="docs/index.html" class="btn-secondary">Read Documentation</a>
+        </div>
+
+        <div class="install-snippet">
+          <span class="prompt">$</span>
+          <span class="cmd">git clone https://github.com/sn3hhaa/git-grass.git && cd git-grass && npm install</span>
+          <button class="btn-copy" data-copy="git clone https://github.com/sn3hhaa/git-grass.git && cd git-grass && npm install" title="Copy to clipboard">Copy</button>
+        </div>
+      </div>
+
+      <!-- Interactive Terminal Demo Component -->
+      <div class="terminal-frame" id="interactiveTerminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot-red"></span>
+            <span class="dot-yellow"></span>
+            <span class="dot-green"></span>
+          </div>
+          <div class="terminal-title">bash — git-grass interactive workflow demo</div>
+          <div class="terminal-tabs">
+            <button class="terminal-tab active">1. Commit Gate</button>
+            <button class="terminal-tab">2. Challenge</button>
+            <button class="terminal-tab">3. Check-In</button>
+            <button class="terminal-tab">4. Resume</button>
+          </div>
+        </div>
+
+        <div class="terminal-body">
+          <pre><code><!-- Populated dynamically via site/app.js --></code></pre>
+        </div>
+
+        <div class="terminal-controls">
+          <div class="step-indicator">Step 1 of 4</div>
+          <div class="demo-btn-group">
+            <button class="btn-term" id="demoBtnPrev">← Prev</button>
+            <button class="btn-term" id="demoBtnNext">Next Step →</button>
+            <button class="btn-term" id="demoBtnReset">Reset</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section section-alt" id="how-it-works">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-pill">Workflow</span>
+          <h2 class="section-title">How git-grass Works</h2>
+          <p class="section-subtitle">A natural wellness friction point placed right where your cognitive work pauses: your Git commit.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Work Normally</h3>
+            <p class="step-desc">
+              Write code, execute tests, and make edits in your favorite editor.
+              git-grass runs zero background surveillance daemons and consumes zero CPU while you write.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Gate Triggers on Commit</h3>
+            <p class="step-desc">
+              When your focus interval expires (default: 60 mins), your next <code>git commit</code> is safely held.
+              The pre-commit hook generates an ANSI QR code and binds a temporary session server to your local Wi-Fi.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Step Outdoors (10m+ min)</h3>
+            <p class="step-desc">
+              Scan the terminal QR code with your phone. Read a project-aware observational challenge.
+              Lock your phone screen, put it in your pocket, and step outside into sunlight and fresh air.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <h3 class="step-title">Check-in & Ship</h3>
+            <p class="step-desc">
+              Return after at least 10 minutes. Submit your reflection and commit message on the mobile interface.
+              The workstation validates staging integrity and executes the atomic commit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="section" id="features">
+      <div class="section-header">
+        <span class="section-pill">Capabilities</span>
+        <h2 class="section-title">Built for Real Developer Workflows</h2>
+        <p class="section-subtitle">Engineered with safety, privacy, and zero-bullshit engineering standards.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title">Staged Index Fingerprinting</h3>
+          <p class="feature-desc">
+            Uses <code>git write-tree</code> to compute a cryptographic tree SHA of your staging area before your break.
+            Guarantees files can never be corrupted, lost, or silently changed during your walk.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
+          <h3 class="feature-title">Hosted AI via Backboard</h3>
+          <p class="feature-desc">
+            Deploy the included Render service to generate AI challenges using Backboard API (Gemini 2.0 Flash).
+            Requires zero local AI downloads, zero Ollama, zero Docker, and zero GPU memory on your laptop.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3 class="feature-title">Curated Offline Fallbacks</h3>
+          <p class="feature-desc">
+            Bundles 7 domain-specific outdoor challenges across Systems, Web, GameDev, Audio, and ML.
+            If your network is down or the cloud service times out, git-grass falls back instantly without stalling.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⏱️</div>
+          <h3 class="feature-title">Authoritative Workstation Timer</h3>
+          <p class="feature-desc">
+            Timing enforcement is calculated on your workstation laptop, not on the phone.
+            Mobile clock manipulation cannot bypass the strict 10-minute minimum break requirement.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">Zero Shell Injection</h3>
+          <p class="feature-desc">
+            All Git commands execute via <code>child_process.execFile</code> with argument arrays.
+            User input and commit messages from the phone can never escape into shell commands.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📵</div>
+          <h3 class="feature-title">Screen-Free by Design</h3>
+          <p class="feature-desc">
+            git-grass is not a mobile dashboard or a social feed. The phone explicitly tells you to lock your screen
+            and observe your physical outdoor surroundings.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenges Showcase -->
+    <section class="section section-alt" id="challenges">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-pill">Challenges</span>
+          <h2 class="section-title">Thematic Outdoor Challenges</h2>
+          <p class="section-subtitle">
+            Observational breaks tailored to your project's technical domain.
+            Every task is 100% physical, screen-free, safe, and outdoor-oriented.
+          </p>
+        </div>
+
+        <div class="category-nav">
+          <button class="category-btn active" data-category="all">All Domains</button>
+          <button class="category-btn" data-category="systems">Systems & Infra</button>
+          <button class="category-btn" data-category="web">Web & Frontend</button>
+          <button class="category-btn" data-category="gamedev">GameDev & Graphics</button>
+          <button class="category-btn" data-category="audio">Audio & DSP</button>
+          <button class="category-btn" data-category="ml">ML & AI</button>
+        </div>
+
+        <div class="challenges-list">
+          <div class="challenge-card" data-category="systems">
+            <div class="challenge-badge-row">
+              <span class="badge-tag">Systems</span>
+              <span class="badge-duration">15 min walk</span>
+            </div>
+            <h3 class="challenge-name">Kinetic Topology & Flow Walk</h3>
+            <ol class="instructions-list">
+              <li>Step outside to a pathway intersection or look at tree branch bifurcations.</li>
+              <li>Observe how pedestrian traffic or rainwater flows without central coordination.</li>
+              <li>Notice bottlenecks where flow naturally queues or disperses.</li>
+            </ol>
+            <div class="reflection-prompt-box">
+              "How does physical pathway congestion compare to partition bottlenecks in your cluster architecture?"
+            </div>
+          </div>
+
+          <div class="challenge-card" data-category="web">
+            <div class="challenge-badge-row">
+              <span class="badge-tag">Web & Frontend</span>
+              <span class="badge-duration">15 min walk</span>
+            </div>
+            <h3 class="challenge-name">Luminance & Contrast Stroll</h3>
+            <ol class="instructions-list">
+              <li>Step outside into daylight and observe sharp shadow boundaries cast by buildings or trees.</li>
+              <li>Notice how squinting changes apparent contrast between lighted surfaces and deep shade.</li>
+              <li>Observe natural color palettes without looking through a glass screen.</li>
+            </ol>
+            <div class="reflection-prompt-box">
+              "Which natural boundary had the highest luminance contrast, and how did your eyes adapt?"
+            </div>
+          </div>
+
+          <div class="challenge-card" data-category="gamedev">
+            <div class="challenge-badge-row">
+              <span class="badge-tag">GameDev</span>
+              <span class="badge-duration">15 min walk</span>
+            </div>
+            <h3 class="challenge-name">Surface Roughness & Shading Walk</h3>
+            <ol class="instructions-list">
+              <li>Walk outside and examine three distinct natural textures: tree bark, stone, and wet leaves.</li>
+              <li>Observe how sunlight shifts from specular sheen to diffuse scattering as you change your viewing angle.</li>
+              <li>Notice micro-geometry that cannot be captured by simple normal maps.</li>
+            </ol>
+            <div class="reflection-prompt-box">
+              "Which organic texture had the most intricate light scattering behavior?"
+            </div>
+          </div>
+
+          <div class="challenge-card" data-category="ml">
+            <div class="challenge-badge-row">
+              <span class="badge-tag">Machine Learning</span>
+              <span class="badge-duration">15 min walk</span>
+            </div>
+            <h3 class="challenge-name">Pattern & Texture Observer</h3>
+            <ol class="instructions-list">
+              <li>Take a quiet outdoor stroll and observe repeating organic patterns (leaf veins, ripple formations).</li>
+              <li>Notice lighting angles and edge definitions that differentiate one cluster from another.</li>
+              <li>Do not photograph them—use your biological memory and visual cortex.</li>
+            </ol>
+            <div class="reflection-prompt-box">
+              "What distinctive edge or feature made one natural pattern immediately recognizable?"
+            </div>
+          </div>
+
+          <div class="challenge-card" data-category="audio">
+            <div class="challenge-badge-row">
+              <span class="badge-tag">Audio & DSP</span>
+              <span class="badge-duration">12 min walk</span>
+            </div>
+            <h3 class="challenge-name">Acoustic Horizon Deep Listening</h3>
+            <ol class="instructions-list">
+              <li>Find an outdoor bench or quiet standing spot. Close your eyes for 5 full minutes.</li>
+              <li>Identify the closest sound (wind, breathing) versus the furthest audible sound (traffic, birds).</li>
+              <li>Listen for phase interference, echo reflections from nearby walls, and high-frequency roll-off.</li>
+            </ol>
+            <div class="reflection-prompt-box">
+              "What was the furthest sound source you could perceive, and what acoustic obstacles did it pass?"
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy & Security Section -->
+    <section class="section" id="privacy">
+      <div class="section-header">
+        <span class="section-pill">Security Boundary</span>
+        <h2 class="section-title">Strict Privacy Guarantees</h2>
+        <p class="section-subtitle">What happens locally versus what touches the cloud.</p>
+      </div>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Data / Resource</th>
+              <th>Local Workstation</th>
+              <th>Render Hosted AI</th>
+              <th>Privacy Guarantee</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Source Code & Diffs</strong></td>
+              <td><span class="status-check">✓ Stays 100% Local</span></td>
+              <td><span class="status-cross">✗ Never Transmitted</span></td>
+              <td>Zero code, diffs, or file contents are ever uploaded to any cloud service.</td>
+            </tr>
+            <tr>
+              <td><strong>Git Commits & SSH Keys</strong></td>
+              <td><span class="status-check">✓ Local Execution</span></td>
+              <td><span class="status-cross">✗ No Access</span></td>
+              <td>The cloud backend never touches Git. The local CLI executes all Git commands.</td>
+            </tr>
+            <tr>
+              <td><strong>Mobile Session Server</strong></td>
+              <td><span class="status-check">✓ Local Wi-Fi (:4242)</span></td>
+              <td><span class="status-cross">✗ No Public Tunnels</span></td>
+              <td>Binds strictly to your LAN IP. No ngrok, Cloudflare tunnels, or public endpoints.</td>
+            </tr>
+            <tr>
+              <td><strong>Repository Metadata</strong></td>
+              <td><span class="status-check">✓ Extracted Locally</span></td>
+              <td><span class="status-check">✓ Bounded Subset</span></td>
+              <td>Only repo name, broad category (e.g. <code>systems</code>), and duration are sent to AI.</td>
+            </tr>
+            <tr>
+              <td><strong>API Keys & Secrets</strong></td>
+              <td><span class="status-cross">✗ Zero Keys in CLI</span></td>
+              <td><span class="status-check">✓ Render Secrets Only</span></td>
+              <td><code>BACKBOARD_API_KEY</code> resides exclusively in Render server environment.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Developer Installation Section -->
+    <section class="section section-alt" id="install">
+      <div class="section-inner">
+        <div class="section-header">
+          <span class="section-pill">Get Started</span>
+          <h2 class="section-title">Installation & Quickstart</h2>
+          <p class="section-subtitle">Set up git-grass in your repository in under two minutes.</p>
+        </div>
+
+        <div class="docs-content" style="margin: 0 auto;">
+          <h3>1. Clone and Install git-grass</h3>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git clone https://github.com/sn3hhaa/git-grass.git&#10;cd git-grass&#10;npm install&#10;npm run build">Copy</button>
+            </div>
+            <pre><code>git clone https://github.com/sn3hhaa/git-grass.git
+cd git-grass
+npm install
+npm run build</code></pre>
+          </div>
+
+          <h3>2. Initialize in Any Git Repository</h3>
+          <p>Navigate to any project repository where you want outdoor break enforcement:</p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="node path/to/git-grass/dist/cli/index.js init">Copy</button>
+            </div>
+            <pre><code># Run init to install the non-destructive pre-commit gate:
+node /path/to/git-grass/dist/cli/index.js init
+
+# (Optional: link globally with npm link to run 'git grass' anywhere)
+cd /path/to/git-grass && npm link
+git grass init</code></pre>
+          </div>
+
+          <h3>3. Configure Break Intervals</h3>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git grass config breakIntervalMinutes 60&#10;git grass config defaultDurationMinutes 15">Copy</button>
+            </div>
+            <pre><code>git grass config breakIntervalMinutes 60      # Trigger after 60 min focus
+git grass config defaultDurationMinutes 15    # Default 15 min walk (min 10)</code></pre>
+          </div>
+
+          <h3>4. Connect Your Hosted AI (Optional — ₹0 Setup)</h3>
+          <p>If you deploy the included <code>render.yaml</code> with your Backboard key:</p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>bash</span>
+              <button class="btn-copy" data-copy="git grass config hostedBackendUrl https://your-service.onrender.com&#10;git grass doctor">Copy</button>
+            </div>
+            <pre><code>git grass config hostedBackendUrl https://your-service.onrender.com
+git grass doctor</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+      <div class="section-header">
+        <span class="section-pill">Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Direct, honest answers about git-grass.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What happens if I have no internet connection or the cloud AI fails?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              git-grass includes 7 curated domain-aware offline challenges bundled in <code>challenges/fallback-challenges.json</code>.
+              If the Render cloud backend is sleeping, down, or unreachable, git-grass falls back instantly to offline challenges.
+              Your Git workflow is never blocked by cloud outages.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Do I need to install Ollama, Python, Docker, or local models on my laptop?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              No! With the Render + Backboard hosted AI integration, you need zero local AI installations.
+              You only need Node.js 18+ and Git. No Docker, no Python runtimes, and no multi-gigabyte model downloads.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Does git-grass upload my source code or Git history?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Never. When requesting an AI challenge, git-grass sends only high-level metadata (the repository name, category, and duration).
+              Zero source files, diffs, branch names, commit messages, or proprietary code are ever transmitted.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Does git-grass verify that I physically went outside with GPS?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              No. git-grass is a self-imposed developer wellness tool, not surveillance spyware.
+              It enforces an authoritative 10-minute minimum server timer and prompts for an outdoor reflection.
+              It treats developers as mindful adults seeking positive structure.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What if an emergency hotfix requires committing immediately?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              Standard Git bypass conventions work: run <code>git commit --no-verify</code> to bypass pre-commit hooks in an emergency.
+              git-grass respects developer autonomy.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Will installing git-grass destroy my existing pre-commit hooks?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>
+              No. git-grass wraps existing pre-commit hooks non-destructively between distinct markers.
+              If you run linters, formatters, or test scripts in <code>.git/hooks/pre-commit</code>, they continue to execute normally.
+              Running <code>git grass uninstall</code> safely removes only git-grass, leaving your original hook intact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-title">🌱 git-grass</span>
+        <p>Your AI can write the code. It can't touch grass. Git-native outdoor-break enforcement for modern developers.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#challenges">Challenges</a></li>
+          <li><a href="#privacy">Privacy & Security</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Documentation</h4>
+        <ul>
+          <li><a href="docs/index.html">Getting Started</a></li>
+          <li><a href="architecture/index.html">Architecture</a></li>
+          <li><a href="roadmap/index.html">Roadmap</a></li>
+          <li><a href="changelog/index.html">Changelog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass/issues" target="_blank" rel="noopener noreferrer">Report Issue</a></li>
+          <li><a href="contributing/index.html">Contributing</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Sneha Tiwari & git-grass contributors. Released under the MIT License.</span>
+      <span>Budget: ₹0 • Built for Developer Wellness</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

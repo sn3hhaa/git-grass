@@ -31,7 +31,11 @@ describe('git-grass Git integration & hook gate', () => {
   });
 
   afterAll(() => {
-    fs.rmSync(tempRepo, { recursive: true, force: true });
+    try {
+      fs.rmSync(tempRepo, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
+    } catch {
+      // Ignore transient Windows lock
+    }
   });
 
   it('safely installs hook and preserves existing custom pre-commit hooks', () => {
@@ -200,7 +204,11 @@ describe('git-grass Git integration & hook gate', () => {
     const localLog = await runGit(['log', '-n', '1', '--oneline'], tempRepo);
     expect(localLog.stdout).toContain('feat: local commit survives push failure');
 
-    // Clean up bare remote
-    fs.rmSync(bareRemotePath, { recursive: true, force: true });
-  });
+    // Clean up bare remote safely
+    try {
+      fs.rmSync(bareRemotePath, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
+    } catch {
+      // Ignore
+    }
+  }, 15000);
 });

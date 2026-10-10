@@ -53,6 +53,9 @@
   const receiptCommitMsg = document.getElementById('receiptCommitMsg');
   const receiptPushStatus = document.getElementById('receiptPushStatus');
   const pushReceiptRow = document.getElementById('pushReceiptRow');
+  const receiptBreakDuration = document.getElementById('receiptBreakDuration');
+  const btnShareProduct = document.getElementById('btnShareProduct');
+  const shareFeedback = document.getElementById('shareFeedback');
 
   const errorMessageTitle = document.getElementById('errorMessageTitle');
   const errorMessageBody = document.getElementById('errorMessageBody');
@@ -251,6 +254,11 @@
         pushReceiptRow.style.display = 'none';
       }
     }
+
+    if (receiptBreakDuration) {
+      const mins = currentSession.requiredDurationMinutes || 10;
+      receiptBreakDuration.textContent = `${mins} minutes outdoors`;
+    }
   }
 
   async function pollStatusUntilFinished() {
@@ -365,6 +373,38 @@
     btnRetryConnection.addEventListener('click', () => {
       switchView('loading');
       loadInitialSession();
+    });
+  }
+
+  if (btnShareProduct) {
+    btnShareProduct.addEventListener('click', async () => {
+      const shareData = {
+        title: 'git-grass — Open-Source Developer Wellness',
+        text: 'Your AI can write the code. It can\'t touch grass. Just completed an outdoor break with git-grass! 🌿',
+        url: 'https://github.com/sn3hhaa/git-grass'
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (err) {
+          if (err.name === 'AbortError') return;
+        }
+      }
+
+      // Safe fallback: copy public project URL to clipboard without any sensitive data
+      try {
+        await navigator.clipboard.writeText('https://github.com/sn3hhaa/git-grass');
+        if (shareFeedback) {
+          shareFeedback.style.display = 'block';
+          setTimeout(() => {
+            if (shareFeedback) shareFeedback.style.display = 'none';
+          }, 3500);
+        }
+      } catch {
+        alert('git-grass repository: https://github.com/sn3hhaa/git-grass');
+      }
     });
   }
 

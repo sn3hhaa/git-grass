@@ -86,7 +86,13 @@ export async function handleDoctor(): Promise<void> {
         console.log(pc.yellow('! Response received but generation fell back to bundled challenge'));
       }
     } else {
-      console.log(pc.yellow(`! Unreachable at ${hostedUrl} (check deployment or network)`));
+      if (check.isColdStart) {
+        console.log(pc.yellow(`! Timed out connecting to ${hostedUrl}`));
+        console.log(pc.dim('    Note: Render Free web services spin down after 15 min of inactivity and take ~50s to wake up.'));
+        console.log(pc.dim('    The service may be waking up. Re-run "git grass doctor" in 30-60 seconds.'));
+      } else {
+        console.log(pc.yellow(`! Unreachable at ${hostedUrl} (${check.statusMessage || 'check deployment or network'})`));
+      }
     }
   } else {
     console.log(pc.dim('  Backend URL:         Not configured (optional, enables cloud inference with ₹0 laptop setup)'));

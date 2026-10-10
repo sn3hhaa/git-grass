@@ -20,3 +20,4 @@ process.on('SIGINT', () => {
   console.log('[git-grass-hosted-ai] SIGINT received, shutting down gracefully...');
   server.close(() => process.exit(0));
 });
+

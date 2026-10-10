@@ -23,3 +23,11 @@ services:
         sync: false
       - key: ENABLE_TINKER_PROVIDER
         value: "false"
+
+  - type: static
+    name: git-grass-site
+    plan: free
+    region: oregon
+    buildCommand: ""
+    staticPublishPath: site
+    autoDeploy: true

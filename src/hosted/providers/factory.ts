@@ -23,3 +23,4 @@ export function getHostedProvider(): HostedAIProvider {
   // Graceful fallback to bundled library if BACKBOARD_API_KEY is not yet populated
   return new HostedFallbackProvider();
 }
+

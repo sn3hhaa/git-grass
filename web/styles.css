@@ -544,6 +544,51 @@ body {
   border: 1px solid #c9e6d0;
 }
 
+.next-step-box {
+  background: #f4f8f5;
+  border-left: 4px solid var(--forest-primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.next-step-box h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+}
+
+.next-step-box p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.share-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.share-feedback {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--forest-primary);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Spinner */
 .spinner {
   width: 44px;

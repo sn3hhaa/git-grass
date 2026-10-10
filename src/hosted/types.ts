@@ -32,3 +32,4 @@ export interface HostedAIProvider {
   name: 'backboard' | 'tinker' | 'fallback';
   generateChallenge(request: ChallengeRequest): Promise<OutdoorChallenge | null>;
 }
+

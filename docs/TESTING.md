@@ -30,6 +30,7 @@ npm run test:watch
 | `tests/server.test.ts` | `src/server/` | Express HTTP server startup on dynamic ports; rejection of unauthenticated requests; token verification; retrieval of sanitized session data; break initiation; rejection of premature completion. |
 | `tests/git-gate.test.ts` | `src/git/` | Creation of isolated disposable Git repositories in OS temp directories; safe installation of pre-commit hook; preservation of existing custom hooks during installation and uninstallation; staged index tree fingerprinting (`git write-tree`); detection of modified staged content; atomic commit execution with recursion bypass; auto-push to disposable bare remote; preservation of local commit if push fails. |
 | `tests/hosted-backend.test.ts` | `src/hosted/`, `src/challenge/hosted-client.ts` | Health-check endpoint verification (`/health`); request payload schema validation (min duration 10m, category enum); outdoor challenge generation; credit-saving in-memory cache hits; sliding-window rate limiting (429 Too Many Requests); Backboard provider mock tests (JSON parsing, markdown codefence extraction, 401 unauthorized handling, 429 quota exhaustion handling, malformed responses); Tinker credit-protection safety (disabled by default); CLI client availability checks; failover to curated offline fallbacks when backend is unreachable. |
+| `tests/website.test.ts` | `site/`, `web/` | Verifies presence of all 11 static site pages, CSS, and JS; ensures zero API secrets or keys in client bundles; checks Open Graph and meta tags; verifies mobile session app completion summary and safe share action (omitting private commit messages or session tokens). |
 
 ---
 
@@ -38,6 +39,7 @@ npm run test:watch
 Running `npm test` (`vitest run`) produces:
 
 ```text
+✓ tests/website.test.ts (6 tests)
 ✓ tests/session.test.ts (4 tests)
 ✓ tests/config.test.ts (3 tests)
 ✓ tests/challenge.test.ts (11 tests | 1 skipped)
@@ -45,12 +47,12 @@ Running `npm test` (`vitest run`) produces:
 ✓ tests/hosted-backend.test.ts (18 tests)
 ✓ tests/git-gate.test.ts (4 tests)
 
-Test Files  6 passed (6)
-     Tests  43 passed | 1 skipped (44)
-  Duration  6.11s
+Test Files  7 passed (7)
+     Tests  49 passed | 1 skipped (50)
+  Duration  8.32s
 ```
 
-- **43 automated tests passed** without requiring external services or local model downloads.
+- **49 automated tests passed** without requiring external services or local model downloads.
 - **1 opt-in test skipped:** `tests/challenge.test.ts > performs real local inference through local Ollama API if TEST_REAL_OLLAMA=1`. (To execute live inference tests against a running local Ollama instance with `gemma3:1b`, run `$env:TEST_REAL_OLLAMA="1"; npm test`).
 
 ---

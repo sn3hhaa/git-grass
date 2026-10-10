@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | git-grass</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌱</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-text">git-grass</span>
+      </a>
+      <a href="index.html" class="btn-github">Return Home</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div style="max-width: 680px; margin: 40px auto; text-align: center;">
+      <span class="section-pill" style="color: var(--amber); background: var(--amber-bg);">404 Not Found</span>
+      <h1 class="section-title" style="margin-top: 16px;">This Branch Doesn't Exist</h1>
+      <p class="section-subtitle" style="margin-bottom: 32px;">
+        The page or commit you are looking for has been moved, rebased, or deleted.
+      </p>
+
+      <div class="code-block-wrap" style="text-align: left; margin-bottom: 32px;">
+        <div class="code-block-header">
+          <span>terminal</span>
+        </div>
+        <pre><code><span class="term-dim">$</span> git checkout page-you-requested
+<span class="term-amber">error: pathspec 'page-you-requested' did not match any file(s) known to git</span>
+<span class="term-dim">$</span> git-grass status
+<span class="term-green">🌿 Tip: While you're lost, step outside and touch grass!</span></code></pre>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="index.html" class="btn-primary">Return to Homepage →</a>
+        <a href="docs/index.html" class="btn-secondary">Read Documentation</a>
+        <a href="challenges/index.html" class="btn-secondary">Explore Challenges</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>© 2026 Sneha Tiwari & git-grass contributors. MIT License.</span>
+    </div>
+  </footer>
+</body>
+</html>

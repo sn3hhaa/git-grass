@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outdoor Challenge Showcase — git-grass</title>
+  <meta name="description" content="Explore project-aware outdoor observation challenges for software developers: Systems, Web, GameDev, ML, Audio, and General Curiosity.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌱</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-text">git-grass</span>
+        <span class="brand-version">Challenges</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../docs/index.html">Docs</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="index.html" class="active">Challenges</a></li>
+          <li><a href="../privacy/index.html">Privacy</a></li>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <span>GitHub</span>
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="section-header">
+      <span class="section-pill">Library & Schema</span>
+      <h1 class="section-title">Project-Aware Outdoor Challenges</h1>
+      <p class="section-subtitle">
+        Carefully designed physical walks that provide cognitive recovery without generic desk pushups.
+        Every challenge conforms to <code>OutdoorChallengeSchema</code> and enforces screen-free observation.
+      </p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-nav">
+      <button class="category-btn active" data-category="all">All Domains</button>
+      <button class="category-btn" data-category="systems">Systems & Infra</button>
+      <button class="category-btn" data-category="web">Web & Frontend</button>
+      <button class="category-btn" data-category="gamedev">GameDev & Graphics</button>
+      <button class="category-btn" data-category="audio">Audio & DSP</button>
+      <button class="category-btn" data-category="ml">ML & AI</button>
+      <button class="category-btn" data-category="general">General Curiosity</button>
+    </div>
+
+    <!-- Challenges Grid -->
+    <div class="challenges-list">
+      <!-- Challenge 1: Systems -->
+      <div class="challenge-card" data-category="systems">
+        <div class="challenge-badge-row">
+          <span class="badge-tag">Systems</span>
+          <span class="badge-duration">15 min walk</span>
+        </div>
+        <h2 class="challenge-name">Kinetic Topology & Flow Walk</h2>
+        <ol class="instructions-list">
+          <li>Step outside away from all monitors and devices.</li>
+          <li>Walk to a pathway intersection or observe branch bifurcations in a nearby tree.</li>
+          <li>Observe how pedestrian traffic or rainwater routes naturally without central coordination.</li>
+          <li>Notice bottlenecks where flow naturally queues or disperses.</li>
+        </ol>
+        <div class="reflection-prompt-box">
+          "How does physical pathway congestion compare to partition bottlenecks in your cluster architecture?"
+        </div>
+      </div>
+
+      <!-- Challenge 2: Web -->
+      <div class="challenge-card" data-category="web">
+        <div class="challenge-badge-row">
+          <span class="badge-tag">Web & Frontend</span>
+          <span class="badge-duration">15 min walk</span>
+        </div>
+        <h2 class="challenge-name">Luminance & Contrast Stroll</h2>
+        <ol class="instructions-list">
+          <li>Step outside into daylight and find sharp shadow boundaries cast by buildings or trees.</li>
+          <li>Notice how squinting changes apparent contrast between lighted surfaces and deep shade.</li>
+          <li>Observe natural color palettes without looking through a glass screen or RGB subpixels.</li>
+        </ol>
+        <div class="reflection-prompt-box">
+          "Which natural boundary had the highest luminance contrast, and how did your optical system adapt?"
+        </div>
+      </div>
+
+      <!-- Challenge 3: GameDev -->
+      <div class="challenge-card" data-category="gamedev">
+        <div class="challenge-badge-row">
+          <span class="badge-tag">GameDev</span>
+          <span class="badge-duration">15 min walk</span>
+        </div>
+        <h2 class="challenge-name">Surface Roughness & Shading Walk</h2>
+        <ol class="instructions-list">
+          <li>Walk outside and examine three distinct natural textures: tree bark, rough stone, and wet leaves.</li>
+          <li>Observe how sunlight shifts from specular sheen to diffuse scattering as you change your viewing angle.</li>
+          <li>Notice micro-geometry that cannot be captured by simple normal maps or roughness shaders.</li>
+        </ol>
+        <div class="reflection-prompt-box">
+          "Which organic texture had the most intricate light scattering behavior?"
+        </div>
+      </div>
+
+      <!-- Challenge 4: Audio -->
+      <div class="challenge-card" data-category="audio">
+        <div class="challenge-badge-row">
+          <span class="badge-tag">Audio & DSP</span>
+          <span class="badge-duration">12 min walk</span>
+        </div>
+        <h2 class="challenge-name">Acoustic Horizon Deep Listening</h2>
+        <ol class="instructions-list">
+          <li>Find an outdoor bench or quiet standing spot. Close your eyes for 5 full minutes.</li>
+          <li>Identify the closest sound (wind, breathing) versus the furthest audible sound (traffic, birds).</li>
+          <li>Listen for phase interference, echo reflections from nearby walls, and high-frequency roll-off.</li>
+        </ol>
+        <div class="reflection-prompt-box">
+          "What was the furthest sound source you could perceive, and what acoustic obstacles did it pass?"
+        </div>
+      </div>
+
+      <!-- Challenge 5: ML -->
+      <div class="challenge-card" data-category="ml">
+        <div class="challenge-badge-row">
+          <span class="badge-tag">Machine Learning</span>
+          <span class="badge-duration">15 min walk</span>
+        </div>
+        <h2 class="challenge-name">Pattern & Texture Observer</h2>
+        <ol class="instructions-list">
+          <li>Take a quiet outdoor stroll and observe repeating organic patterns (leaf veins, ripple formations).</li>
+          <li>Notice lighting angles and edge definitions that differentiate one cluster from another.</li>
+          <li>Do not photograph them—use your biological memory and visual cortex.</li>
+        </ol>
+        <div class="reflection-prompt-box">
+          "What distinctive edge or feature made one natural pattern immediately recognizable?"
+        </div>
+      </div>
+
+      <!-- Challenge 6: General -->
+      <div class="challenge-card" data-category="general">
+        <div class="challenge-badge-row">
+          <span class="badge-tag">General Curiosity</span>
+          <span class="badge-duration">10 min walk</span>
+        </div>
+        <h2 class="challenge-name">Skyward Horizon Reset</h2>
+        <ol class="instructions-list">
+          <li>Step outside onto open ground with an unobstructed view of the sky.</li>
+          <li>Focus your eyes on the furthest visible cloud or tree on the horizon for 3 full minutes.</li>
+          <li>Allow your optical ciliary muscles to fully relax from monitor focal depth.</li>
+        </ol>
+        <div class="reflection-prompt-box">
+          "What distant detail became sharper as your focal distance shifted to infinity?"
+        </div>
+      </div>
+    </div>
+
+    <!-- Schema Definition -->
+    <div class="section-header" style="margin-top: 80px;">
+      <span class="section-pill">Zod Validation</span>
+      <h2 class="section-title">Strict Schema Enforcement</h2>
+      <p class="section-subtitle">Every challenge—whether generated via Backboard AI or loaded from fallbacks—is validated at runtime.</p>
+    </div>
+
+    <div class="code-block-wrap" style="max-width: 800px; margin: 0 auto;">
+      <div class="code-block-header">
+        <span>src/challenge/schema.ts</span>
+      </div>
+      <pre><code>export const OutdoorChallengeSchema = z.object({
+  title: z.string().min(3),
+  projectContext: z.string().min(3),
+  durationMinutes: z.number().int().min(10), // Strict 10-minute minimum
+  category: z.string().min(2),
+  instructions: z.array(z.string().min(5)).min(1),
+  reflectionPrompt: z.string().min(5),
+  phoneFree: z.literal(true),                // Must strictly be true
+  safetyNotes: z.array(z.string()).default([
+    'Remain aware of your surroundings at all times.',
+    'Do not trespass on private property.',
+    'Stay hydrated and observe local weather conditions.'
+  ])
+});</code></pre>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-title">🌱 git-grass</span>
+        <p>Your AI can write the code. It can't touch grass.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../docs/index.html">Docs</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="../privacy/index.html">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+          <li><a href="../changelog/index.html">Changelog</a></li>
+          <li><a href="../contributing/index.html">Contributing</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sneha Tiwari & git-grass contributors. MIT License.</span>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>

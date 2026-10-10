@@ -16,3 +16,4 @@ export class HostedFallbackProvider implements HostedAIProvider {
     return getFallbackChallenge(context, request.durationMinutes);
   }
 }
+

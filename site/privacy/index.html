@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy & Trust — git-grass</title>
+  <meta name="description" content="Privacy policy and data protection commitments of git-grass: zero code uploads, local LAN security, and no biometric surveillance.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>🌱</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-link">
+        <span class="brand-icon">🌱</span>
+        <span class="brand-text">git-grass</span>
+        <span class="brand-version">Privacy</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../docs/index.html">Docs</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="../challenges/index.html">Challenges</a></li>
+          <li><a href="index.html" class="active">Privacy</a></li>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <span>GitHub</span>
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="docs-nav-group">
+        <div class="docs-nav-heading">Privacy Topics</div>
+        <ul class="docs-nav-list">
+          <li><a href="#core-pledge" class="active">Core Pledge</a></li>
+          <li><a href="#code-privacy">Source Code Privacy</a></li>
+          <li><a href="#metadata-boundary">Metadata Boundary</a></li>
+          <li><a href="#no-surveillance">Trust vs Surveillance</a></li>
+          <li><a href="#telemetry">Zero Telemetry</a></li>
+          <li><a href="#contact">Security Contact</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="docs-main">
+      <article class="docs-content">
+        <h1>Privacy Policy & Trust Commitments</h1>
+        <p>git-grass is built by developers, for developers. Privacy is an engineering invariant, not a marketing claim.</p>
+
+        <section id="core-pledge">
+          <h2>Our Core Privacy Pledge</h2>
+          <div class="callout callout-note">
+            <div class="callout-icon">🛡️</div>
+            <div>
+              <strong>100% Code Privacy:</strong> git-grass will never read, upload, parse, or transmit your proprietary source code, diffs, git commit history, or repository files to any external cloud service or third party.
+            </div>
+          </div>
+        </section>
+
+        <section id="code-privacy">
+          <h2>Source Code & Git Safety</h2>
+          <ul>
+            <li><strong>Git Credentials:</strong> Your SSH private keys, GPG signing keys, Git configuration, and GitHub tokens remain exclusively on your local workstation. The cloud backend has zero Git access.</li>
+            <li><strong>Local Commit Execution:</strong> The mobile web browser never executes Git commands. It sends an authenticated message to your local workstation server (:4242), which executes the commit locally.</li>
+            <li><strong>Staging Protection:</strong> Before your break, git-grass snapshots the staged tree SHA using <code>git write-tree</code>. It verifies that this tree has not changed before executing the commit upon your return.</li>
+          </ul>
+        </section>
+
+        <section id="metadata-boundary">
+          <h2>What Metadata is Sent to the Hosted AI?</h2>
+          <p>
+            When you configure git-grass to use the Render hosted AI backend, the CLI transmits only high-level classification metadata:
+          </p>
+          <div class="code-block-wrap">
+            <div class="code-block-header">
+              <span>Sample Payload Sent to Hosted Backend</span>
+            </div>
+            <pre><code>{
+  "repositoryName": "distributed-cache",
+  "projectDescription": "In-memory caching cluster",
+  "category": "systems",
+  "durationMinutes": 15,
+  "detectedKeywords": ["redis", "cluster", "node"]
+}</code></pre>
+          </div>
+          <p>
+            Zero code lines, zero file paths, zero function names, and zero author emails are included.
+            If you prefer not to send any metadata, do not configure a hosted backend URL—git-grass will rely completely on bundled offline challenges.
+          </p>
+        </section>
+
+        <section id="no-surveillance">
+          <h2>Trust vs. Surveillance</h2>
+          <p>
+            We believe developer wellness tools must treat developers as autonomous professionals.
+            git-grass deliberately <strong>does not</strong> use:
+          </p>
+          <ul>
+            <li>GPS or location geofencing.</li>
+            <li>Camera verification or photo check-ins.</li>
+            <li>Biometric heart-rate or pedometer tracking.</li>
+            <li>Keyboard logging or window sniffing daemons.</li>
+          </ul>
+          <p>
+            Instead, git-grass provides mindful friction: an authoritative 10-minute workstation timer and an observational question to capture what you saw outdoors.
+          </p>
+        </section>
+
+        <section id="telemetry">
+          <h2>Zero Telemetry & Zero Trackers</h2>
+          <p>
+            This website and the git-grass CLI include zero analytics trackers, zero cookies, zero third-party font calls, and zero telemetry pings.
+            Your usage data is never collected or monetized.
+          </p>
+        </section>
+
+        <section id="contact">
+          <h2>Security Inquiries</h2>
+          <p>
+            To report a potential vulnerability or ask privacy questions, please email
+            <a href="mailto:snehatiwari474@gmail.com">snehatiwari474@gmail.com</a> or open a private GitHub security advisory.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-title">🌱 git-grass</span>
+        <p>Your AI can write the code. It can't touch grass.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../docs/index.html">Docs</a></li>
+          <li><a href="../architecture/index.html">Architecture</a></li>
+          <li><a href="../challenges/index.html">Challenges</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="../roadmap/index.html">Roadmap</a></li>
+          <li><a href="../changelog/index.html">Changelog</a></li>
+          <li><a href="../contributing/index.html">Contributing</a></li>
+          <li><a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sneha Tiwari & git-grass contributors. MIT License.</span>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>
