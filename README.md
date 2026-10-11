@@ -46,20 +46,19 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 - **npm Package:** [https://www.npmjs.com/package/git-grass](https://www.npmjs.com/package/git-grass)
 - **GitHub Repository:** [https://github.com/sn3hhaa/git-grass](https://github.com/sn3hhaa/git-grass)
 
-### 1. Official Website Main Page (`https://git-grass.onrender.com`)
+### 1. Official Website Main Page 
 
 <img width="820" alt="Official Website Main Page" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/1-website.png" />
 
-### 2. Technical Architecture & CLI Documentation (`https://git-grass.onrender.com/docs/`)
+### 2. Technical Architecture & CLI Documentation 
 
 <img width="820" alt="Technical Architecture & CLI Documentation" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/2-docs.png" />
 
-### 3. CLI Installation & Hook Setup (`npm install -g git-grass && git grass init`)
+### 3. CLI Installation & Hook Setup 
 
 <img width="780" alt="CLI Installation & Hook Setup" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/3-install.png" />
 
-### 4. Git Commit Gate & Compact QR Code (`git commit -m "..."`)
-
+### 4. Git Commit Gate & Compact QR Code 
 <img width="780" alt="Git Commit Gate & Compact QR Code" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/4-qr-gate.png" />
 
 ### 5. Mobile Break Gateway — Break Duration & Domain Selection
