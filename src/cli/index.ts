@@ -17,7 +17,7 @@ const program = new Command();
 program
   .name('git-grass')
   .description("🌱 Your AI can write the code. It can't touch grass. Git-native outdoor-break enforcement.")
-  .version('0.1.0');
+  .version('0.1.4');
 
 program
   .command('init')
