@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { loadDotEnv } from '../shared/env.js';
+loadDotEnv();
 import { Command } from 'commander';
 import { handleInit } from './commands/init.js';
 import { handleStatus } from './commands/status.js';

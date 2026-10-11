@@ -1,3 +1,5 @@
+import { loadDotEnv } from '../shared/env.js';
+loadDotEnv();
 import { createHostedServerApp } from './server.js';
 
 const port = parseInt(process.env.PORT || '3000', 10);
