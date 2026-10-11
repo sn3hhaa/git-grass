@@ -264,13 +264,25 @@
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnSubmitContact');
-      const statusEl = document.getElementById('contactStatus');
-      if (!btn || !statusEl) return;
+      if (!btn) return;
+
+      const setBtnLabel = (label) => {
+        const span = btn.querySelector('span');
+        if (!span) {
+          btn.innerHTML = `<span>${label}</span>`;
+          return;
+        }
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(2px)';
+        setTimeout(() => {
+          span.textContent = label;
+          span.style.opacity = '1';
+          span.style.transform = 'translateY(0)';
+        }, 150);
+      };
 
       btn.disabled = true;
-      const origText = btn.innerHTML;
-      btn.innerHTML = '<span>Sending...</span>';
-      statusEl.style.display = 'none';
+      setBtnLabel('Sending...');
 
       const formData = new FormData(contactForm);
       const payload = Object.fromEntries(formData.entries());
@@ -290,17 +302,14 @@
 
         await response.json();
         contactForm.reset();
-        statusEl.className = 'contact-status success';
-        statusEl.textContent = 'Thank you! Your message has been sent.';
-        statusEl.style.display = 'block';
       } catch {
         contactForm.reset();
-        statusEl.className = 'contact-status success';
-        statusEl.textContent = 'Thank you! Your message has been sent.';
-        statusEl.style.display = 'block';
       } finally {
-        btn.disabled = false;
-        btn.innerHTML = origText;
+        setBtnLabel('Sent!');
+        setTimeout(() => {
+          setBtnLabel('Send');
+          btn.disabled = false;
+        }, 2200);
       }
     });
   }
