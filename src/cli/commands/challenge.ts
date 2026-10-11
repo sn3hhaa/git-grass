@@ -19,9 +19,18 @@ export async function handleChallenge(options: ChallengeOptions = {}): Promise<v
   console.log(pc.green(pc.bold('\n🌱 git-grass Challenge Preview\n')));
   console.log(pc.dim(`Generating outdoor challenge for duration: ${safeDuration} minutes...`));
 
-  const { challenge, source } = await createOutdoorChallenge(repoRoot, config, safeDuration);
+  const { challenge, source, model } = await createOutdoorChallenge(repoRoot, config, safeDuration);
 
-  console.log(pc.cyan('Engine Source:     ') + (source === 'ollama' ? pc.green('Local Ollama AI (Gemma)') : pc.yellow('Curated Offline Fallback')));
+  const engineLabel =
+    source === 'backboard' || source === 'hosted-ai'
+      ? pc.green(`Backboard Cloud AI (${model || 'gpt-4o'})`)
+      : source === 'tinker'
+        ? pc.green('Thinking Machines Tinker AI')
+        : source === 'ollama'
+          ? pc.green('Local Ollama AI')
+          : pc.yellow('Curated Offline Fallback');
+
+  console.log(pc.cyan('Engine Source:     ') + engineLabel);
   console.log(pc.cyan('Category:          ') + challenge.category.toUpperCase());
   console.log(pc.cyan('Duration:          ') + `${challenge.durationMinutes} minutes (Phone-free)`);
   console.log(pc.cyan('Project Context:   ') + challenge.projectContext);

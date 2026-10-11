@@ -140,12 +140,31 @@
     switchView('error');
   }
 
+  function decodeEmbeddedChallenge() {
+    const chParam = params.get('ch');
+    if (!chParam) return null;
+    try {
+      const b64 = chParam.replace(/-/g, '+').replace(/_/g, '/');
+      const pad = b64.length % 4 ? '='.repeat(4 - (b64.length % 4)) : '';
+      const bytes = Uint8Array.from(atob(b64 + pad), (c) => c.charCodeAt(0));
+      const jsonStr = new TextDecoder().decode(bytes);
+      const parsed = JSON.parse(jsonStr);
+      if (parsed && parsed.title && Array.isArray(parsed.instructions)) {
+        return parsed;
+      }
+    } catch {
+      // ignore decode error
+    }
+    return null;
+  }
+
   function startStandaloneMode() {
     isStandaloneMode = true;
     const requestedCat = params.get('cat') || params.get('category') || 'systems';
     const requestedDur = parseInt(params.get('dur') || '15', 10) || 15;
     selectedDurationMinutes = requestedDur;
-    const picked = standaloneCatalog.find((c) => c.category === requestedCat) || standaloneCatalog[0];
+    const embedded = decodeEmbeddedChallenge();
+    const picked = embedded || standaloneCatalog.find((c) => c.category === requestedCat) || standaloneCatalog[0];
 
     currentSession = {
       sessionId: sessionId,

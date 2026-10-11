@@ -29,7 +29,7 @@ export async function handleStart(options: StartOptions = {}): Promise<void> {
   const session = await createSession(repoRoot, config, duration);
 
   const runningServer = await startSessionServer(repoRoot, session, port);
-  displayTerminalGate(runningServer.sessionUrl, session.requiredDurationMinutes);
+  displayTerminalGate(runningServer.sessionUrl, session.requiredDurationMinutes, runningServer.webGatewayUrl);
 
   // Keep process alive to serve the phone until user terminates or session completes
   process.on('SIGINT', () => {

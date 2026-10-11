@@ -65,9 +65,30 @@ export function extractProjectContext(repoRoot: string): ProjectContextSummary {
     }
   }
 
+  // Scan repository files & extensions to detect exact project contents
+  try {
+    const entries = fs.readdirSync(repoRoot, { withFileTypes: true });
+    const fileNames: string[] = [];
+    for (const entry of entries) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'dist') continue;
+      fileNames.push(entry.name);
+      const ext = path.extname(entry.name).toLowerCase();
+      if (['.html', '.css', '.jsx', '.tsx', '.vue', '.svelte'].includes(ext)) detectedKeywords.push('web', 'frontend-ui');
+      if (['.py', '.ipynb', '.pt', '.onnx'].includes(ext)) detectedKeywords.push('python', 'ml');
+      if (['.rs', '.go', '.c', '.cpp', '.dockerfile', '.sh'].includes(ext)) detectedKeywords.push('systems', 'backend');
+      if (['.unity', '.godot', '.glsl', '.hlsl', '.obj'].includes(ext)) detectedKeywords.push('gamedev', '3d-graphics');
+      if (['.wav', '.mp3', '.ogg', '.dsp'].includes(ext)) detectedKeywords.push('audio', 'signal-processing');
+    }
+    if (fileNames.length > 0) {
+      detectedKeywords.push(...fileNames.slice(0, 5));
+    }
+  } catch {
+    // ignore
+  }
+
   // Fallback description
   if (!description) {
-    description = `${repoName} software project`;
+    description = `${repoName} (${detectedKeywords.slice(0, 4).join(', ') || 'software project'})`;
   }
 
   // Deduce category
@@ -78,11 +99,11 @@ export function extractProjectContext(repoRoot: string): ProjectContextSummary {
     category = 'gamedev';
   } else if (lowerDesc.includes('audio') || lowerDesc.includes('sound') || lowerDesc.includes('dsp') || lowerDesc.includes('music')) {
     category = 'audio';
-  } else if (lowerDesc.includes('machine learning') || lowerDesc.includes('ai') || lowerDesc.includes('model') || lowerDesc.includes('data science') || lowerDesc.includes('neural')) {
+  } else if (lowerDesc.includes('machine learning') || lowerDesc.includes('ai') || lowerDesc.includes('model') || lowerDesc.includes('data science') || lowerDesc.includes('neural') || lowerDesc.includes('python')) {
     category = 'ml';
-  } else if (lowerDesc.includes('web') || lowerDesc.includes('frontend') || lowerDesc.includes('ui') || lowerDesc.includes('css') || lowerDesc.includes('html') || lowerDesc.includes('browser')) {
+  } else if (lowerDesc.includes('web') || lowerDesc.includes('frontend') || lowerDesc.includes('ui') || lowerDesc.includes('css') || lowerDesc.includes('html') || lowerDesc.includes('browser') || lowerDesc.includes('react')) {
     category = 'web';
-  } else if (lowerDesc.includes('backend') || lowerDesc.includes('cli') || lowerDesc.includes('system') || lowerDesc.includes('docker') || lowerDesc.includes('cloud') || lowerDesc.includes('database')) {
+  } else if (lowerDesc.includes('backend') || lowerDesc.includes('cli') || lowerDesc.includes('system') || lowerDesc.includes('docker') || lowerDesc.includes('cloud') || lowerDesc.includes('database') || lowerDesc.includes('api')) {
     category = 'systems';
   }
 

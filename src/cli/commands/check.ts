@@ -32,7 +32,7 @@ export async function handleCheck(options: { wait?: boolean } = {}): Promise<voi
   }
 
   const runningServer = await startSessionServer(repoRoot, session);
-  displayTerminalGate(runningServer.sessionUrl, session.requiredDurationMinutes);
+  displayTerminalGate(runningServer.sessionUrl, session.requiredDurationMinutes, runningServer.webGatewayUrl);
 
   console.log(pc.yellow('Git commit paused. Workstation will resume after outdoor break check-in.\n'));
 

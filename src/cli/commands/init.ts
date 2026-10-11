@@ -50,11 +50,6 @@ export async function handleInit(options: InitOptions = {}): Promise<void> {
     config.autoPush = options.autoPush;
   }
 
-  // Set initial lastBreakCompletedAt to now so the developer gets their first interval before being gated
-  if (!config.lastBreakCompletedAt) {
-    config.lastBreakCompletedAt = new Date().toISOString();
-  }
-
   saveConfig(repoRoot, config);
 
   const hookResult = installPreCommitHook(repoRoot);

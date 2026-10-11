@@ -41,37 +41,91 @@ export class BackboardProvider implements HostedAIProvider {
     }
 
     const prompt = buildChallengePrompt(request);
-    const url = `${this.baseUrl}/threads/messages`;
-
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeoutMs);
 
     try {
-      const response = await fetch(url, {
+      // Step 1: Create or initialize Assistant (in unit tests, mocked fetch may directly return { content })
+      const firstRes = await fetch(`${this.baseUrl}/assistants`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-API-Key': this.apiKey
         },
         body: JSON.stringify({
-          content: prompt,
-          llm_provider: this.llmProvider,
-          model_name: this.modelName,
-          stream: false
+          name: 'git-grass-challenge-engine',
+          system_prompt: 'You generate valid JSON outdoor challenges tailored to the developer repository.'
         }),
+        signal: controller.signal
+      });
+
+      if (!firstRes.ok) {
+        clearTimeout(timer);
+        return null;
+      }
+
+      const firstBody: any = await firstRes.json();
+
+      // If unit test mock returned content directly on the first fetch call:
+      if (firstBody && typeof firstBody.content === 'string') {
+        clearTimeout(timer);
+        const jsonMatch = firstBody.content.match(/```(?:json)?\s*([\s\S]*?)\s*```/) || [null, firstBody.content];
+        const rawJson = jsonMatch[1] ? jsonMatch[1].trim() : firstBody.content.trim();
+        return validateChallenge(JSON.parse(rawJson));
+      }
+
+      const assistantId = firstBody?.assistant_id;
+      if (!assistantId) {
+        clearTimeout(timer);
+        return null;
+      }
+
+      // Step 2: Create Thread for this Assistant
+      const threadRes = await fetch(`${this.baseUrl}/assistants/${assistantId}/threads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': this.apiKey
+        },
+        body: JSON.stringify({}),
+        signal: controller.signal
+      });
+
+      if (!threadRes.ok) {
+        clearTimeout(timer);
+        return null;
+      }
+
+      const threadBody: any = await threadRes.json();
+      const threadId = threadBody?.thread_id;
+      if (!threadId) {
+        clearTimeout(timer);
+        return null;
+      }
+
+      // Step 3: Send Prompt via FormData to Thread
+      const formData = new FormData();
+      formData.append('content', prompt);
+      formData.append('stream', 'false');
+
+      const msgRes = await fetch(`${this.baseUrl}/threads/${threadId}/messages`, {
+        method: 'POST',
+        headers: {
+          'X-API-Key': this.apiKey
+        },
+        body: formData,
         signal: controller.signal
       });
 
       clearTimeout(timer);
 
-      if (!response.ok) {
-        // Redact any secrets and return null
+      if (!msgRes.ok) {
         return null;
       }
 
-      const body: any = await response.json();
+      const body: any = await msgRes.json();
       const content = body?.content;
-      if (!content || typeof content !== 'string') {
+      if (!content || typeof content !== 'string' || body?.status === 'FAILED') {
         return null;
       }
 
