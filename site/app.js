@@ -258,7 +258,7 @@
   // 6. Theme: Pure Dark Developer Tool Mode (Locked to Pitch Dark)
   document.body.setAttribute('data-theme', 'dark');
 
-  // 7. Contact Form AJAX Submission (snehatwiari474@gmail.com)
+  // 7. Contact Form AJAX Submission (snehatiwari474@gmail.com)
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -291,7 +291,7 @@
       payload._captcha = 'false';
 
       try {
-        const response = await fetch('https://formsubmit.co/ajax/snehatwiari474@gmail.com', {
+        const response = await fetch('https://formsubmit.co/ajax/snehatiwari474@gmail.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
