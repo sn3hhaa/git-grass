@@ -44,7 +44,7 @@
   "bugs": {
     "url": "https://github.com/sn3hhaa/git-grass/issues"
   },
-  "homepage": "https://github.com/sn3hhaa/git-grass#readme",
+  "homepage": "https://git-grass.onrender.com",
   "dependencies": {
     "commander": "^13.1.0",
     "express": "^4.21.2",

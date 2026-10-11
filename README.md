@@ -6,11 +6,11 @@
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org)
 [![Tests Passing](https://img.shields.io/badge/tests-51%20passed-success.svg)](./tests)
-[![Website](https://img.shields.io/badge/website-online-brightgreen.svg)](./site/index.html)
+[![Website](https://img.shields.io/badge/website-git--grass.onrender.com-brightgreen.svg)](https://git-grass.onrender.com)
 
-**git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website](./site/index.html).
+**git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website (https://git-grass.onrender.com)](https://git-grass.onrender.com).
 
-When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code that opens an offline-resilient mobile web experience. Using repository metadata, git-grass generates an observational outdoor challenge tailored to your project domain using a **Render-hosted AI backend powered by Backboard** (Gemini 2.0 Flash), Thinking Machines Tinker provider architecture, or zero-config bundled offline fallbacks.
+When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code and website gateway link (`https://git-grass.onrender.com/break/...`). Using repository file structure and manifest metadata, git-grass generates an observational outdoor challenge tailored to your project domain using **Backboard Cloud AI** (`POST /assistants` -> `POST /threads` -> `POST /threads/{id}/messages`), **Thinking Machines Tinker** open-weight model sampling (`Qwen/Qwen3-30B-A3B`), **Render** cloud microservice hosting, or zero-config bundled offline fallbacks.
 
 The developer locks their phone, steps away from their workstation for at least 10 minutes, returns refreshed, completes a short check-in on the phone, and submits their commit message directly from their yard or doorway. The local CLI safely validates staging integrity and executes the commit.
 
@@ -260,19 +260,19 @@ Safely removes git-grass pre-commit hooks and `.git-grass/` configuration, stric
 
 ---
 
-## ☁️ Hosted AI Backend (Render + Backboard — ₹0 Laptop Setup)
+## ☁️ Cloud AI Architecture (Render + Backboard + Thinking Machines Tinker)
 
-For developers who want real AI-generated, project-aware challenges with zero local AI runtimes or heavy models on their machine, git-grass provides a lightweight, dedicated cloud backend.
+For developers who want real AI-generated, project-aware challenges with zero local AI runtimes or heavy models on their machine, git-grass provides a multi-provider cloud and direct-CLI AI pipeline.
 
 ### Architecture Overview
-- **Deployment Platform:** Render Web Service (Free Tier, 0.0.0.0 binding, zero persistent disk needed).
-- **Inference Engine:** [Backboard API](https://app.backboard.io) (`POST /threads/messages`) using existing account credits with default provider `google` / model `gemini-2.0-flash` ($0.10/M tokens, near-zero cost).
+- **Deployment Platform (Render):** Full-stack `render.yaml` Blueprint deploying both the Static Documentation Website (`https://git-grass.onrender.com`) and the Hosted AI Web Service (`0.0.0.0` binding, `/health` endpoint).
+- **Backboard AI Engine (`src/hosted/providers/backboard.ts`):** Uses the [Backboard API](https://app.backboard.io) 3-step stateful workflow (`POST /assistants` -> `POST /assistants/{id}/threads` -> `POST /threads/{id}/messages` with `FormData`) to synthesize repository-specific outdoor challenges.
+- **Thinking Machines Tinker Engine (`src/hosted/providers/tinker.ts`):** Integrated open-weight model sampling provider (`Qwen/Qwen3-30B-A3B`) via OpenAI-compatible `/v1/chat/completions` inference with strict `OutdoorChallengeSchema` validation.
 - **Credit & Abuse Protection:**
   - **In-Memory Cache:** 1-hour TTL cache (up to 1,000 entries) preventing identical queries from consuming duplicate credits.
   - **Sliding-Window Rate Limiter:** 15 requests/minute per client IP to prevent runaway credit drainage.
-- **Thinking Machines Tinker Status:** Evaluated and implemented (`src/hosted/providers/tinker.ts`) as an optional research provider, safely disabled by default (`ENABLE_TINKER_PROVIDER=false`) to safeguard user credits.
-- **Instant Offline Fallback:** If the cloud backend is unreachable or offline, git-grass **instantly and transparently falls back to its bundled curated challenge library** (`challenges/fallback-challenges.json`). Your Git commit workflow is never interrupted.
-- **Local Privacy Unaltered:** The local session server remains completely private on your local LAN. The hosted API only processes repository metadata (project name, category, detected keywords) and returns the challenge text.
+- **Instant Offline Fallback:** If cloud providers are unreachable or offline, git-grass **instantly and transparently falls back to its bundled curated challenge library** (`challenges/fallback-challenges.json`). Your Git commit workflow is never interrupted.
+- **Local Privacy Unaltered:** The local session server never transmits private source code or Git history; only repository name, domain category, and top-level file extensions/keywords are used to craft the outdoor walk analogy.
 
 ### Deploying to Render in 3 Steps ($0 Cost)
 

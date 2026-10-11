@@ -4,6 +4,7 @@ import { getFallbackChallenge } from './fallback.js';
 import { generateOllamaChallenge, isModelAvailable, isOllamaAvailable } from './ollama.js';
 import { fetchHostedChallenge } from './hosted-client.js';
 import { BackboardProvider } from '../hosted/providers/backboard.js';
+import { TinkerProvider } from '../hosted/providers/tinker.js';
 
 export type ChallengeEngineSource = 'backboard' | 'hosted-ai' | 'tinker' | 'ollama' | 'fallback';
 
@@ -48,6 +49,30 @@ export async function createOutdoorChallenge(
         return {
           challenge: directChallenge,
           source: 'backboard',
+          model: `${info.provider}/${info.model}`
+        };
+      }
+    } catch {
+      // Fall through cleanly
+    }
+  }
+
+  // 3. Direct Thinking Machines Tinker API key in .env
+  const tinker = new TinkerProvider();
+  if (tinker.isConfigured()) {
+    try {
+      const tinkerChallenge = await tinker.generateChallenge({
+        repositoryName: context.repositoryName,
+        category: context.category,
+        projectDescription: context.projectDescription,
+        detectedKeywords: context.detectedKeywords,
+        durationMinutes: duration
+      });
+      if (tinkerChallenge) {
+        const info = tinker.getModelInfo();
+        return {
+          challenge: tinkerChallenge,
+          source: 'tinker',
           model: `${info.provider}/${info.model}`
         };
       }

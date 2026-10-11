@@ -22,7 +22,7 @@ services:
       - key: TINKER_API_KEY
         sync: false
       - key: ENABLE_TINKER_PROVIDER
-        value: "false"
+        value: "true"
 
   - type: static
     name: git-grass-site

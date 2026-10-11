@@ -454,10 +454,10 @@ All diagnostics passed. System ready.</code></pre>
           <p>git-grass is engineered with a strict minimal-dependency philosophy to guarantee zero runtime baggage and maximum developer trust:</p>
           <ul>
             <li><strong>TypeScript &amp; Node.js ES Modules:</strong> Strict typing across all CLI commands, schemas, and network transports. Zero build compilation needed at user runtime.</li>
-            <li><strong>Git Plumbing Architecture:</strong> Instead of fragile porcelain scraping, git-grass interacts with low-level Git plumbing: <code>git write-tree</code> to compute index SHAs, <code>git rev-parse</code> for repository boundaries, and <code>git commit-tree</code> for atomic commits.</li>
-            <li><strong>Local Native HTTP Server:</strong> Zero Express or external web frameworks. A pure Node.js <code>http.createServer</code> daemon listening on local port 4242, with cryptographic token validation using <code>crypto.timingSafeEqual</code>.</li>
-            <li><strong>Zod Runtime Schema Validation:</strong> Every generated outdoor activity is checked against <code>OutdoorChallengeSchema</code> before presentation to ensure safety, duration (>= 10m), and phone-free compliance.</li>
-            <li><strong>Hosted AI (Render + Backboard):</strong> Deployed on Render's Free tier using Backboard inference with in-memory TTL caching and rate-limiting. Strictly operates within &#8377;0 in additional costs.</li>
+            <li><strong>Git Plumbing Architecture:</strong> Instead of fragile porcelain scraping, git-grass interacts with low-level Git plumbing: <code>git write-tree</code> to compute index SHAs, <code>git rev-parse</code> for repository boundaries, and atomic commit verification.</li>
+            <li><strong>Express &amp; Web Break Gateway:</strong> Serves a cryptographically authenticated Break Gateway both locally on port 4242 and via the cloud gateway (<code>https://git-grass.onrender.com/break/</code>) with base64url-encoded AI mission payloads.</li>
+            <li><strong>Zod Runtime Schema Validation:</strong> Every generated outdoor activity is checked against <code>OutdoorChallengeSchema</code> and an anti-screen word filter before presentation to ensure safety, duration (&gt;= 10m), and phone-free compliance.</li>
+            <li><strong>Multi-Provider Cloud AI (Backboard + Thinking Machines Tinker + Render):</strong> Uses Backboard's 3-step stateful Assistant &amp; Thread API (<code>POST /assistants</code> &rarr; <code>POST /threads</code> &rarr; <code>POST /threads/{id}/messages</code>) and Thinking Machines Tinker open-weight sampling (<code>Qwen/Qwen3-30B-A3B</code>) deployed on Render with 1-hour TTL caching and sliding-window rate limiting.</li>
           </ul>
         </section>
 
@@ -472,11 +472,11 @@ All diagnostics passed. System ready.</code></pre>
           </p>
         </section>
 
-        <!-- Section 7: Local Wi-Fi Pairing -->
+        <!-- Section 7: Local Wi-Fi & Cloud Gateway Pairing -->
         <section id="session-pairing">
-          <h2>Local Wi-Fi Pairing Architecture</h2>
+          <h2>Break Gateway &amp; Mobile Pairing Architecture</h2>
           <p>
-            When a break triggers, your workstation starts a local HTTP server bound to your local area network (LAN) address (e.g., <code>192.168.1.48:4242</code>). Communication between your phone and your computer stays strictly inside your local Wi-Fi network. No tokens or URLs pass through public servers.
+            When a break triggers, git-grass generates a cryptographic QR code and Break Gateway URL (<code>https://git-grass.onrender.com/break/?session=...</code>) alongside a local LAN listener (<code>http://192.168.x.x:4242</code>). The generated AI challenge is embedded directly in the signed URL so your phone receives the exact repository-specific mission even on mobile data outdoors.
           </p>
         </section>
 
@@ -490,7 +490,7 @@ All diagnostics passed. System ready.</code></pre>
             <div class="doc-code-header">
               <span>bash — hook guard logic</span>
             </div>
-            <pre><code>if [ "$GIT_GRASS_BYPASS" = "1" ]; then
+            <pre><code>if [ -n "$GIT_GRASS_BYPASS_TOKEN" ]; then
   exit 0
 fi</code></pre>
           </div>
@@ -498,21 +498,21 @@ fi</code></pre>
 
         <!-- Section 9: Hosted AI Setup -->
         <section id="hosted-ai">
-          <h2>Hosted AI Setup (Render + Backboard)</h2>
+          <h2>Cloud AI Setup (Render + Backboard + Thinking Machines Tinker)</h2>
           <p>
-            git-grass connects to a lightweight cloud API deployed on Render's Free tier, using Backboard to generate project-aware outdoor prompts without any local AI runtime:
+            git-grass connects to a lightweight cloud API deployed on Render (or directly via your local <code>.env</code>), using Backboard and Thinking Machines Tinker to generate project-aware outdoor prompts without any local GPU or heavy runtime:
           </p>
           <ul>
-            <li><strong>Zero Cost:</strong> Operates entirely within free tier allowances and existing credits (&#8377;0 additional spending).</li>
-            <li><strong>Strict Privacy:</strong> Only file extension names and high-level project domain metadata are sent. Your source code, diffs, and repository contents never leave your machine.</li>
+            <li><strong>Backboard Stateful AI Engine:</strong> Automatically creates a dedicated Assistant and Thread via <code>https://app.backboard.io/api</code> to synthesize physical outdoor analogies tailored to your repository name and detected files.</li>
+            <li><strong>Thinking Machines Tinker Provider:</strong> Supports open-weight model sampling (<code>Qwen/Qwen3-30B-A3B</code>) via <code>src/hosted/providers/tinker.ts</code>.</li>
+            <li><strong>Strict Privacy:</strong> Only top-level file names, extension types, and project domain metadata are analyzed. Your private source code and Git history never leave your machine.</li>
           </ul>
 
           <h3 id="render-deploy">Deploying via render.yaml</h3>
           <ol>
-            <li>Fork or connect the repository to <a href="https://render.com" target="_blank" rel="noopener noreferrer">Render</a>.</li>
-            <li>Select <strong>New +</strong> &rarr; <strong>Blueprint</strong> and select the repository. Render automatically reads <code>render.yaml</code>.</li>
-            <li>Add your Backboard API key in the Render Dashboard environment settings: <code>BACKBOARD_API_KEY=&lt;key&gt;</code>.</li>
-            <li>Deploy the web service. Update your local config with <code>git grass config hostedApiUrl https://your-service.onrender.com</code>.</li>
+            <li>Connect the repository to <a href="https://render.com" target="_blank" rel="noopener noreferrer">Render</a>.</li>
+            <li>Deploy the Static Site (Publish Directory: <code>site</code>) and Web Service (<code>npm run start:hosted</code>), or use <code>render.yaml</code> Blueprint.</li>
+            <li>Add <code>BACKBOARD_API_KEY</code> (and optional <code>TINKER_API_KEY</code>) in your Render Environment Variables or local <code>.env</code> file.</li>
           </ol>
         </section>
 
