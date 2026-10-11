@@ -14,13 +14,13 @@
 <body data-theme="dark">
   <div class="app-container">
     <header class="app-header">
-      <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="brand" style="text-decoration: none;">
+      <a href="/" id="brandWebsiteLink" class="brand" style="text-decoration: none;">
         <img src="logo-dark-theme.png" alt="git-grass logo" class="brand-logo-img" width="24" height="24">
         <span class="brand-title">git-grass</span>
       </a>
       <div class="header-right-actions">
         <span id="headerStatusBadge" class="status-badge">Break Gateway</span>
-        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="website-link-pill" title="Official Website & Repository">
+        <a href="/" id="headerWebsiteLink" class="website-link-pill" title="Official Website">
           <span>Website</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -39,33 +39,26 @@
         <p class="subtext" style="text-align: center;">Validating cryptographic session token</p>
       </section>
 
-      <!-- State: Error / Disconnected (Minimal fallback) -->
+      <!-- State: Waiting for CLI Session (When opened directly without scanning QR) -->
       <section id="stateError" class="state-view">
-        <h2 id="errorMessageTitle" class="section-title">Workstation Offline</h2>
-        <p id="errorMessageBody" class="subtext">Continuing in standalone mobile mode.</p>
-        <button id="btnStandaloneChallenge" class="btn btn-primary">Continue to Challenge &rarr;</button>
-        <button id="btnRetryConnection" class="btn btn-secondary">Retry LAN</button>
+        <div class="tag-row">
+          <span class="category-tag">CLI Gate</span>
+        </div>
+        <h2 id="errorMessageTitle" class="section-title">No Active Break Session</h2>
+        <p id="errorMessageBody" class="subtext">
+          Challenges are automatically assigned by <code>git-grass</code> based on your active Git repository. Run <code>npx git-grass start</code> or commit in your terminal, then scan the QR code to begin.
+        </p>
+        <button id="btnRetryConnection" class="btn btn-secondary">Retry Session Connection</button>
       </section>
 
-      <!-- State 2 & 3: Project Info, Domain & Duration Selection -->
+      <!-- State 2 & 3: Project Info & Duration Selection (Auto-detected by git-grass) -->
       <section id="stateSetup" class="state-view">
         <div class="tag-row">
-          <span class="project-tag" id="repoNameTag">git-grass</span>
-          <span class="category-tag" id="categoryTag">systems</span>
+          <span class="project-tag" id="repoNameTag">repository</span>
+          <span class="category-tag" id="categoryTag">auto-detected</span>
         </div>
         <h2 class="section-title">Outdoor Break Required</h2>
-        <p class="subtext">Your AI can write code. It can't touch grass. Select your domain and duration to begin.</p>
-
-        <div class="form-group">
-          <label class="form-label">Challenge Domain</label>
-          <div class="domain-selector" id="domainSelector" style="display: flex; gap: 6px; flex-wrap: wrap;">
-            <button type="button" class="duration-chip selected" data-domain="systems" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">Systems</button>
-            <button type="button" class="duration-chip" data-domain="web" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">Web</button>
-            <button type="button" class="duration-chip" data-domain="gamedev" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">GameDev</button>
-            <button type="button" class="duration-chip" data-domain="ml" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">ML &amp; AI</button>
-            <button type="button" class="duration-chip" data-domain="audio" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">Audio</button>
-          </div>
-        </div>
+        <p class="subtext">Your AI can write code. It can't touch grass. <code>git-grass</code> has prepared a domain-matched outdoor challenge for your repository.</p>
 
         <div class="form-group">
           <label class="form-label">Break Duration</label>
@@ -102,9 +95,8 @@
 
         <p class="subtext" style="font-size: 0.8rem;">Lock your screen once started and step outside.</p>
 
-        <div class="action-row" style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="action-row">
           <button id="btnStartBreak" class="btn btn-primary">Start Break &amp; Step Outside</button>
-          <button id="btnBackToSetup" type="button" class="btn btn-secondary" style="min-height: 38px; font-size: 0.82rem;">Change Domain / Duration</button>
         </div>
       </section>
 
@@ -241,7 +233,7 @@
       <div class="footer-links-row">
         <span>git-grass &middot; Open Source</span>
         <span class="footer-dot">&bull;</span>
-        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="footer-ext-link">Visit Official Website &amp; GitHub &rarr;</a>
+        <a href="/" id="footerWebsiteLink" class="footer-ext-link">Visit Official Website &rarr;</a>
       </div>
     </footer>
   </div>

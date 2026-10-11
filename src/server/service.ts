@@ -47,12 +47,20 @@ export async function startSessionServer(
   const app = createServerApp(repoRoot);
   const ip = getLocalNetworkIp();
 
+  const queryParams = new URLSearchParams({
+    session: session.sessionId,
+    token: session.sessionToken,
+    repo: session.repositoryName || 'repository',
+    cat: session.challenge?.category || 'systems',
+    dur: String(session.requiredDurationMinutes || 15)
+  }).toString();
+
   return new Promise((resolve, reject) => {
     // Try preferred port, fallback to port 0 (dynamic available port) if busy
     const server = app.listen(preferredPort, '0.0.0.0', () => {
       const addr = server.address();
       const port = typeof addr === 'object' && addr ? addr.port : preferredPort;
-      const sessionUrl = `http://${ip}:${port}/?session=${session.sessionId}&token=${session.sessionToken}`;
+      const sessionUrl = `http://${ip}:${port}/?${queryParams}`;
       resolve({ server, port, ip, sessionUrl });
     });
 
@@ -62,7 +70,7 @@ export async function startSessionServer(
         const fallbackServer = app.listen(0, '0.0.0.0', () => {
           const addr = fallbackServer.address();
           const port = typeof addr === 'object' && addr ? addr.port : 4243;
-          const sessionUrl = `http://${ip}:${port}/?session=${session.sessionId}&token=${session.sessionToken}`;
+          const sessionUrl = `http://${ip}:${port}/?${queryParams}`;
           resolve({ server: fallbackServer, port, ip, sessionUrl });
         });
         fallbackServer.on('error', reject);

@@ -140,14 +140,16 @@
     switchView('error');
   }
 
-  function startStandaloneMode(domainOverride) {
+  function startStandaloneMode() {
     isStandaloneMode = true;
-    const requestedCat = domainOverride || params.get('category') || 'systems';
+    const requestedCat = params.get('cat') || params.get('category') || 'systems';
+    const requestedDur = parseInt(params.get('dur') || '15', 10) || 15;
+    selectedDurationMinutes = requestedDur;
     const picked = standaloneCatalog.find((c) => c.category === requestedCat) || standaloneCatalog[0];
 
     currentSession = {
-      sessionId: sessionId || 'standalone-mobile',
-      repositoryName: params.get('repo') || 'git-grass',
+      sessionId: sessionId,
+      repositoryName: params.get('repo') || 'repository',
       status: 'SESSION_CREATED',
       requiredDurationMinutes: selectedDurationMinutes,
       breakStartedAt: null,
@@ -182,8 +184,9 @@
   }
 
   async function loadInitialSession() {
-    if (isStandaloneMode || !sessionId || !token) {
-      startStandaloneMode();
+    if (!sessionId || !token) {
+      if (headerStatusBadge) headerStatusBadge.textContent = 'Idle';
+      switchView('error');
       return;
     }
 
@@ -192,6 +195,8 @@
       currentSession = data.session;
       renderSessionState();
     } catch {
+      // Phone scanned a valid CLI QR code (sessionId & token present) on mobile data:
+      // seamlessly load the CLI-assigned challenge encoded in the QR URL parameters
       startStandaloneMode();
     }
   }
