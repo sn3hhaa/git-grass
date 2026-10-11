@@ -2,17 +2,18 @@
 
 > **"Your AI can write the code. It can't touch grass."**
 
+[![npm version](https://img.shields.io/npm/v/git-grass.svg)](https://www.npmjs.com/package/git-grass)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org)
-[![Tests Passing](https://img.shields.io/badge/tests-51%20passed-success.svg)](./tests)
+[![Tests Passing](https://img.shields.io/badge/tests-51%20passed-success.svg)](https://github.com/sn3hhaa/git-grass/tree/main/tests)
 [![Website](https://img.shields.io/badge/website-live-brightgreen.svg)](https://git-grass.onrender.com)
 
 **git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website](https://git-grass.onrender.com).
 
-When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code and [Break Gateway](https://git-grass.onrender.com/break/) session. Using repository file structure and manifest metadata, git-grass generates an observational outdoor challenge tailored to your project domain using **Backboard Cloud AI**, **Thinking Machines Tinker** open-weight model sampling, **Render** cloud microservice hosting, or zero-config bundled offline fallbacks.
+When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a compact terminal QR code and [Break Gateway](https://git-grass.onrender.com/break/?s=demo&r=git-grass&c=systems) session. Using repository file structure and manifest metadata, git-grass generates an observational outdoor challenge tailored to your project domain using **Backboard Cloud AI**, **Thinking Machines Tinker** open-weight model sampling, **Render** cloud microservice hosting, or zero-config bundled offline fallbacks.
 
-The developer locks their phone, steps away from their workstation for at least 10 minutes, returns refreshed, completes a short check-in on the phone, and submits their commit message directly from their yard or doorway. The local CLI safely validates staging integrity and executes the commit.
+The developer selects their walk duration on mobile, locks their phone, steps away from their workstation, returns refreshed, completes a short check-in on the phone, and submits their commit message directly from their yard or doorway. The local CLI safely validates staging integrity and executes the commit.
 
 ---
 
@@ -41,30 +42,36 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 
 - **Official Website:** [https://git-grass.onrender.com](https://git-grass.onrender.com)
 - **Technical Documentation:** [https://git-grass.onrender.com/docs/](https://git-grass.onrender.com/docs/)
+- **Live Break Gateway Demo:** [https://git-grass.onrender.com/break/?s=demo&r=git-grass&c=systems](https://git-grass.onrender.com/break/?s=demo&r=git-grass&c=systems)
 - **npm Package:** [https://www.npmjs.com/package/git-grass](https://www.npmjs.com/package/git-grass)
+- **GitHub Repository:** [https://github.com/sn3hhaa/git-grass](https://github.com/sn3hhaa/git-grass)
 
-### 1. Official Landing Page & Interactive Terminal (`https://git-grass.onrender.com`)
-<!-- Upload Screenshot 1 here (Laptop: Landing page hero & terminal card) -->
+### 1. Official Website Main Page (`https://git-grass.onrender.com`)
+<!-- Upload Screenshot 1 here: Website Main Landing Page -->
 
 
 ### 2. Technical Architecture & CLI Documentation (`https://git-grass.onrender.com/docs/`)
-<!-- Upload Screenshot 2 here (Laptop: Documentation page) -->
+<!-- Upload Screenshot 2 here: Website Documentation Page -->
 
 
 ### 3. CLI Installation & Hook Setup (`npm install -g git-grass && git grass init`)
-<!-- Upload Screenshot 3 here (Laptop Terminal: npm install + git grass init output) -->
+<!-- Upload Screenshot 3 here: Terminal showing npm install & git grass init output -->
 
 
 ### 4. Git Commit Gate & Compact QR Code (`git commit -m "..."`)
-<!-- Upload Screenshot 4 here (Laptop Terminal: git commit paused with compact 3x3 QR code & short link) -->
+<!-- Upload Screenshot 4 here: Terminal showing paused git commit, compact 3x3 QR code & single short link -->
 
 
-### 5. Mobile Break Gateway — Duration Selection & Domain Challenge
-<!-- Upload Screenshot 5 here (Phone Screen: Selecting break duration 5/10/15/20m & viewing project-tailored outdoor challenge) -->
+### 5. Mobile Break Gateway — Break Duration & Domain Selection
+<!-- Upload Screenshot 5 here: Phone screen showing repository name & selecting break duration (5m / 10m / 15m / 20m) -->
 
 
-### 6. Mobile Outdoor Walk Timer & Reflection Check-In
-<!-- Upload Screenshot 6 here (Phone Screen: Active outdoor countdown timer & reflection submission that unlocks the Git commit) -->
+### 6. Mobile Break Gateway — Outdoor Challenge & Start Break
+<!-- Upload Screenshot 6 here: Phone screen showing project-tailored outdoor challenge instructions & "Start Break & Step Outside" button -->
+
+
+### 7. Mobile Outdoor Walk — Active Countdown Timer & Check-In
+<!-- Upload Screenshot 7 here: Phone screen showing active outdoor walk countdown timer & reflection check-in -->
 
 ---
 
@@ -378,17 +385,20 @@ git-grass never deletes existing pre-commit hooks. It prepends its wrapper block
 
 ---
 
-## 📚 Complete Documentation Set
+## 📚 Complete Documentation & Live Links
 
-- [Official Website & Interactive Demo](./site/index.html)
-- [Product Requirements Document (PRD)](./docs/PRD.md)
-- [System Architecture & Sequence Diagrams](./docs/ARCHITECTURE.md)
-- [Implementation Plan & Delivery Record](./docs/IMPLEMENTATION_PLAN.md)
-- [Task Tracker](./docs/TASK.md)
-- [Security Model & Threat Assessment](./docs/SECURITY.md)
-- [Testing & Quality Assurance Guide](./docs/TESTING.md)
-- [Contributing Guidelines](./docs/CONTRIBUTING.md)
-- [Architectural Decision Records (ADRs)](./docs/DECISIONS.md)
+- [Official Website & Interactive Demo](https://git-grass.onrender.com)
+- [Live Technical Documentation](https://git-grass.onrender.com/docs/)
+- [Live Mobile Break Gateway](https://git-grass.onrender.com/break/?s=demo&r=git-grass&c=systems)
+- [npm Package (`git-grass`)](https://www.npmjs.com/package/git-grass)
+- [Product Requirements Document (PRD)](https://github.com/sn3hhaa/git-grass/blob/main/docs/PRD.md)
+- [System Architecture & Sequence Diagrams](https://github.com/sn3hhaa/git-grass/blob/main/docs/ARCHITECTURE.md)
+- [Implementation Plan & Delivery Record](https://github.com/sn3hhaa/git-grass/blob/main/docs/IMPLEMENTATION_PLAN.md)
+- [Task Tracker](https://github.com/sn3hhaa/git-grass/blob/main/docs/TASK.md)
+- [Security Model & Threat Assessment](https://github.com/sn3hhaa/git-grass/blob/main/docs/SECURITY.md)
+- [Testing & Quality Assurance Guide](https://github.com/sn3hhaa/git-grass/blob/main/docs/TESTING.md)
+- [Contributing Guidelines](https://github.com/sn3hhaa/git-grass/blob/main/docs/CONTRIBUTING.md)
+- [Architectural Decision Records (ADRs)](https://github.com/sn3hhaa/git-grass/blob/main/docs/DECISIONS.md)
 
 ---
 
