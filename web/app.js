@@ -11,6 +11,70 @@
   let currentSession = null;
   let timerInterval = null;
   let selectedDurationMinutes = 15;
+  let isStandaloneMode = params.get('mode') === 'standalone';
+
+  const standaloneCatalog = [
+    {
+      title: 'Distributed Infrastructure Walk',
+      category: 'systems',
+      durationMinutes: 15,
+      instructions: [
+        'Lock your phone and step outside for a 15-minute walk.',
+        'Observe physical infrastructure: utility lines, drainage channels, traffic signals, or street routing.',
+        'Notice how physical systems handle redundancy, bottlenecks, and load balancing.'
+      ],
+      reflectionPrompt: 'What physical routing junction or infrastructure detail reminded you of backend architecture?',
+      safetyNotes: ['Stay on pedestrian walkways and remain aware of traffic at intersections.']
+    },
+    {
+      title: 'Everyday Information Systems',
+      category: 'web',
+      durationMinutes: 15,
+      instructions: [
+        'Step outside and walk at a relaxed pace without looking at your screen.',
+        'Examine public physical signage, street markers, architectural wayfinding, and natural light contrast.',
+        'Observe how distance, glare, and typography affect human readability outdoors.'
+      ],
+      reflectionPrompt: 'What design element made a physical sign or landmark immediately clear from a distance?',
+      safetyNotes: ['Keep your head up and watch for uneven pavement or cyclists.']
+    },
+    {
+      title: 'Real-World Level Designer',
+      category: 'gamedev',
+      durationMinutes: 15,
+      instructions: [
+        'Step outside and treat your neighborhood block like an open-world level.',
+        'Spot 3 distinct elevation shifts, natural choke points, or sightline blockers.',
+        'Observe how sunlight and shadow guide visual attention across the environment.'
+      ],
+      reflectionPrompt: 'Which physical obstacle or sightline outdoors could inspire an engaging level mechanic?',
+      safetyNotes: ['Do not enter restricted areas or private property while exploring.']
+    },
+    {
+      title: 'Pattern & Texture Observer',
+      category: 'ml',
+      durationMinutes: 15,
+      instructions: [
+        'Walk outdoors and focus your vision on natural high-dimensional data: tree bark, leaf veins, cloud formations.',
+        'Compare two similar natural objects and identify the subtle variance between them.',
+        'Rest your eyes by alternating between close-up textures and the furthest horizon.'
+      ],
+      reflectionPrompt: 'What distinctive feature made one natural pattern stand out from surrounding noise?',
+      safetyNotes: ['Avoid touching unfamiliar plants or wildlife during observation.']
+    },
+    {
+      title: 'Soundscape Explorer',
+      category: 'audio',
+      durationMinutes: 15,
+      instructions: [
+        'Step outside without headphones or earbuds.',
+        'Identify three distinct acoustic layers: a near sound, a mid-range sound, and a distant ambient sound.',
+        'Notice how buildings, trees, and wind shape reverberation and directional audio.'
+      ],
+      reflectionPrompt: 'Which outdoor sound was most subtle once you tuned out the primary ambient noise?',
+      safetyNotes: ['Maintain full situational awareness near roads and crossings.']
+    }
+  ];
 
   // DOM elements
   const views = {
@@ -31,6 +95,7 @@
   const btnViewChallenge = document.getElementById('btnViewChallenge');
   const btnStartBreak = document.getElementById('btnStartBreak');
   const btnRetryConnection = document.getElementById('btnRetryConnection');
+  const btnStandaloneChallenge = document.getElementById('btnStandaloneChallenge');
   const btnCheckTimer = document.getElementById('btnCheckTimer');
 
   const challengeTitle = document.getElementById('challengeTitle');
@@ -75,6 +140,26 @@
     switchView('error');
   }
 
+  function startStandaloneMode() {
+    isStandaloneMode = true;
+    const requestedCat = params.get('category') || '';
+    const picked = standaloneCatalog.find((c) => c.category === requestedCat) ||
+      standaloneCatalog[Math.floor(Math.random() * standaloneCatalog.length)];
+
+    currentSession = {
+      sessionId: sessionId || 'standalone-mobile',
+      repositoryName: params.get('repo') || 'git-grass-mobile',
+      status: 'SESSION_CREATED',
+      requiredDurationMinutes: selectedDurationMinutes,
+      breakStartedAt: null,
+      challenge: { ...picked, durationMinutes: selectedDurationMinutes },
+      commitMessage: '',
+      commitResult: { commitHash: 'verified-outdoor' },
+      pushResult: { attempted: false }
+    };
+    renderSessionState();
+  }
+
   async function apiRequest(path, method = 'GET', body = null) {
     const url = `/api/session/${sessionId}${path}?token=${encodeURIComponent(token)}`;
     const options = {
@@ -97,8 +182,13 @@
   }
 
   async function loadInitialSession() {
+    if (isStandaloneMode) {
+      startStandaloneMode();
+      return;
+    }
+
     if (!sessionId || !token) {
-      showError('Invalid Link', 'Session ID or security token is missing from the URL. Please scan the QR code again.');
+      showError('Standalone or Workstation Mode', 'No active LAN session token in URL. Tap "Start Standalone Challenge" below to begin an outdoor break immediately using mobile internet.');
       return;
     }
 
@@ -107,7 +197,7 @@
       currentSession = data.session;
       renderSessionState();
     } catch (err) {
-      showError('Connection Error', err.message || 'Cannot reach workstation server.');
+      showError('Workstation LAN Unreachable', 'Phone is on mobile data or different Wi-Fi. Tap "Start Standalone Challenge" below to run your outdoor challenge immediately.');
     }
   }
 
@@ -299,16 +389,37 @@
     });
   }
 
+  if (btnStandaloneChallenge) {
+    btnStandaloneChallenge.addEventListener('click', () => {
+      startStandaloneMode();
+    });
+  }
+
   if (btnStartBreak) {
     btnStartBreak.addEventListener('click', async () => {
       btnStartBreak.disabled = true;
       btnStartBreak.textContent = 'Starting...';
+
+      if (isStandaloneMode) {
+        currentSession.breakStartedAt = new Date().toISOString();
+        currentSession.status = 'BREAK_IN_PROGRESS';
+        btnStartBreak.disabled = false;
+        btnStartBreak.textContent = 'Start Break & Step Outside';
+        startInProgressTimer();
+        return;
+      }
+
       try {
         const data = await apiRequest('/start', 'POST');
         currentSession = data.session;
         startInProgressTimer();
       } catch (err) {
-        alert(err.message || 'Failed to start break');
+        // Fallback to standalone timer if phone switched to mobile data outdoors
+        isStandaloneMode = true;
+        currentSession.breakStartedAt = new Date().toISOString();
+        currentSession.status = 'BREAK_IN_PROGRESS';
+        startInProgressTimer();
+      } finally {
         btnStartBreak.disabled = false;
         btnStartBreak.textContent = 'Start Break & Step Outside';
       }
@@ -317,6 +428,18 @@
 
   if (btnCheckTimer) {
     btnCheckTimer.addEventListener('click', async () => {
+      if (isStandaloneMode) {
+        const startTime = new Date(currentSession.breakStartedAt).getTime();
+        const elapsedMins = Math.floor((Date.now() - startTime) / 60000);
+        if (elapsedMins >= currentSession.requiredDurationMinutes) {
+          if (timerInterval) clearInterval(timerInterval);
+          renderCompletionForm();
+        } else {
+          alert(`Standalone Timer: ${elapsedMins} of ${currentSession.requiredDurationMinutes} minutes completed.`);
+        }
+        return;
+      }
+
       try {
         const data = await apiRequest('/status');
         if (data.satisfied) {
@@ -348,6 +471,17 @@
 
       switchView('committing');
 
+      if (isStandaloneMode) {
+        currentSession.userReflection = reflection;
+        currentSession.commitMessage = commitMsg;
+        currentSession.status = 'COMMITTED';
+        currentSession.commitResult = { commitHash: 'outdoor-verified' };
+        setTimeout(() => {
+          renderSuccessView();
+        }, 500);
+        return;
+      }
+
       try {
         // Step 1: Complete break check-in
         await apiRequest('/complete', 'POST', {
@@ -371,6 +505,7 @@
 
   if (btnRetryConnection) {
     btnRetryConnection.addEventListener('click', () => {
+      isStandaloneMode = false;
       switchView('loading');
       loadInitialSession();
     });

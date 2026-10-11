@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>git-grass — Outdoor Break Gateway</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="dark">
+  <div class="app-container">
+    <header class="app-header">
+      <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="brand" style="text-decoration: none;">
+        <img src="logo-dark-theme.png" alt="git-grass logo" class="brand-logo-img" width="24" height="24">
+        <span class="brand-title">git-grass</span>
+      </a>
+      <div class="header-right-actions">
+        <span id="headerStatusBadge" class="status-badge">Break Gateway</span>
+        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="website-link-pill" title="Official Website & Repository">
+          <span>Website</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main class="content-card" id="mainCard">
+      <!-- State 1: Loading -->
+      <section id="stateLoading" class="state-view active">
+        <div class="spinner"></div>
+        <h2 class="section-title" style="text-align: center;">Connecting to workstation...</h2>
+        <p class="subtext" style="text-align: center;">Validating cryptographic session token</p>
+      </section>
+
+      <!-- State: Error / Disconnected -->
+      <section id="stateError" class="state-view">
+        <div class="alert-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f54e00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h2 id="errorMessageTitle" class="section-title">Connection Issue</h2>
+        <p id="errorMessageBody" class="subtext">Could not communicate with the local workstation.</p>
+        <div class="troubleshooting-box">
+          <p class="troubleshooting-heading">Using Mobile Data or Different Wi-Fi?</p>
+          <p style="margin-bottom: 8px;">You can immediately start a standalone outdoor challenge and timer right on your phone without needing local Wi-Fi, or reconnect to your workstation LAN:</p>
+          <ol class="troubleshooting-list">
+            <li>Tap <strong>Start Standalone Challenge</strong> below to use mobile internet / offline mode immediately.</li>
+            <li>Or connect your phone and workstation to the same Wi-Fi / hotspot and tap <strong>Retry Connection</strong>.</li>
+          </ol>
+        </div>
+        <button id="btnStandaloneChallenge" class="btn btn-primary">Start Standalone Challenge (Mobile Data Mode) &rarr;</button>
+        <button id="btnRetryConnection" class="btn btn-secondary">Retry Workstation Connection</button>
+      </section>
+
+      <!-- State 2 & 3: Project Info & Duration Selection -->
+      <section id="stateSetup" class="state-view">
+        <div class="tag-row">
+          <span class="project-tag" id="repoNameTag">Repository</span>
+          <span class="category-tag" id="categoryTag">General</span>
+        </div>
+        <h2 class="section-title">Outdoor Break Required</h2>
+        <p class="tagline">"Your AI can write code. It can't touch grass."</p>
+
+        <div class="info-box">
+          <p class="info-text">
+            Your Git commit is paused at your workstation. Staged files are safely preserved (`SHA-1` verified).
+            Select your break duration and step outside.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Break Duration (Minimum 10 min):</label>
+          <div class="duration-selector" id="durationSelector">
+            <button class="duration-chip" data-mins="10">10 min</button>
+            <button class="duration-chip selected" data-mins="15">15 min</button>
+            <button class="duration-chip" data-mins="20">20 min</button>
+            <button class="duration-chip" data-mins="30">30 min</button>
+          </div>
+        </div>
+
+        <button id="btnViewChallenge" class="btn btn-primary">Receive Outdoor Challenge &rarr;</button>
+      </section>
+
+      <!-- State 4 & 5: Challenge Instructions & Start -->
+      <section id="stateChallenge" class="state-view">
+        <div class="challenge-header">
+          <span class="challenge-category" id="challengeCategoryLabel">Observational Walk</span>
+          <span class="challenge-duration" id="challengeDurationLabel">15 min</span>
+        </div>
+
+        <h2 class="challenge-title" id="challengeTitle">Curiosity Walk</h2>
+
+        <div class="instructions-card">
+          <h3>Activity Instructions</h3>
+          <ol id="instructionsList" class="instructions-list">
+            <!-- Populated via JavaScript -->
+          </ol>
+        </div>
+
+        <div class="safety-box" id="safetyBox">
+          <h4>Safety &amp; Awareness</h4>
+          <ul id="safetyList">
+            <!-- Populated via JavaScript -->
+          </ul>
+        </div>
+
+        <div class="phone-advisory">
+          <p><strong>Phone-Free Break:</strong> Once started, lock your phone and put it away in your pocket.</p>
+        </div>
+
+        <div class="action-row">
+          <button id="btnStartBreak" class="btn btn-primary btn-large">Start Break &amp; Step Outside</button>
+        </div>
+      </section>
+
+      <!-- State 6: Break in Progress -->
+      <section id="stateInProgress" class="state-view">
+        <div class="in-progress-badge">Break in Progress</div>
+
+        <div class="timer-display">
+          <div class="timer-time" id="timerValue">15:00</div>
+          <div class="timer-label" id="timerSubLabel">Remaining of 15 min outdoor walk</div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="timerProgressBar"></div>
+        </div>
+
+        <div class="lock-card">
+          <div class="lock-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6A9955" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3>Put your phone away</h3>
+          <p>
+            Lock your screen and look at the sky, trees, and horizon.
+            Timing is synchronized with your workstation.
+          </p>
+        </div>
+
+        <div class="reflection-preview">
+          <span class="preview-heading">Upcoming Reflection:</span>
+          <p id="reflectionPromptPreview" class="preview-prompt">What did you notice outdoors?</p>
+        </div>
+
+        <div class="secondary-actions">
+          <button id="btnCheckTimer" class="btn btn-outline">Check Status</button>
+        </div>
+      </section>
+
+      <!-- State 7 & 8: Completion Check-in & Commit Message -->
+      <section id="stateCompletion" class="state-view">
+        <div class="tag-row">
+          <span class="success-pill">Minimum Duration Satisfied</span>
+        </div>
+
+        <h2 class="section-title">Welcome Back Indoors</h2>
+        <p class="subtext">Answer the prompt and write your commit message to release the Git gate.</p>
+
+        <form id="completionForm" class="completion-form">
+          <div class="form-group">
+            <label class="form-label" id="reflectionLabel">Your Reflection:</label>
+            <textarea
+              id="reflectionInput"
+              class="form-textarea"
+              rows="3"
+              placeholder="Describe what you observed outdoors..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Git Commit Message:</label>
+            <input
+              type="text"
+              id="commitMessageInput"
+              class="form-input"
+              placeholder="feat: implemented feature or description"
+              required
+            />
+          </div>
+
+          <button type="submit" id="btnSubmitCommit" class="btn btn-primary btn-large">
+            Commit &amp; Release Workstation
+          </button>
+        </form>
+      </section>
+
+      <!-- State 9: Committing in progress -->
+      <section id="stateCommitting" class="state-view">
+        <div class="spinner"></div>
+        <h2 class="section-title" style="text-align: center;">Executing Git Commit...</h2>
+        <p class="subtext" style="text-align: center;">Validating staged changes fingerprint and triggering workstation Git execution</p>
+      </section>
+
+      <!-- State 10: Final Success -->
+      <section id="stateSuccess" class="state-view">
+        <div class="success-circle">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2 class="section-title" style="text-align: center;">Commit Completed</h2>
+        <p class="subtext" style="text-align: center;">Your Git gate has been released. You may return to your workstation.</p>
+
+        <div class="commit-receipt">
+          <div class="receipt-row">
+            <span class="receipt-label">Commit Hash:</span>
+            <span class="receipt-val mono" id="receiptCommitHash">abc1234</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Message:</span>
+            <span class="receipt-val" id="receiptCommitMsg">Initial feature</span>
+          </div>
+          <div class="receipt-row" id="pushReceiptRow">
+            <span class="receipt-label">Git Push:</span>
+            <span class="receipt-val" id="receiptPushStatus">Pushed to remote</span>
+          </div>
+          <div class="receipt-row">
+            <span class="receipt-label">Break Completed:</span>
+            <span class="receipt-val" id="receiptBreakDuration">15 minutes outdoors</span>
+          </div>
+        </div>
+
+        <div class="next-step-box">
+          <h4>Next Step</h4>
+          <p>Switch back to your terminal window. Your command prompt is active and ready for your next coding block.</p>
+        </div>
+
+        <div class="share-box">
+          <button id="btnShareProduct" class="btn btn-secondary btn-full">
+            <span>Share git-grass</span>
+          </button>
+          <span id="shareFeedback" class="share-feedback" style="display: none;">Link copied to clipboard!</span>
+        </div>
+
+        <div class="well-done-banner">
+          <span>You took your break and touched grass. Great job!</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-links-row">
+        <span>git-grass &middot; Open Source</span>
+        <span class="footer-dot">&bull;</span>
+        <a href="https://github.com/sn3hhaa/git-grass" target="_blank" rel="noopener noreferrer" class="footer-ext-link">Visit Official Website &amp; GitHub &rarr;</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

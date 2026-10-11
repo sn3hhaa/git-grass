@@ -10,7 +10,7 @@
 
 **git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website](./site/index.html).
 
-When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code that opens an offline-resilient mobile web experience. Using repository metadata, git-grass generates an observational outdoor challenge tailored to your project domain using a **Render-hosted AI backend powered by Backboard**, Thinking Machines Tinker, local open-weight models (Ollama with Gemma 3), or zero-config bundled fallbacks.
+When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code that opens an offline-resilient mobile web experience. Using repository metadata, git-grass generates an observational outdoor challenge tailored to your project domain using a **Render-hosted AI backend powered by Backboard** (Gemini 2.0 Flash), Thinking Machines Tinker provider architecture, or zero-config bundled offline fallbacks.
 
 The developer locks their phone, steps away from their workstation for at least 10 minutes, returns refreshed, completes a short check-in on the phone, and submits their commit message directly from their yard or doorway. The local CLI safely validates staging integrity and executes the commit.
 
@@ -175,7 +175,7 @@ git-grass inspects your repository context and selects an outdoor observation ta
 | **QR Generation** | `qrcode-terminal` & `qrcode` | Crisp ANSI QR codes displayed directly in terminal windows. |
 | **Git Integration** | Native Git via `child_process.execFile` | Safe execution with argument arrays; zero shell interpolation. |
 | **Mobile Client** | Vanilla HTML5, CSS3, JavaScript | Zero-dependency, lightweight, offline-resilient, instant mobile load. |
-| **AI Inference** | Backboard API (Gemini 2.0 Flash) on Render | Free-tier cloud backend; zero laptop setup, ₹0 cost. *(Optional local Ollama)* |
+| **AI Inference** | Backboard API (Gemini 2.0 Flash) on Render | Free-tier cloud backend; zero laptop setup, ₹0 cost. |
 | **Fallback Library** | Curated JSON (`challenges/fallback-challenges.json`) | Immediate graceful failover when AI server is absent. |
 | **Test Suite** | Vitest | High-speed ESM native testing across isolated disposable repos. |
 
@@ -253,11 +253,9 @@ git grass config resetLastBreak
 ### `git grass doctor`
 Runs a comprehensive environment diagnostic check:
 - Node.js & Git version check
-- Active repository configuration
-- Ollama CLI installation status
-- Local Ollama API connectivity (`http://127.0.0.1:11434`)
-- Target model (`gemma3:1b`) availability and live test inference
-- Bundled offline fallback dataset availability
+- Active repository configuration & pre-commit hook verification
+- Hosted Cloud AI backend (`Render + Backboard`) connectivity & health check
+- Bundled offline fallback dataset (`challenges/fallback-challenges.json`) verification and live test challenge generation
 
 ### `git grass challenge [--test]`
 Generates and displays an outdoor observation challenge for the current repository without triggering a Git commit or starting a break session. Tests the challenge generation pipeline and schema validation directly.
@@ -269,7 +267,7 @@ Safely removes git-grass pre-commit hooks and `.git-grass/` configuration, stric
 
 ## ☁️ Hosted AI Backend (Render + Backboard — ₹0 Laptop Setup)
 
-For developers who want real AI-generated, project-aware challenges without installing Ollama, Gemma, Python, Docker, or native AI runtimes on their machine, git-grass provides a lightweight, dedicated cloud backend.
+For developers who want real AI-generated, project-aware challenges with zero local AI runtimes or heavy models on their machine, git-grass provides a lightweight, dedicated cloud backend.
 
 ### Architecture Overview
 - **Deployment Platform:** Render Web Service (Free Tier, 0.0.0.0 binding, zero persistent disk needed).
@@ -277,12 +275,13 @@ For developers who want real AI-generated, project-aware challenges without inst
 - **Credit & Abuse Protection:**
   - **In-Memory Cache:** 1-hour TTL cache (up to 1,000 entries) preventing identical queries from consuming duplicate credits.
   - **Sliding-Window Rate Limiter:** 15 requests/minute per client IP to prevent runaway credit drainage.
-- **Thinking Machines Tinker Status:** Evaluated as an optional research provider, but **disabled by default** to safeguard user credits because Tinker is a distributed LoRA sampling/training infrastructure rather than a turnkey REST API.
+- **Thinking Machines Tinker Status:** Evaluated and implemented (`src/hosted/providers/tinker.ts`) as an optional research provider, safely disabled by default (`ENABLE_TINKER_PROVIDER=false`) to safeguard user credits.
+- **Instant Offline Fallback:** If the cloud backend is unreachable or offline, git-grass **instantly and transparently falls back to its bundled curated challenge library** (`challenges/fallback-challenges.json`). Your Git commit workflow is never interrupted.
 - **Local Privacy Unaltered:** The local session server remains completely private on your local LAN. The hosted API only processes repository metadata (project name, category, detected keywords) and returns the challenge text.
 
 ### Deploying to Render in 3 Steps ($0 Cost)
 
-1. **Deploy with Blueprint:** Connect your git-grass repository fork to Render and select **New Web Service from Blueprint**, or deploy manually using the included `render.yaml`:
+1. **Deploy with Blueprint:** Connect your git-grass repository to Render and select **New Blueprint Instance** (uses `render.yaml` to deploy both the Static Website and Hosted AI Web Service automatically), or deploy manually as a Web Service:
    - **Environment:** `Node`
    - **Build Command:** `npm install && npm run build`
    - **Start Command:** `npm run start:hosted`
@@ -291,7 +290,7 @@ For developers who want real AI-generated, project-aware challenges without inst
 2. **Configure Environment Variables in Render Dashboard:**
    | Variable | Description | Recommended / Default |
    | :--- | :--- | :--- |
-   | `AI_PROVIDER` | Active AI provider (`backboard`, `fallback`) | `backboard` |
+   | `AI_PROVIDER` | Active AI provider (`backboard`, `tinker`, `fallback`) | `backboard` |
    | `BACKBOARD_API_KEY` | Your Backboard API Key from [app.backboard.io](https://app.backboard.io) | *(Your Secret Key)* |
    | `BACKBOARD_PROVIDER` | LLM provider on Backboard | `google` |
    | `BACKBOARD_MODEL` | LLM model on Backboard | `gemini-2.0-flash` |
@@ -312,53 +311,6 @@ Verify connectivity anytime using:
 ```bash
 git grass doctor
 ```
-
----
-
-## 🧠 Local AI Setup (Ollama & Gemma 3 - Optional Alternative)
-
-git-grass is designed to work **100% out-of-the-box with bundled domain fallbacks without any mandatory AI setup**.
-
-If you wish to enable dynamic, project-aware outdoor challenge generation powered by local open-weight AI:
-
-### 1. Install Ollama
-- **Windows:** Download the official Windows installer from [ollama.com/download](https://ollama.com/download), or install via Windows Package Manager:
-  ```powershell
-  winget install Ollama.Ollama
-  ```
-- **macOS / Linux:** Follow instructions at [ollama.com](https://ollama.com).
-
-### 2. Pull the Lightweight Gemma Model
-We standardize on **`gemma3:1b`** as the default model. It is Google's compact, high-efficiency model optimized for low-resource environments:
-- **Download Size:** ~1.0 GB
-- **Required Disk Space:** ~1.5 GB
-- **Active Memory (RAM):** ~2 GB
-- **Cost:** $0, 100% local, no API keys or cloud accounts
-
-To download:
-```bash
-ollama pull gemma3:1b
-```
-
-Verify your installed models:
-```bash
-ollama list
-```
-
-### 3. Verify AI Readiness
-Run the built-in diagnostic doctor:
-```bash
-git grass doctor
-```
-If Ollama is running and `gemma3:1b` is installed, git-grass will report `Status: READY` and run a live test generation.
-
-To preview a live challenge generation without making a commit:
-```bash
-git grass challenge --test
-```
-
-### 4. Offline Fallback Behavior
-If Ollama is not installed, not running, times out (>6s), or if the model is missing, git-grass **instantly and transparently falls back to its bundled curated challenge library** (`challenges/fallback-challenges.json`). Your Git commit workflow is never interrupted by AI failures.
 
 ---
 

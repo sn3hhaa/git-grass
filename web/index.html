@@ -51,14 +51,15 @@
         <h2 id="errorMessageTitle" class="section-title">Connection Issue</h2>
         <p id="errorMessageBody" class="subtext">Could not communicate with the local workstation.</p>
         <div class="troubleshooting-box">
-          <p class="troubleshooting-heading">Troubleshooting steps:</p>
+          <p class="troubleshooting-heading">Using Mobile Data or Different Wi-Fi?</p>
+          <p style="margin-bottom: 8px;">You can immediately start a standalone outdoor challenge and timer right on your phone without needing local Wi-Fi, or reconnect to your workstation LAN:</p>
           <ol class="troubleshooting-list">
-            <li>Ensure your phone and workstation are on the same Wi-Fi network.</li>
-            <li>If on a guest network with client isolation, connect via your phone's personal hotspot.</li>
-            <li>Ensure the workstation CLI session (`git grass start`) is active.</li>
+            <li>Tap <strong>Start Standalone Challenge</strong> below to use mobile internet / offline mode immediately.</li>
+            <li>Or connect your phone and workstation to the same Wi-Fi / hotspot and tap <strong>Retry Connection</strong>.</li>
           </ol>
         </div>
-        <button id="btnRetryConnection" class="btn btn-secondary">Retry Connection</button>
+        <button id="btnStandaloneChallenge" class="btn btn-primary">Start Standalone Challenge (Mobile Data Mode) &rarr;</button>
+        <button id="btnRetryConnection" class="btn btn-secondary">Retry Workstation Connection</button>
       </section>
 
       <!-- State 2 & 3: Project Info & Duration Selection -->
