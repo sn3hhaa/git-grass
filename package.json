@@ -1,6 +1,6 @@
 {
   "name": "git-grass",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Your AI can write the code. It can't touch grass. Git-native outdoor-break enforcement tool.",
   "type": "module",
   "bin": {

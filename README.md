@@ -48,31 +48,31 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 
 ### 1. Official Website Main Page (`https://git-grass.onrender.com`)
 
-<img width="820" alt="Official Website Main Page" src="https://github.com/user-attachments/assets/1f27edfa-9127-4982-a3a9-fa05d67b4052" />
+<img width="820" alt="Official Website Main Page" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/1-website.png" />
 
 ### 2. Technical Architecture & CLI Documentation (`https://git-grass.onrender.com/docs/`)
 
-<img width="820" alt="Technical Architecture & CLI Documentation" src="https://github.com/user-attachments/assets/28c78644-cdef-458e-b20a-4b6122c0d202" />
+<img width="820" alt="Technical Architecture & CLI Documentation" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/2-docs.png" />
 
 ### 3. CLI Installation & Hook Setup (`npm install -g git-grass && git grass init`)
 
-<img width="780" alt="CLI Installation & Hook Setup" src="https://github.com/user-attachments/assets/d726de19-bbce-48cb-ad22-45bdce81372e" />
+<img width="780" alt="CLI Installation & Hook Setup" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/3-install.png" />
 
 ### 4. Git Commit Gate & Compact QR Code (`git commit -m "..."`)
 
-<img width="780" alt="Git Commit Gate & Compact QR Code" src="https://github.com/user-attachments/assets/c94bf329-7f58-48bb-bbff-92259c75adf3" />
+<img width="780" alt="Git Commit Gate & Compact QR Code" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/4-qr-gate.png" />
 
 ### 5. Mobile Break Gateway — Break Duration & Domain Selection
 
-<img width="280" alt="Mobile Break Gateway — Break Duration & Domain Selection" src="https://github.com/user-attachments/assets/dae01a92-92f0-4ff6-8bc2-7e7d921039bb" />
+<img width="280" alt="Mobile Break Gateway — Break Duration & Domain Selection" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/5-mobile-duration.jpg" />
 
 ### 6. Mobile Break Gateway — Outdoor Challenge & Start Break
 
-<img width="280" alt="Mobile Break Gateway — Outdoor Challenge & Start Break" src="https://github.com/user-attachments/assets/c84bb0d8-0e12-4f42-b464-6555a676bc9e" />
+<img width="280" alt="Mobile Break Gateway — Outdoor Challenge & Start Break" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/6-mobile-challenge.jpg" />
 
 ### 7. Mobile Outdoor Walk — Active Countdown Timer & Check-In
 
-<img width="280" alt="Mobile Outdoor Walk — Active Countdown Timer & Check-In" src="https://github.com/user-attachments/assets/0672e4e6-b004-4e01-921b-b61e4b885a71" />
+<img width="280" alt="Mobile Outdoor Walk — Active Countdown Timer & Check-In" src="https://raw.githubusercontent.com/sn3hhaa/git-grass/main/docs/assets/7-mobile-timer.jpg" />
 
 ---
 
