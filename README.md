@@ -37,6 +37,13 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 
 ---
 
+## 📽️ Live Demo & Video Walkthrough
+
+- **Official Website & Interactive Docs:** [https://git-grass.onrender.com](https://git-grass.onrender.com)
+- **Video Walkthrough:** [Watch `demo.mp4`](./demo.mp4)
+
+---
+
 ## 🖥️ Terminal Demo
 
 When an outdoor break is due, running `git commit` yields:
@@ -51,7 +58,7 @@ It can't touch grass.
 
 A break is required.
 
-Minimum duration: 10 minutes
+Minimum duration: 15 minutes
 Your staged changes are preserved.
 
 Scan the QR code to receive
@@ -73,8 +80,8 @@ your outdoor challenge:
   █████████████████████████████████
   █████████████████████████████████
 
-Or open in your browser / phone:
-http://192.168.1.142:4242/?session=grass-20261010-9b4f&token=8e2f...
+Open Break Gateway on Website / Phone:
+https://git-grass.onrender.com/break/?session=grass-20261011-9b4f&token=8e2f...
 
 Git commit paused. Workstation will resume after outdoor break check-in.
 ```
