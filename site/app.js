@@ -276,6 +276,19 @@
       const payload = Object.fromEntries(formData.entries());
       payload._subject = payload.subject ? `[git-grass] ${payload.subject}` : 'New Message from git-grass';
       payload._replyto = payload.email || '';
+      payload._captcha = 'false';
+
+      const mailtoUrl = `mailto:snehatwiari474@gmail.com?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(`Name: ${payload.name || ''}\nEmail: ${payload.email || ''}\n\n${payload.message || ''}`)}`;
+
+      if (window.location.protocol === 'file:') {
+        window.location.href = mailtoUrl;
+        statusEl.className = 'contact-status success';
+        statusEl.innerHTML = `Opened your mail client to send directly to <strong>snehatwiari474@gmail.com</strong> (local file:// mode). On live hosting (https://), messages send automatically in the background.`;
+        statusEl.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = origText;
+        return;
+      }
 
       try {
         const response = await fetch('https://formsubmit.co/ajax/snehatwiari474@gmail.com', {
@@ -288,17 +301,21 @@
         });
 
         const data = await response.json();
-        if (response.ok || data.success) {
+        const isSuccess = data && (data.success === true || data.success === 'true');
+        if (isSuccess) {
           contactForm.reset();
           statusEl.className = 'contact-status success';
-          statusEl.textContent = 'Thank you! Your message has been sent successfully.';
+          statusEl.textContent = 'Thank you! Your message has been sent directly to snehatwiari474@gmail.com.';
           statusEl.style.display = 'block';
         } else {
-          throw new Error('Failed to send message');
+          const msg = (data && data.message) ? data.message : 'Check your email (snehatwiari474@gmail.com) to click Activate Form on the first submission.';
+          statusEl.className = 'contact-status success';
+          statusEl.innerHTML = `${msg} <br><a href="${mailtoUrl}" style="color: #4ade80; text-decoration: underline;">Click here to send via Email App directly &rarr;</a>`;
+          statusEl.style.display = 'block';
         }
       } catch {
         statusEl.className = 'contact-status success';
-        statusEl.innerHTML = `Message noted! You can also email directly: <a href="mailto:snehatwiari474@gmail.com?subject=${encodeURIComponent(payload.subject || 'git-grass')}&body=${encodeURIComponent(payload.message || '')}" style="color: #4ade80; text-decoration: underline;">snehatwiari474@gmail.com</a>`;
+        statusEl.innerHTML = ` Direct email fallback: <a href="${mailtoUrl}" style="color: #4ade80; text-decoration: underline;">Click to send to snehatwiari474@gmail.com</a>`;
         statusEl.style.display = 'block';
       } finally {
         btn.disabled = false;

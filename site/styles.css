@@ -1585,7 +1585,15 @@ body[data-theme="light"] .logo-dark-mode {
   font-size: 0.825rem;
   line-height: 1.6;
   color: #EDEDEC;
-  overflow-x: auto;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.doc-code-block pre::-webkit-scrollbar {
+  display: none !important;
 }
 
 .doc-callout {
