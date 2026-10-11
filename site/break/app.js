@@ -140,15 +140,14 @@
     switchView('error');
   }
 
-  function startStandaloneMode() {
+  function startStandaloneMode(domainOverride) {
     isStandaloneMode = true;
-    const requestedCat = params.get('category') || '';
-    const picked = standaloneCatalog.find((c) => c.category === requestedCat) ||
-      standaloneCatalog[Math.floor(Math.random() * standaloneCatalog.length)];
+    const requestedCat = domainOverride || params.get('category') || 'systems';
+    const picked = standaloneCatalog.find((c) => c.category === requestedCat) || standaloneCatalog[0];
 
     currentSession = {
       sessionId: sessionId || 'standalone-mobile',
-      repositoryName: params.get('repo') || 'git-grass-mobile',
+      repositoryName: params.get('repo') || 'git-grass',
       status: 'SESSION_CREATED',
       requiredDurationMinutes: selectedDurationMinutes,
       breakStartedAt: null,
@@ -157,6 +156,7 @@
       commitResult: { commitHash: 'verified-outdoor' },
       pushResult: { attempted: false }
     };
+    if (categoryTag) categoryTag.textContent = picked.category;
     renderSessionState();
   }
 
@@ -182,13 +182,8 @@
   }
 
   async function loadInitialSession() {
-    if (isStandaloneMode) {
+    if (isStandaloneMode || !sessionId || !token) {
       startStandaloneMode();
-      return;
-    }
-
-    if (!sessionId || !token) {
-      showError('Standalone or Workstation Mode', 'No active LAN session token in URL. Tap "Start Standalone Challenge" below to begin an outdoor break immediately using mobile internet.');
       return;
     }
 
@@ -196,8 +191,8 @@
       const data = await apiRequest('');
       currentSession = data.session;
       renderSessionState();
-    } catch (err) {
-      showError('Workstation LAN Unreachable', 'Phone is on mobile data or different Wi-Fi. Tap "Start Standalone Challenge" below to run your outdoor challenge immediately.');
+    } catch {
+      startStandaloneMode();
     }
   }
 
@@ -369,13 +364,37 @@
   }
 
   // Event handlers
+  const domainSelector = document.getElementById('domainSelector');
+  const btnBackToSetup = document.getElementById('btnBackToSetup');
+
+  if (domainSelector) {
+    domainSelector.addEventListener('click', (e) => {
+      const target = e.target.closest('.duration-chip');
+      if (!target) return;
+      domainSelector.querySelectorAll('.duration-chip').forEach((c) => c.classList.remove('selected'));
+      target.classList.add('selected');
+      const domain = target.dataset.domain || 'systems';
+      const picked = standaloneCatalog.find((c) => c.category === domain) || standaloneCatalog[0];
+      if (currentSession) {
+        currentSession.challenge = { ...picked, durationMinutes: selectedDurationMinutes };
+      }
+      if (categoryTag) categoryTag.textContent = domain;
+    });
+  }
+
   if (durationSelector) {
     durationSelector.addEventListener('click', (e) => {
       const target = e.target.closest('.duration-chip');
       if (!target) return;
-      document.querySelectorAll('.duration-chip').forEach((c) => c.classList.remove('selected'));
+      durationSelector.querySelectorAll('.duration-chip').forEach((c) => c.classList.remove('selected'));
       target.classList.add('selected');
       selectedDurationMinutes = parseInt(target.dataset.mins || '15', 10);
+    });
+  }
+
+  if (btnBackToSetup) {
+    btnBackToSetup.addEventListener('click', () => {
+      switchView('setup');
     });
   }
 

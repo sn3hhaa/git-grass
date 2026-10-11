@@ -39,52 +39,41 @@
         <p class="subtext" style="text-align: center;">Validating cryptographic session token</p>
       </section>
 
-      <!-- State: Error / Disconnected -->
+      <!-- State: Error / Disconnected (Minimal fallback) -->
       <section id="stateError" class="state-view">
-        <div class="alert-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f54e00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-        </div>
-        <h2 id="errorMessageTitle" class="section-title">Connection Issue</h2>
-        <p id="errorMessageBody" class="subtext">Could not communicate with the local workstation.</p>
-        <div class="troubleshooting-box">
-          <p class="troubleshooting-heading">Using Mobile Data or Different Wi-Fi?</p>
-          <p style="margin-bottom: 8px;">You can immediately start a standalone outdoor challenge and timer right on your phone without needing local Wi-Fi, or reconnect to your workstation LAN:</p>
-          <ol class="troubleshooting-list">
-            <li>Tap <strong>Start Standalone Challenge</strong> below to use mobile internet / offline mode immediately.</li>
-            <li>Or connect your phone and workstation to the same Wi-Fi / hotspot and tap <strong>Retry Connection</strong>.</li>
-          </ol>
-        </div>
-        <button id="btnStandaloneChallenge" class="btn btn-primary">Start Standalone Challenge (Mobile Data Mode) &rarr;</button>
-        <button id="btnRetryConnection" class="btn btn-secondary">Retry Workstation Connection</button>
+        <h2 id="errorMessageTitle" class="section-title">Workstation Offline</h2>
+        <p id="errorMessageBody" class="subtext">Continuing in standalone mobile mode.</p>
+        <button id="btnStandaloneChallenge" class="btn btn-primary">Continue to Challenge &rarr;</button>
+        <button id="btnRetryConnection" class="btn btn-secondary">Retry LAN</button>
       </section>
 
-      <!-- State 2 & 3: Project Info & Duration Selection -->
+      <!-- State 2 & 3: Project Info, Domain & Duration Selection -->
       <section id="stateSetup" class="state-view">
         <div class="tag-row">
-          <span class="project-tag" id="repoNameTag">Repository</span>
-          <span class="category-tag" id="categoryTag">General</span>
+          <span class="project-tag" id="repoNameTag">git-grass</span>
+          <span class="category-tag" id="categoryTag">systems</span>
         </div>
         <h2 class="section-title">Outdoor Break Required</h2>
-        <p class="tagline">"Your AI can write code. It can't touch grass."</p>
+        <p class="subtext">Your AI can write code. It can't touch grass. Select your domain and duration to begin.</p>
 
-        <div class="info-box">
-          <p class="info-text">
-            Your Git commit is paused at your workstation. Staged files are safely preserved (`SHA-1` verified).
-            Select your break duration and step outside.
-          </p>
+        <div class="form-group">
+          <label class="form-label">Challenge Domain</label>
+          <div class="domain-selector" id="domainSelector" style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button type="button" class="duration-chip selected" data-domain="systems" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">Systems</button>
+            <button type="button" class="duration-chip" data-domain="web" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">Web</button>
+            <button type="button" class="duration-chip" data-domain="gamedev" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">GameDev</button>
+            <button type="button" class="duration-chip" data-domain="ml" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">ML &amp; AI</button>
+            <button type="button" class="duration-chip" data-domain="audio" style="padding: 7px 11px; min-height: 34px; font-size: 0.76rem;">Audio</button>
+          </div>
         </div>
 
         <div class="form-group">
-          <label class="form-label">Break Duration (Minimum 10 min):</label>
+          <label class="form-label">Break Duration</label>
           <div class="duration-selector" id="durationSelector">
-            <button class="duration-chip" data-mins="10">10 min</button>
-            <button class="duration-chip selected" data-mins="15">15 min</button>
-            <button class="duration-chip" data-mins="20">20 min</button>
-            <button class="duration-chip" data-mins="30">30 min</button>
+            <button type="button" class="duration-chip" data-mins="10">10m</button>
+            <button type="button" class="duration-chip selected" data-mins="15">15m</button>
+            <button type="button" class="duration-chip" data-mins="20">20m</button>
+            <button type="button" class="duration-chip" data-mins="30">30m</button>
           </div>
         </div>
 
@@ -94,32 +83,28 @@
       <!-- State 4 & 5: Challenge Instructions & Start -->
       <section id="stateChallenge" class="state-view">
         <div class="challenge-header">
-          <span class="challenge-category" id="challengeCategoryLabel">Observational Walk</span>
+          <span class="challenge-category" id="challengeCategoryLabel">systems</span>
           <span class="challenge-duration" id="challengeDurationLabel">15 min</span>
         </div>
 
-        <h2 class="challenge-title" id="challengeTitle">Curiosity Walk</h2>
+        <h2 class="challenge-title" id="challengeTitle">Distributed Infrastructure Walk</h2>
 
         <div class="instructions-card">
-          <h3>Activity Instructions</h3>
+          <h3>Mission Steps</h3>
           <ol id="instructionsList" class="instructions-list">
             <!-- Populated via JavaScript -->
           </ol>
         </div>
 
-        <div class="safety-box" id="safetyBox">
-          <h4>Safety &amp; Awareness</h4>
-          <ul id="safetyList">
-            <!-- Populated via JavaScript -->
-          </ul>
+        <div class="safety-box" id="safetyBox" style="display: none;">
+          <ul id="safetyList"></ul>
         </div>
 
-        <div class="phone-advisory">
-          <p><strong>Phone-Free Break:</strong> Once started, lock your phone and put it away in your pocket.</p>
-        </div>
+        <p class="subtext" style="font-size: 0.8rem;">Lock your screen once started and step outside.</p>
 
-        <div class="action-row">
-          <button id="btnStartBreak" class="btn btn-primary btn-large">Start Break &amp; Step Outside</button>
+        <div class="action-row" style="display: flex; flex-direction: column; gap: 8px;">
+          <button id="btnStartBreak" class="btn btn-primary">Start Break &amp; Step Outside</button>
+          <button id="btnBackToSetup" type="button" class="btn btn-secondary" style="min-height: 38px; font-size: 0.82rem;">Change Domain / Duration</button>
         </div>
       </section>
 
