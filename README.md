@@ -37,9 +37,20 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 
 ---
 
-## 🌐 Live Website & Interactive Demo
+## 🌐 Live Website & Screenshots
 
 - **Official Website & Documentation:** [https://git-grass.onrender.com](https://git-grass.onrender.com)
+
+### 1. Official Website & Interactive Terminal Preview
+![git-grass Official Website](./docs/assets/website-hero.png)
+
+### 2. Technical Architecture & CLI Documentation
+![git-grass Documentation](./docs/assets/docs-page.png)
+
+### 3. Mobile Break Gateway (QR Session View)
+<p align="center">
+  <img src="./docs/assets/break-gateway.png" alt="git-grass Mobile Break Gateway" width="420" />
+</p>
 
 ---
 
