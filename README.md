@@ -71,26 +71,24 @@ A break is required.
 Your staged changes are preserved.
 Select your break duration on the mobile Break Gateway.
 
-Scan the QR code to receive
-your outdoor challenge:
+Scan the QR code to receive your outdoor challenge:
 
-  █████████████████████████████████
-  █████████████████████████████████
-  ████ ▄▄▄▄▄ █▀▄█▄ ▀█ █ ▄▄▄▄▄ █████
-  ████ █   █ █ █ ▀█ ▄ █ █   █ █████
-  ████ █▄▄▄█ █▀█▀ █▄▀ █ █▄▄▄█ █████
-  ████▄▄▄▄▄▄▄█▄▀ ▀▄█▄▀█▄▄▄▄▄▄▄█████
-  ████▄▄█ ▄ ▄█▄▀█ ▄█▄▄█▄▄ ▄ ▄▄█████
-  ████ █▄▀ ▄▄  ▄█▀▄ ▀ ▀▀▄▄▀▄ ▄█████
-  ████▄█▄▄█▄▄█▄▄▀ ▀▄  █▄▄▄█ █▄█████
-  ████ ▄▄▄▄▄ █▄█ ▀ ▄ ▄█ ▄ █  ██████
-  ████ █   █ █ █▄▄▄▀▀ █▄▄▄█▄ ▄█████
-  ████ █▄▄▄█ █ ▄ ▀▀▀█ ▄ ▄ ▄  ██████
-  ████▄▄▄▄▄▄▄█▄▄▄█▄▄▄██▄█▄█▄▄▄█████
-  █████████████████████████████████
-  █████████████████████████████████
+ ▄▄▄▄▄▄▄ ▄▄ ▄  ▄▄  ▄▄▄▄▄▄▄ 
+ █ ▄▄▄ █ █▄▀ ▄   █ █ ▄▄▄ █ 
+ █ ███ █ ▀▄▀▄ ▀██▄ █ ███ █ 
+ █▄▄▄▄▄█ █▀█ ▄ ▄ █ █▄▄▄▄▄█ 
+ ▄▄  ▄▄▄  █▄ ▄ ▀ █  ▄ ▄▄▄▄ 
+ ▄  █▀ ▄▄▄ ▄█ ▄██▀▄▄▄██▄▀  
+ █▀▄█▀▀▄██▀▀▄█  ▀▀▄▄█ ▄██▄ 
+ ▀ █ █ ▄▀▄▀ █▀█ ██▀ ▄█▄▄▀  
+ ▄▄▄▄ █▄▀█▀█     ██▄██▄█▀  
+ ▄▄▄▄▄▄▄ ▀▀ █▄▀█▀█ ▄ █     
+ █ ▄▄▄ █ ██▄▀█ ▀ █▄▄▄███▀▄ 
+ █ ███ █  ▄▀█ ▄█▀█▄█▀ ▄▀▄  
+ █▄▄▄▄▄█ █▀▀▀█  █ ▄█▀▀▀██▄ 
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 
-Open Break Gateway on Phone / Browser:
+Open Break Gateway:
 https://git-grass.onrender.com/break/?s=7ed7ba61&r=pixel-leader-otp&c=web
 
 Git commit paused. Workstation will resume after outdoor break check-in.
