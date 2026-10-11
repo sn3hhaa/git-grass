@@ -1,3 +1,4 @@
+import path from 'node:path';
 import pc from 'picocolors';
 import { findRepoRoot, isGitAvailable } from '../../git/repository.js';
 import { ensureGitGrassDir, loadConfig, saveConfig } from '../../session/storage.js';
@@ -53,11 +54,11 @@ export async function handleInit(options: InitOptions = {}): Promise<void> {
   saveConfig(repoRoot, config);
 
   const hookResult = installPreCommitHook(repoRoot);
+  const displayRepo =
+    path.basename(repoRoot).toLowerCase() === 'desktop' ? process.cwd() : repoRoot;
 
-  console.log(pc.cyan(`Repository: `) + repoRoot);
-  console.log(pc.cyan(`Break interval: `) + `${config.breakIntervalMinutes} minutes`);
-  console.log(pc.cyan(`Default duration: `) + `${config.defaultDurationMinutes} minutes (min: 10m)`);
-  console.log(pc.cyan(`Auto push: `) + `${config.autoPush ? 'Enabled' : 'Disabled'}`);
+  console.log(pc.cyan(`Repository: `) + displayRepo);
+  console.log(pc.cyan(`Break duration: `) + 'Selected by user on mobile Break Gateway');
   console.log(pc.cyan(`Hook status: `) + hookResult.message);
 
   console.log(pc.green('\n✅ git-grass is active!'));

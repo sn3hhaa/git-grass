@@ -68,8 +68,8 @@ It can't touch grass.
 
 A break is required.
 
-Minimum duration: 15 minutes
 Your staged changes are preserved.
+Select your break duration on the mobile Break Gateway.
 
 Scan the QR code to receive
 your outdoor challenge:
@@ -90,8 +90,8 @@ your outdoor challenge:
   █████████████████████████████████
   █████████████████████████████████
 
-Open Break Gateway on Website / Phone:
-https://git-grass.onrender.com/break/?session=grass-20261011-9b4f&token=8e2f...
+Open Break Gateway on Phone / Browser:
+https://git-grass.onrender.com/break/?s=7ed7ba61&r=pixel-leader-otp&c=web
 
 Git commit paused. Workstation will resume after outdoor break check-in.
 ```

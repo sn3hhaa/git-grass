@@ -10,12 +10,14 @@ export interface ProjectContextSummary {
 }
 
 export function extractProjectContext(repoRoot: string): ProjectContextSummary {
-  const repoName = getRepositoryName(repoRoot);
+  let rawRepoName = getRepositoryName(repoRoot);
+  const scanDir = rawRepoName.toLowerCase() === 'desktop' ? process.cwd() : repoRoot;
+  const repoName = rawRepoName.toLowerCase() === 'desktop' ? (path.basename(process.cwd()) || rawRepoName) : rawRepoName;
   let description = '';
   const detectedKeywords: string[] = [];
 
   // Check package.json
-  const pkgPath = path.join(repoRoot, 'package.json');
+  const pkgPath = path.join(scanDir, 'package.json');
   if (fs.existsSync(pkgPath)) {
     try {
       const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
@@ -45,7 +47,7 @@ export function extractProjectContext(repoRoot: string): ProjectContextSummary {
   // Check README.md snippet
   const readmePaths = ['README.md', 'readme.md', 'README'];
   for (const rName of readmePaths) {
-    const fullPath = path.join(repoRoot, rName);
+    const fullPath = path.join(scanDir, rName);
     if (fs.existsSync(fullPath)) {
       try {
         const content = fs.readFileSync(fullPath, 'utf8');
@@ -67,7 +69,7 @@ export function extractProjectContext(repoRoot: string): ProjectContextSummary {
 
   // Scan repository files & extensions to detect exact project contents
   try {
-    const entries = fs.readdirSync(repoRoot, { withFileTypes: true });
+    const entries = fs.readdirSync(scanDir, { withFileTypes: true });
     const fileNames: string[] = [];
     for (const entry of entries) {
       if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'dist') continue;

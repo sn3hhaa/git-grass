@@ -2,15 +2,18 @@
 (function () {
   'use strict';
 
-  // Extract query parameters
+  // Extract query parameters (supports both short ?s=&r=&c= and legacy ?session=&token=)
   const params = new URLSearchParams(window.location.search);
-  const sessionId = params.get('session') || '';
-  const token = params.get('token') || '';
+  const sessionId = params.get('s') || params.get('session') || '';
+  const token = params.get('token') || params.get('s') || '';
+  const repoParam = params.get('r') || params.get('repo') || '';
+  const catParam = params.get('c') || params.get('cat') || params.get('category') || '';
 
   // App state
   let currentSession = null;
   let timerInterval = null;
   let selectedDurationMinutes = 15;
+  let selectedDomain = catParam || 'systems';
   let isStandaloneMode = params.get('mode') === 'standalone';
 
   const standaloneCatalog = [
@@ -19,7 +22,7 @@
       category: 'systems',
       durationMinutes: 15,
       instructions: [
-        'Lock your phone and step outside for a 15-minute walk.',
+        'Lock your phone and step outside for your chosen walk duration.',
         'Observe physical infrastructure: utility lines, drainage channels, traffic signals, or street routing.',
         'Notice how physical systems handle redundancy, bottlenecks, and load balancing.'
       ],
@@ -27,7 +30,7 @@
       safetyNotes: ['Stay on pedestrian walkways and remain aware of traffic at intersections.']
     },
     {
-      title: 'Everyday Information Systems',
+      title: 'Visual Contrast & Wayfinding Walk',
       category: 'web',
       durationMinutes: 15,
       instructions: [
@@ -39,7 +42,7 @@
       safetyNotes: ['Keep your head up and watch for uneven pavement or cyclists.']
     },
     {
-      title: 'Real-World Level Designer',
+      title: 'Real-World Level & Pixel Perspective',
       category: 'gamedev',
       durationMinutes: 15,
       instructions: [
@@ -47,7 +50,7 @@
         'Spot 3 distinct elevation shifts, natural choke points, or sightline blockers.',
         'Observe how sunlight and shadow guide visual attention across the environment.'
       ],
-      reflectionPrompt: 'Which physical obstacle or sightline outdoors could inspire an engaging level mechanic?',
+      reflectionPrompt: 'Which physical obstacle or sightline outdoors could inspire an engaging visual or level mechanic?',
       safetyNotes: ['Do not enter restricted areas or private property while exploring.']
     },
     {
@@ -75,6 +78,24 @@
       safetyNotes: ['Maintain full situational awareness near roads and crossings.']
     }
   ];
+
+  function buildChallengeForRepo(domain, repoName, mins, embedded) {
+    if (embedded) {
+      return { ...embedded, durationMinutes: mins };
+    }
+    const base = standaloneCatalog.find((c) => c.category === domain) || standaloneCatalog[0];
+    const cleanRepo = repoName && repoName !== 'repository' && repoName !== 'Repository' ? repoName : '';
+    const customTitle = cleanRepo ? `${base.title} (${cleanRepo})` : base.title;
+    const step1 = cleanRepo
+      ? `Step away from "${cleanRepo}" and walk outdoors for ${mins} minutes with your phone locked.`
+      : `Lock your phone and step outside for a ${mins}-minute outdoor walk.`;
+    return {
+      ...base,
+      title: customTitle,
+      durationMinutes: mins,
+      instructions: [step1, ...base.instructions.slice(1)]
+    };
+  }
 
   // DOM elements
   const views = {
@@ -160,24 +181,31 @@
 
   function startStandaloneMode() {
     isStandaloneMode = true;
-    const requestedCat = params.get('cat') || params.get('category') || 'systems';
-    const requestedDur = parseInt(params.get('dur') || '15', 10) || 15;
-    selectedDurationMinutes = requestedDur;
+    const requestedCat = catParam || 'web';
+    selectedDomain = requestedCat;
+    const repoName = repoParam || 'repository';
     const embedded = decodeEmbeddedChallenge();
-    const picked = embedded || standaloneCatalog.find((c) => c.category === requestedCat) || standaloneCatalog[0];
+    const challengeObj = buildChallengeForRepo(selectedDomain, repoName, selectedDurationMinutes, embedded);
+
+    const domPicker = document.getElementById('domainSelector');
+    if (domPicker) {
+      domPicker.querySelectorAll('.duration-chip').forEach((chip) => {
+        chip.classList.toggle('selected', chip.dataset.domain === selectedDomain);
+      });
+    }
 
     currentSession = {
       sessionId: sessionId,
-      repositoryName: params.get('repo') || 'repository',
+      repositoryName: repoName,
       status: 'SESSION_CREATED',
       requiredDurationMinutes: selectedDurationMinutes,
       breakStartedAt: null,
-      challenge: { ...picked, durationMinutes: selectedDurationMinutes },
+      challenge: challengeObj,
       commitMessage: '',
       commitResult: { commitHash: 'verified-outdoor' },
       pushResult: { attempted: false }
     };
-    if (categoryTag) categoryTag.textContent = picked.category;
+    if (categoryTag) categoryTag.textContent = challengeObj.category;
     renderSessionState();
   }
 
@@ -397,12 +425,16 @@
       if (!target) return;
       domainSelector.querySelectorAll('.duration-chip').forEach((c) => c.classList.remove('selected'));
       target.classList.add('selected');
-      const domain = target.dataset.domain || 'systems';
-      const picked = standaloneCatalog.find((c) => c.category === domain) || standaloneCatalog[0];
+      selectedDomain = target.dataset.domain || 'systems';
       if (currentSession) {
-        currentSession.challenge = { ...picked, durationMinutes: selectedDurationMinutes };
+        currentSession.challenge = buildChallengeForRepo(
+          selectedDomain,
+          currentSession.repositoryName,
+          selectedDurationMinutes,
+          null
+        );
       }
-      if (categoryTag) categoryTag.textContent = domain;
+      if (categoryTag) categoryTag.textContent = selectedDomain;
     });
   }
 
@@ -424,9 +456,18 @@
 
   if (btnViewChallenge) {
     btnViewChallenge.addEventListener('click', () => {
-      if (currentSession && currentSession.challenge) {
+      if (currentSession) {
         currentSession.requiredDurationMinutes = selectedDurationMinutes;
-        currentSession.challenge.durationMinutes = selectedDurationMinutes;
+        if (isStandaloneMode) {
+          currentSession.challenge = buildChallengeForRepo(
+            selectedDomain,
+            currentSession.repositoryName,
+            selectedDurationMinutes,
+            decodeEmbeddedChallenge()
+          );
+        } else if (currentSession.challenge) {
+          currentSession.challenge.durationMinutes = selectedDurationMinutes;
+        }
       }
       renderChallengeView();
     });

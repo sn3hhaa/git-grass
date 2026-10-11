@@ -1,4 +1,5 @@
 import type { Server } from 'node:http';
+import path from 'node:path';
 import pc from 'picocolors';
 import qrcodeTerminal from 'qrcode-terminal';
 import { createServerApp } from './app.js';
@@ -15,7 +16,7 @@ export interface RunningServer {
 
 export function displayTerminalGate(
   sessionUrl: string,
-  minDurationMinutes: number = 10,
+  _minDurationMinutes: number = 10,
   webGatewayUrl?: string
 ): void {
   const publicUrl = webGatewayUrl || sessionUrl;
@@ -24,9 +25,7 @@ export function displayTerminalGate(
   console.log(pc.green(pc.bold("It can't touch grass.")));
   console.log('');
   console.log(pc.red(pc.bold('A break is required.')));
-  console.log('');
-  console.log(pc.cyan(`Minimum duration: `) + `${minDurationMinutes} minutes`);
-  console.log(pc.dim('Your staged changes are preserved.'));
+  console.log(pc.dim('Your staged changes are preserved. Choose your break duration on mobile.'));
   console.log('');
   console.log(pc.white('Scan the QR code to receive'));
   console.log(pc.white('your outdoor challenge:\n'));
@@ -39,11 +38,8 @@ export function displayTerminalGate(
   }
 
   console.log('');
-  console.log(pc.cyan('Open Break Gateway on Website / Phone:'));
+  console.log(pc.cyan('Open Break Gateway:'));
   console.log(pc.bold(pc.underline(pc.green(publicUrl))));
-  if (webGatewayUrl && webGatewayUrl !== sessionUrl) {
-    console.log(pc.dim(`Local Workstation Sync URL: ${sessionUrl}`));
-  }
   console.log('');
   console.log(pc.dim('Press Ctrl+C to close the session server when complete.\n'));
 }
@@ -56,33 +52,34 @@ export async function startSessionServer(
   const app = createServerApp(repoRoot);
   const ip = getLocalNetworkIp();
 
-  let encodedChallenge = '';
-  if (session.challenge) {
-    try {
-      encodedChallenge = Buffer.from(JSON.stringify(session.challenge), 'utf-8').toString('base64url');
-    } catch {
-      encodedChallenge = '';
-    }
-  }
+  const shortSession = (session.sessionId || 'grass').replace(/^grass-\d+-/, '').slice(0, 8);
+  const cwdName = path.basename(process.cwd());
+  const repoName =
+    !session.repositoryName || session.repositoryName.toLowerCase() === 'desktop'
+      ? cwdName
+      : session.repositoryName;
+  const cat = session.challenge?.category || 'web';
 
-  const queryParams = new URLSearchParams({
-    session: session.sessionId,
-    token: session.sessionToken,
-    repo: session.repositoryName || 'repository',
-    cat: session.challenge?.category || 'systems',
-    dur: String(session.requiredDurationMinutes || 15),
-    ...(encodedChallenge ? { ch: encodedChallenge } : {})
+  const shortQuery = new URLSearchParams({
+    s: shortSession,
+    r: repoName,
+    c: cat
   }).toString();
 
   const siteBase = (process.env.GIT_GRASS_WEBSITE_URL || 'https://git-grass.onrender.com').replace(/\/$/, '');
-  const webGatewayUrl = `${siteBase}/break/?${queryParams}`;
+  const webGatewayUrl = `${siteBase}/break/?${shortQuery}`;
+
+  const localQuery = new URLSearchParams({
+    session: session.sessionId,
+    token: session.sessionToken
+  }).toString();
 
   return new Promise((resolve, reject) => {
     // Try preferred port, fallback to port 0 (dynamic available port) if busy
     const server = app.listen(preferredPort, '0.0.0.0', () => {
       const addr = server.address();
       const port = typeof addr === 'object' && addr ? addr.port : preferredPort;
-      const sessionUrl = `http://${ip}:${port}/?${queryParams}`;
+      const sessionUrl = `http://${ip}:${port}/?${localQuery}`;
       resolve({ server, port, ip, sessionUrl, webGatewayUrl });
     });
 
@@ -92,7 +89,7 @@ export async function startSessionServer(
         const fallbackServer = app.listen(0, '0.0.0.0', () => {
           const addr = fallbackServer.address();
           const port = typeof addr === 'object' && addr ? addr.port : 4243;
-          const sessionUrl = `http://${ip}:${port}/?${queryParams}`;
+          const sessionUrl = `http://${ip}:${port}/?${localQuery}`;
           resolve({ server: fallbackServer, port, ip, sessionUrl, webGatewayUrl });
         });
         fallbackServer.on('error', reject);
