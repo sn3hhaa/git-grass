@@ -74,7 +74,7 @@
   const tabConfigs = {
     npm: {
       html: '<span class="syn-func">npm</span> <span class="syn-pkg">install</span> <span class="syn-flag">-g</span> <span class="syn-str">git-grass</span>',
-      copy: 'npm install -g git-grass && git grass init'
+      copy: 'npm install -g git-grass'
     },
     npx: {
       html: '<span class="syn-func">npx</span> <span class="syn-pkg">git-grass</span> <span class="syn-str">init</span>',
@@ -82,7 +82,7 @@
     },
     source: {
       html: '<span class="syn-func">git</span> <span class="syn-pkg">clone</span> <span class="syn-str">github.com/sn3hhaa/git-grass</span>',
-      copy: 'git clone https://github.com/sn3hhaa/git-grass.git && cd git-grass && npm install && npm run build'
+      copy: 'git clone https://github.com/sn3hhaa/git-grass.git'
     }
   };
 

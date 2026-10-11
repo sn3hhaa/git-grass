@@ -11,7 +11,8 @@
 
 ### ⚡ Quick Install (Official npm Registry)
 ```bash
-npm install -g git-grass && git grass init
+npm install -g git-grass
+git grass init
 ```
 
 **git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website](https://git-grass.onrender.com).
