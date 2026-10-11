@@ -16,11 +16,6 @@ The developer locks their phone, steps away from their workstation for at least 
 
 ---
 
-## 📽️ Demo Video
-> *Status: Pending recording. (See [Terminal Demo](#terminal-demo) and [Manual Testing Guide](./docs/TESTING.md) for live reproduction steps).*
-
----
-
 ## 🚨 Problem Statement
 
 Modern AI-assisted development tools (Copilot, Cursor, Gemini, Claude) enable unprecedented coding velocity. However, this velocity creates uninterrupted marathons in front of monitors:
