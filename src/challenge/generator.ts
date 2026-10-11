@@ -39,7 +39,8 @@ export async function createOutdoorChallenge(
       const directChallenge = await backboard.generateChallenge({
         repositoryName: context.repositoryName,
         category: context.category,
-        keywords: context.keywords,
+        projectDescription: context.projectDescription,
+        detectedKeywords: context.detectedKeywords,
         durationMinutes: duration
       });
       if (directChallenge) {
