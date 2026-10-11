@@ -37,20 +37,34 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 
 ---
 
-## 🌐 Live Website & Screenshots
+## 🌐 Live Website & Product Gallery
 
-- **Official Website & Documentation:** [https://git-grass.onrender.com](https://git-grass.onrender.com)
+- **Official Website:** [https://git-grass.onrender.com](https://git-grass.onrender.com)
+- **Technical Documentation:** [https://git-grass.onrender.com/docs/](https://git-grass.onrender.com/docs/)
+- **npm Package:** [https://www.npmjs.com/package/git-grass](https://www.npmjs.com/package/git-grass)
 
-### 1. Official Website & Interactive Terminal Preview
-![git-grass Official Website](./docs/assets/website-hero.png)
+### 1. Official Landing Page & Interactive Terminal (`https://git-grass.onrender.com`)
+<!-- Upload Screenshot 1 here (Laptop: Landing page hero & terminal card) -->
 
-### 2. Technical Architecture & CLI Documentation
-![git-grass Documentation](./docs/assets/docs-page.png)
 
-### 3. Mobile Break Gateway (QR Session View)
-<p align="center">
-  <img src="./docs/assets/break-gateway.png" alt="git-grass Mobile Break Gateway" width="420" />
-</p>
+### 2. Technical Architecture & CLI Documentation (`https://git-grass.onrender.com/docs/`)
+<!-- Upload Screenshot 2 here (Laptop: Documentation page) -->
+
+
+### 3. CLI Installation & Hook Setup (`npm install -g git-grass && git grass init`)
+<!-- Upload Screenshot 3 here (Laptop Terminal: npm install + git grass init output) -->
+
+
+### 4. Git Commit Gate & Compact QR Code (`git commit -m "..."`)
+<!-- Upload Screenshot 4 here (Laptop Terminal: git commit paused with compact 3x3 QR code & short link) -->
+
+
+### 5. Mobile Break Gateway — Duration Selection & Domain Challenge
+<!-- Upload Screenshot 5 here (Phone Screen: Selecting break duration 5/10/15/20m & viewing project-tailored outdoor challenge) -->
+
+
+### 6. Mobile Outdoor Walk Timer & Reflection Check-In
+<!-- Upload Screenshot 6 here (Phone Screen: Active outdoor countdown timer & reflection submission that unlocks the Git commit) -->
 
 ---
 
