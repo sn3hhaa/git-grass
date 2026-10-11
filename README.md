@@ -37,10 +37,9 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 
 ---
 
-## 📽️ Live Demo & Video Walkthrough
+## 🌐 Live Website & Interactive Demo
 
-- **Official Website & Interactive Docs:** [https://git-grass.onrender.com](https://git-grass.onrender.com)
-- **Video Walkthrough:** [Watch `demo.mp4`](./demo.mp4)
+- **Official Website & Documentation:** [https://git-grass.onrender.com](https://git-grass.onrender.com)
 
 ---
 
