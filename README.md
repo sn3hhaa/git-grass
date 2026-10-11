@@ -9,6 +9,11 @@
 [![Tests Passing](https://img.shields.io/badge/tests-51%20passed-success.svg)](https://github.com/sn3hhaa/git-grass/tree/main/tests)
 [![Website](https://img.shields.io/badge/website-live-brightgreen.svg)](https://git-grass.onrender.com)
 
+### ⚡ Quick Install (Official npm Registry)
+```bash
+npm install -g git-grass && git grass init
+```
+
 **git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website](https://git-grass.onrender.com).
 
 When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a compact terminal QR code and [Break Gateway](https://git-grass.onrender.com/break/?s=demo&r=git-grass&c=systems) session. Using repository file structure and manifest metadata, git-grass generates an observational outdoor challenge tailored to your project domain using **Backboard Cloud AI**, **Thinking Machines Tinker** open-weight model sampling, **Render** cloud microservice hosting, or zero-config bundled offline fallbacks.
