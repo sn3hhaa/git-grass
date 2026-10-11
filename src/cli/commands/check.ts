@@ -27,12 +27,12 @@ export async function handleCheck(options: { wait?: boolean } = {}): Promise<voi
 
   // Break is due! Commit is blocked.
   let session = loadSession(repoRoot);
-  if (!session || session.status === 'COMMITTED' || session.status === 'PUSHED') {
+  if (!session || session.status === 'COMMITTED' || session.status === 'PUSHED' || session.repositoryName.toLowerCase() === 'desktop') {
     session = await createSession(repoRoot, config, config.defaultDurationMinutes);
   }
 
   const runningServer = await startSessionServer(repoRoot, session);
-  displayTerminalGate(runningServer.sessionUrl, session.requiredDurationMinutes, runningServer.webGatewayUrl);
+  await displayTerminalGate(runningServer.sessionUrl, session.requiredDurationMinutes, runningServer.webGatewayUrl);
 
   console.log(pc.yellow('Git commit paused. Workstation will resume after outdoor break check-in.\n'));
 

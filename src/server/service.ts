@@ -1,7 +1,7 @@
 import type { Server } from 'node:http';
 import path from 'node:path';
 import pc from 'picocolors';
-import qrcodeTerminal from 'qrcode-terminal';
+import QRCode from 'qrcode';
 import { createServerApp } from './app.js';
 import { getLocalNetworkIp } from './network.js';
 import type { SessionData } from '../shared/types.js';
@@ -14,12 +14,15 @@ export interface RunningServer {
   webGatewayUrl: string;
 }
 
-export function displayTerminalGate(
+export async function displayTerminalGate(
   sessionUrl: string,
   _minDurationMinutes: number = 10,
   webGatewayUrl?: string
-): void {
+): Promise<void> {
   const publicUrl = webGatewayUrl || sessionUrl;
+  const siteBase = (process.env.GIT_GRASS_WEBSITE_URL || 'https://git-grass.onrender.com').replace(/\/$/, '');
+  const compactQrUrl = `${siteBase}/b`;
+
   console.log(pc.green(pc.bold('\n🌱 git-grass\n')));
   console.log(pc.white('Your AI can write the code.'));
   console.log(pc.green(pc.bold("It can't touch grass.")));
@@ -27,12 +30,17 @@ export function displayTerminalGate(
   console.log(pc.red(pc.bold('A break is required.')));
   console.log(pc.dim('Your staged changes are preserved. Choose your break duration on mobile.'));
   console.log('');
-  console.log(pc.white('Scan the QR code to receive'));
-  console.log(pc.white('your outdoor challenge:\n'));
+  console.log(pc.white('Scan the QR code to receive your outdoor challenge:\n'));
 
-  // Render QR code to terminal
+  // Render ultra-compact 14-line QR code to terminal
   try {
-    qrcodeTerminal.generate(publicUrl, { small: true });
+    const qrString = await QRCode.toString(compactQrUrl, {
+      type: 'terminal',
+      small: true,
+      errorCorrectionLevel: 'L',
+      margin: 1
+    });
+    console.log(qrString.trimEnd());
   } catch {
     console.log(pc.yellow('  [Could not render ANSI QR Code in this terminal]'));
   }
