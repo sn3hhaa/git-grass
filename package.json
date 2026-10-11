@@ -4,7 +4,7 @@
   "description": "Your AI can write the code. It can't touch grass. Git-native outdoor-break enforcement tool.",
   "type": "module",
   "bin": {
-    "git-grass": "./dist/cli/index.js"
+    "git-grass": "dist/cli/index.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -39,7 +39,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sn3hhaa/git-grass.git"
+    "url": "git+https://github.com/sn3hhaa/git-grass.git"
   },
   "bugs": {
     "url": "https://github.com/sn3hhaa/git-grass/issues"

@@ -33,4 +33,11 @@ const challengesSrc = path.join(projectRoot, 'challenges');
 const challengesDest = path.join(projectRoot, 'dist', 'challenges');
 copyDirSync(challengesSrc, challengesDest);
 
+// Ensure LF line endings on CLI entry point for cross-platform npm bin execution
+const cliEntry = path.join(projectRoot, 'dist', 'cli', 'index.js');
+if (fs.existsSync(cliEntry)) {
+  const content = fs.readFileSync(cliEntry, 'utf-8').replace(/\r\n/g, '\n');
+  fs.writeFileSync(cliEntry, content, 'utf-8');
+}
+
 console.log('[build] Assets synchronized to dist/');
