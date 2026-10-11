@@ -6,11 +6,11 @@
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org)
 [![Tests Passing](https://img.shields.io/badge/tests-51%20passed-success.svg)](./tests)
-[![Website](https://img.shields.io/badge/website-git--grass.onrender.com-brightgreen.svg)](https://git-grass.onrender.com)
+[![Website](https://img.shields.io/badge/website-live-brightgreen.svg)](https://git-grass.onrender.com)
 
-**git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website (https://git-grass.onrender.com)](https://git-grass.onrender.com).
+**git-grass** is an open-source, Git-native outdoor-break enforcement tool that integrates physical recovery directly into your source control workflow. [Explore the documentation and interactive demo on the official website](https://git-grass.onrender.com).
 
-When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code and website gateway link (`https://git-grass.onrender.com/break/...`). Using repository file structure and manifest metadata, git-grass generates an observational outdoor challenge tailored to your project domain using **Backboard Cloud AI** (`POST /assistants` -> `POST /threads` -> `POST /threads/{id}/messages`), **Thinking Machines Tinker** open-weight model sampling (`Qwen/Qwen3-30B-A3B`), **Render** cloud microservice hosting, or zero-config bundled offline fallbacks.
+When your configured focus interval expires, your next protected `git commit` is paused. The CLI generates a terminal QR code and [Break Gateway](https://git-grass.onrender.com/break/) session. Using repository file structure and manifest metadata, git-grass generates an observational outdoor challenge tailored to your project domain using **Backboard Cloud AI**, **Thinking Machines Tinker** open-weight model sampling, **Render** cloud microservice hosting, or zero-config bundled offline fallbacks.
 
 The developer locks their phone, steps away from their workstation for at least 10 minutes, returns refreshed, completes a short check-in on the phone, and submits their commit message directly from their yard or doorway. The local CLI safely validates staging integrity and executes the commit.
 
