@@ -46,32 +46,33 @@ git-grass establishes **Git** as the gatekeeper of developer wellness:
 - **npm Package:** [https://www.npmjs.com/package/git-grass](https://www.npmjs.com/package/git-grass)
 - **GitHub Repository:** [https://github.com/sn3hhaa/git-grass](https://github.com/sn3hhaa/git-grass)
 
-### 1. Official Website Main Page (`https://git-grass.onrender.com`)
-<!-- Upload Screenshot 1 here: Website Main Landing Page -->
+### 1. Official Website Main Page 
 
+<img width="939" height="402" alt="Screenshot 2026-10-11 145627" src="https://github.com/user-attachments/assets/1f27edfa-9127-4982-a3a9-fa05d67b4052" />
 
-### 2. Technical Architecture & CLI Documentation (`https://git-grass.onrender.com/docs/`)
-<!-- Upload Screenshot 2 here: Website Documentation Page -->
+### 2. Technical Architecture & CLI Documentation 
 
+<img width="667" height="407" alt="Screenshot 2026-10-11 142847" src="https://github.com/user-attachments/assets/28c78644-cdef-458e-b20a-4b6122c0d202" />
 
-### 3. CLI Installation & Hook Setup (`npm install -g git-grass && git grass init`)
-<!-- Upload Screenshot 3 here: Terminal showing npm install & git grass init output -->
+### 3. CLI Installation & Hook Setup 
 
+<img width="794" height="365" alt="Screenshot 2026-10-11 143317" src="https://github.com/user-attachments/assets/d726de19-bbce-48cb-ad22-45bdce81372e" />
 
-### 4. Git Commit Gate & Compact QR Code (`git commit -m "..."`)
-<!-- Upload Screenshot 4 here: Terminal showing paused git commit, compact 3x3 QR code & single short link -->
+### 4. Git Commit Gate & Compact QR Code
 
+<img width="821" height="429" alt="Screenshot 2026-10-11 143349" src="https://github.com/user-attachments/assets/c94bf329-7f58-48bb-bbff-92259c75adf3" />
 
 ### 5. Mobile Break Gateway — Break Duration & Domain Selection
-<!-- Upload Screenshot 5 here: Phone screen showing repository name & selecting break duration (5m / 10m / 15m / 20m) -->
 
+<img width="716" height="1600" alt="WhatsApp Image 2026-10-11 at 14 52 12" src="https://github.com/user-attachments/assets/dae01a92-92f0-4ff6-8bc2-7e7d921039bb" />
 
 ### 6. Mobile Break Gateway — Outdoor Challenge & Start Break
-<!-- Upload Screenshot 6 here: Phone screen showing project-tailored outdoor challenge instructions & "Start Break & Step Outside" button -->
 
+<img width="716" height="1600" alt="WhatsApp Image 2026-10-11 at 14 52 12 (1)" src="https://github.com/user-attachments/assets/c84bb0d8-0e12-4f42-b464-6555a676bc9e" />
 
 ### 7. Mobile Outdoor Walk — Active Countdown Timer & Check-In
-<!-- Upload Screenshot 7 here: Phone screen showing active outdoor walk countdown timer & reflection check-in -->
+
+<img width="716" height="1600" alt="WhatsApp Image 2026-10-11 at 14 52 12 (2)" src="https://github.com/user-attachments/assets/0672e4e6-b004-4e01-921b-b61e4b885a71" />
 
 ---
 
